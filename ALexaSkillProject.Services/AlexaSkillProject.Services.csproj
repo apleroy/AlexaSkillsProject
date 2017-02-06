@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C89056EF-76EA-4589-8253-3A713EFEBC03}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ALexaSkillProject.Services</RootNamespace>
+    <AssemblyName>ALexaSkillProject.Services</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AlexaRequestHandlerStrategyFactories\AlexaRequestHandlerStrategyFactory.cs" />
+    <Compile Include="AlexaRequestHandlerStrategies\ConcreteClasses\CancelOrStopIntentHandlerStrategy.cs" />
+    <Compile Include="AlexaRequestHandlerStrategies\ConcreteClasses\HelpIntentHandlerStrategy.cs" />
+    <Compile Include="AlexaRequestHandlerStrategies\ConcreteClasses\LaunchRequestHandlerStrategy.cs" />
+    <Compile Include="AlexaRequestHandlerStrategies\ConcreteClasses\NewCoursesIntentHandlerStrategy.cs" />
+    <Compile Include="AlexaRequestHandlerStrategies\ConcreteClasses\SessionEndedRequestHandlerStrategy.cs" />
+    <Compile Include="AlexaRequestHandlerStrategyFactories\ConcreteClasses\IntentRequestHandlerFactory.cs" />
+    <Compile Include="AlexaRequestHandlerStrategyFactories\ConcreteClasses\SessionEndedRequestHandlerFactory.cs" />
+    <Compile Include="PersistenceAndMapping\AlexaRequestMapper.cs" />
+    <Compile Include="PersistenceAndMapping\AlexaRequestPersistenceService.cs" />
+    <Compile Include="AlexaRequestService.cs" />
+    <Compile Include="AlexaRequestHandlerStrategies\Interfaces\IAlexaRequestHandlerStrategy.cs" />
+    <Compile Include="AlexaRequestHandlerStrategyFactories\IAlexaRequestHandlerStrategyFactory.cs" />
+    <Compile Include="PersistenceAndMapping\IAlexaRequestMapper.cs" />
+    <Compile Include="PersistenceAndMapping\IAlexaRequestPersistenceService.cs" />
+    <Compile Include="IAlexaRequestService.cs" />
+    <Compile Include="AlexaRequestHandlerStrategyFactories\ConcreteClasses\LaunchRequestHandlerFactory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AlexaSkillProject.Data\AlexaSkillProject.Repository.csproj">
+      <Project>{13CFA573-6AC4-49E1-AAB2-11E82C9687BC}</Project>
+      <Name>AlexaSkillProject.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AlexaSkillProject.Domain\AlexaSkillProject.Domain.csproj">
+      <Project>{a482121f-3175-4419-b2c7-81c4024a4fe0}</Project>
+      <Name>AlexaSkillProject.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

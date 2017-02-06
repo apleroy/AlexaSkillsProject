@@ -1,0 +1,120 @@
+﻿@model AlexaSkillProject.Domain.AlexaRequest
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>AlexaRequest</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AlexaMember.AlexaUserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AlexaMember.AlexaUserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SessionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SessionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AppId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AppId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequestId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Timestamp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Timestamp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Intent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Intent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Slots)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Slots)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsNew)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsNew)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Version)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Version)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
