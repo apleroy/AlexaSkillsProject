@@ -39,12 +39,6 @@ namespace AlexaSkillProject
             container.RegisterType<IAlexaRequestMapper, AlexaRequestMapper>(new HierarchicalLifetimeManager());
             container.RegisterType<IAlexaRequestPersistenceService, AlexaRequestPersistenceService>(new HierarchicalLifetimeManager());
 
-            //container.RegisterType<IAlexaRequestHandlerStrategy, CancelOrStopIntentHandlerStrategy>();
-            //container.RegisterType<IAlexaRequestHandlerStrategy, HelpIntentHandlerStrategy>();
-            //container.RegisterType<IAlexaRequestHandlerStrategy, LaunchRequestHandlerStrategy>();
-            //container.RegisterType<IAlexaRequestHandlerStrategy, NewCoursesIntentHandlerStrategy>();
-            //container.RegisterType<IAlexaRequestHandlerStrategy, SessionEndedRequestHandlerStrategy>();
-
             container.RegisterType<IAlexaRequestHandlerStrategyFactory, AlexaRequestHandlerStrategyFactory>(new HierarchicalLifetimeManager());
 
             container.RegisterType<IAlexaRequestService, AlexaRequestService>(new HierarchicalLifetimeManager());

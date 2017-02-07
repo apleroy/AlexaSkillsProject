@@ -16,5 +16,6 @@ namespace AlexaSkillProject.Repository
 
         public DbSet<AlexaRequest> AlexaRequests { get; set; }
         public DbSet<AlexaMember> AlexaMembers { get; set; }
+
     }
 }

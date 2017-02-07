@@ -62,6 +62,7 @@
     <Compile Include="AlexaRequestHandlerStrategies\ConcreteClasses\LaunchRequestHandlerStrategy.cs" />
     <Compile Include="AlexaRequestHandlerStrategies\ConcreteClasses\NewCoursesIntentHandlerStrategy.cs" />
     <Compile Include="AlexaRequestHandlerStrategies\ConcreteClasses\SessionEndedRequestHandlerStrategy.cs" />
+    <Compile Include="AlexaRequestHandlerStrategies\ConcreteClasses\HelloWorldIntentHandlerStrategy.cs" />
     <Compile Include="AlexaRequestHandlerStrategyFactories\ConcreteClasses\IntentRequestHandlerFactory.cs" />
     <Compile Include="AlexaRequestHandlerStrategyFactories\ConcreteClasses\SessionEndedRequestHandlerFactory.cs" />
     <Compile Include="DummyService.cs" />

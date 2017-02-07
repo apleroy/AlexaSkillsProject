@@ -20,7 +20,9 @@ namespace AlexaSkillProject.Services
                 case "AMAZON.CancelIntent":
                 case "AMAZON.StopIntent":
                     return new CancelOrStopIntentHandlerStrategy();
-                    
+
+                case "HelloWorldIntent":
+                    return new HelloWorldIntentHandlerStrategy();        
 
                 case "AMAZON.HelpIntent":
                     return new HelpIntentHandlerStrategy();
