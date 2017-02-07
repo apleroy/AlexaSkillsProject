@@ -10,6 +10,7 @@ namespace AlexaSkillProject.Services
     public class NewCoursesIntentHandlerStrategy : IAlexaRequestHandlerStrategy
     {
         
+
         public AlexaResponse HandleAlexaRequest(AlexaRequest alexaRequest)
         {
             var output = new StringBuilder("Here are the latest courses. ");

@@ -7,12 +7,12 @@ using AlexaSkillProject.Domain;
 
 namespace AlexaSkillProject.Services
 {
-    public class LaunchRequestHandlerFactory : IAlexaRequestHandlerStrategyFactory
+    public class LaunchRequestHandlerFactory
     {
         
         public IAlexaRequestHandlerStrategy CreateAlexaRequestHandlerStrategy(AlexaRequest alexaRequest)
         {
-            return new LaunchRequestHandlerStrategy(alexaRequest);
+            return new LaunchRequestHandlerStrategy();
         }
     }
 }

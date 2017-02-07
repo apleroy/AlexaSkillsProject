@@ -1,4 +1,4 @@
-﻿using AlexaSkillProject.Services.Interfaces;
+﻿using AlexaSkillProject.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +10,7 @@ namespace AlexaSkillProject.Services
 {
     public class AlexaRequestMapper : IAlexaRequestMapper
     {
-        public AlexaRequestMapper()
-        {
-        }
-
+        
         public AlexaRequest MapAlexaRequest(AlexaRequestInputModel alexaRequestInputModel)
         {
             AlexaRequest alexaRequest = new AlexaRequest

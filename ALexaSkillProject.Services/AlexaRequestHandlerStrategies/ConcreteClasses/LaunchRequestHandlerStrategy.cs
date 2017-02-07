@@ -9,14 +9,8 @@ namespace AlexaSkillProject.Services
 {
     public class LaunchRequestHandlerStrategy : IAlexaRequestHandlerStrategy
     {
-        private AlexaRequest alexaRequest;
-
-        public LaunchRequestHandlerStrategy(AlexaRequest alexaRequest)
-        {
-            this.alexaRequest = alexaRequest;
-        }
-
-        public AlexaResponse HandleAlexaRequest()
+        
+        public AlexaResponse HandleAlexaRequest(AlexaRequest alexaRequest)
         {
             var response = new AlexaResponse("Welcome to Plural sight. What would you like to hear, the Top Courses or New Courses?");
             response.Session.MemberId = alexaRequest.AlexaMemberId;

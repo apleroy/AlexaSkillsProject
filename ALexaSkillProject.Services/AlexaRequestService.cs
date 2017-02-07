@@ -35,10 +35,10 @@ namespace AlexaSkillProject.Services
             _alexaRequestPersistenceService.PersistAlexaRequestAndMember(alexaRequest);
 
             // create a request handler strategy from the alexarequest
-            IAlexaRequestHandlerStrategy alexaRequestHandlerFactory = _alexaRequestHandlerStrategyFactory.CreateAlexaRequestHandlerStrategy(alexaRequest);
+            IAlexaRequestHandlerStrategy alexaRequestHandlerStrategy = _alexaRequestHandlerStrategyFactory.CreateAlexaRequestHandlerStrategy(alexaRequest);
 
             // use the handlerstrategy to process the request and generate a response
-            AlexaResponse alexaResponse = alexaRequestHandlerFactory.HandleAlexaRequest();
+            AlexaResponse alexaResponse = alexaRequestHandlerStrategy.HandleAlexaRequest(alexaRequest);
 
             // return response
             return alexaResponse;

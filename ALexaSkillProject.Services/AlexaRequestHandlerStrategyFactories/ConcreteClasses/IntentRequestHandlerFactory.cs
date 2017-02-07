@@ -7,7 +7,7 @@ using AlexaSkillProject.Domain;
 
 namespace AlexaSkillProject.Services
 {
-    public class IntentRequestHandlerFactory : IAlexaRequestHandlerStrategyFactory
+    public class IntentRequestHandlerFactory
     {
         
         public IAlexaRequestHandlerStrategy CreateAlexaRequestHandlerStrategy(AlexaRequest alexaRequest)
