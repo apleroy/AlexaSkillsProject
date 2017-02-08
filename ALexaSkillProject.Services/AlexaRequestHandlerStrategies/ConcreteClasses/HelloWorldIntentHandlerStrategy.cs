@@ -7,7 +7,7 @@ using AlexaSkillProject.Domain;
 
 namespace AlexaSkillProject.Services
 {
-    internal class HelloWorldIntentHandlerStrategy : IAlexaRequestHandlerStrategy
+    public class HelloWorldIntentHandlerStrategy : IAlexaRequestHandlerStrategy
     {
         public AlexaResponse HandleAlexaRequest(AlexaRequest alexaRequest)
         {

@@ -22,7 +22,11 @@ namespace AlexaSkillProject.Services
                     return new CancelOrStopIntentHandlerStrategy();
 
                 case "HelloWorldIntent":
-                    return new HelloWorldIntentHandlerStrategy();        
+                    return new HelloWorldIntentHandlerStrategy();
+
+                case "WordOfTheDayIntent":
+                    return new WordOfTheDayIntentHandlerStrategy();
+
 
                 case "AMAZON.HelpIntent":
                     return new HelpIntentHandlerStrategy();

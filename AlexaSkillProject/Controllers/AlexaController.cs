@@ -27,6 +27,13 @@ namespace AlexaSkillProject.Controllers
             
         }
 
-        
+        [HttpPost, Route("api/alexa/wod")]
+        public dynamic WordOfTheDay(AlexaRequestInputModel alexaRequestInput)
+        {
+            return _alexaRequestService.ProcessAlexaRequest(alexaRequestInput);
+
+        }
+
+
     }
 }

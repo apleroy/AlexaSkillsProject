@@ -1,0 +1,14 @@
+﻿WordOfTheDayIntent what is todays word of the day
+WordOfTheDayIntent word of the day
+WordOfTheDayIntent get the word of the day
+
+TopCoursesIntent popular
+TopCoursesIntent top courses
+
+TopCoursesIntent top {Limit} {Criteria}
+TopCoursesIntent get the {Limit} most popular {Criteria}
+TopCoursesIntent get the {Limit} top {Criteria}
+
+AMAZON.CancelIntent cease everything
+AMAZON.StopIntent abort getting the word of the day
+AMAZON.HelpIntent give me guidance

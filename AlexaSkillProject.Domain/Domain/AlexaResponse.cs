@@ -135,9 +135,5 @@ namespace AlexaSkillProject.Domain
             }
         }
 
-        public void HelpIntentHandler(AlexaRequestInputModel alexaRequest)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

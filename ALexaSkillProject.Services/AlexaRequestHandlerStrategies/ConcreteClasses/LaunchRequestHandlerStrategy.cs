@@ -12,11 +12,12 @@ namespace AlexaSkillProject.Services
         
         public AlexaResponse HandleAlexaRequest(AlexaRequest alexaRequest)
         {
-            var response = new AlexaResponse("Welcome to Plural sight. What would you like to hear, the Top Courses or New Courses?");
+
+            var response = new AlexaResponse("Welcome to the Vocabulary App.  You can start by asking What is the word of the day?");
             response.Session.MemberId = alexaRequest.AlexaMemberId;
-            response.Response.Card.Title = "Pluralsight";
-            response.Response.Card.Content = "Hello\ncruel world!";
-            response.Response.Reprompt.OutputSpeech.Text = "Please pick one, Top Courses or New Courses?";
+            response.Response.Card.Title = "Vocabulary App";
+            response.Response.Card.Content = "Welcome to the Vocabulary App";
+            response.Response.Reprompt.OutputSpeech.Text = "Please ask What is the Word of The Day?";
             response.Response.ShouldEndSession = false;
 
             return response;

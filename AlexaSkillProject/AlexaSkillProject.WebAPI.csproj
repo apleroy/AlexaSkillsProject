@@ -340,6 +340,8 @@
     <Content Include="Views\AlexaRequests\Details.cshtml" />
     <Content Include="Views\AlexaRequests\Edit.cshtml" />
     <Content Include="Views\AlexaRequests\Index.cshtml" />
+    <Content Include="SpeechAssets\IntentSchema.json" />
+    <Content Include="SpeechAssets\SampleUtterances.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -357,7 +359,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AlexaSkillProject.Data\AlexaSkillProject.Repository.csproj">
-      <Project>{13CFA573-6AC4-49E1-AAB2-11E82C9687BC}</Project>
+      <Project>{13cfa573-6ac4-49e1-aab2-11e82c9687bc}</Project>
       <Name>AlexaSkillProject.Repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\AlexaSkillProject.Domain\AlexaSkillProject.Domain.csproj">

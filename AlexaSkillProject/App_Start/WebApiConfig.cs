@@ -34,8 +34,6 @@ namespace AlexaSkillProject
             
             container.RegisterType<IUnitOfWork, UnitOfWork>(new HierarchicalLifetimeManager());
 
-            container.RegisterType<IDummyService, DummyService>(new HierarchicalLifetimeManager());
-
             container.RegisterType<IAlexaRequestMapper, AlexaRequestMapper>(new HierarchicalLifetimeManager());
             container.RegisterType<IAlexaRequestPersistenceService, AlexaRequestPersistenceService>(new HierarchicalLifetimeManager());
 
