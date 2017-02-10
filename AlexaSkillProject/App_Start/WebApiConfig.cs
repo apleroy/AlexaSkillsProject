@@ -20,6 +20,8 @@ namespace AlexaSkillProject
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
+            log4net.Config.XmlConfigurator.Configure();
+
             // Web API routes
             config.MapHttpAttributeRoutes();
 

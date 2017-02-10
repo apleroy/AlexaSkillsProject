@@ -21,7 +21,7 @@ namespace AlexaSkillProject.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("AlexaSkillProjectDataContext", throwIfV1Schema: false)
         {
         }
         

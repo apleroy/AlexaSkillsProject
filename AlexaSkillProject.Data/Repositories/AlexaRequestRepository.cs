@@ -8,7 +8,7 @@ using System.Data.Entity;
 
 namespace AlexaSkillProject.Repository
 {
-    public class AlexaRequestRepository : Repository<AlexaRequest>, IAlexaRequestRepository
+    public class AlexaRequestRepository : AbstractGenericRepository<AlexaRequest>, IAlexaRequestRepository
     {
         public AlexaRequestRepository(AlexaSkillProjectDataContext context) : base(context)
         {

@@ -1,4 +1,4 @@
-namespace AlexaSkillProject.Data.Migrations
+namespace AlexaSkillProject.Repository.Migrations
 {
     using System;
     using System.Data.Entity;

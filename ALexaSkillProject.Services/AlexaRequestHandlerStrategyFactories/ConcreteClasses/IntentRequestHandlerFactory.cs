@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AlexaSkillProject.Domain;
+using AlexaSkillProject.Repository;
 
 namespace AlexaSkillProject.Services
 {
     public class IntentRequestHandlerFactory
     {
-        
+
         public IAlexaRequestHandlerStrategy CreateAlexaRequestHandlerStrategy(AlexaRequest alexaRequest)
         {
             switch (alexaRequest.Intent)

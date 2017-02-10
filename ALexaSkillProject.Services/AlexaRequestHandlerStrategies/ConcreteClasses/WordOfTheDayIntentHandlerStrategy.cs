@@ -10,27 +10,33 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using System.IO;
 using AlexaSkillProject.Services;
+using AlexaSkillProject.Repository;
 
 namespace AlexaSkillProject.Services
 {
     public class WordOfTheDayIntentHandlerStrategy : IAlexaRequestHandlerStrategy
     {
-        private IPearsonsDictionaryApiService _pearsonsDictionaryApiService;
+        private readonly IPearsonsDictionaryApiService _pearsonsDictionaryApiService;
+        private readonly IWordOfTheDayService _wordOfTheDayService;
 
         public WordOfTheDayIntentHandlerStrategy()
         {
             _pearsonsDictionaryApiService = new PearsonsDictionaryApiService();
+            _wordOfTheDayService = new WordOfTheDayService();
         }
 
         public AlexaResponse HandleAlexaRequest(AlexaRequest alexaRequest)
         {
             // get a random word from a list - random word service - optional db call
             var word = "Catastrophe";
+
+            Word wordOfTheDay = _wordOfTheDayService.GetWordOfTheDay();
+
             PearsonsDictionaryApiResponse pearsonsDictionaryApiResponse = null;
             // create and parse the web request to pearsons dictionary api
             try
             {
-                HttpWebRequest webRequest = _pearsonsDictionaryApiService.CreateDictionaryApiRequest(word);
+                HttpWebRequest webRequest = _pearsonsDictionaryApiService.CreateDictionaryApiRequest(wordOfTheDay.WordName);
                 pearsonsDictionaryApiResponse = _pearsonsDictionaryApiService.ParseDictionaryApiRequest(webRequest);
             }
             catch (Exception e)
@@ -80,18 +86,10 @@ namespace AlexaSkillProject.Services
             {
                 if (resultSet.Datasets.Contains("laad3"))
                 {
-                    try
-                    {
-                        wordOfTheDayDictionary["wordOfTheDay"] = resultSet.Headword;
-                        wordOfTheDayDictionary["wordOfTheDayPartOfSpeech"] = resultSet.PartOfSpeech;
-                        wordOfTheDayDictionary["wordOfTheDayDefinition"] = resultSet.Senses[0].Definition;
-                        wordOfTheDayDictionary["wordOfTheDayExample"] = resultSet.Senses[0].Examples[0].Text;
-                    }
-                    catch (Exception exception)
-                    {
-                        Console.WriteLine(exception.Message);
-                        throw exception;
-                    }
+                    try { wordOfTheDayDictionary["wordOfTheDay"] = resultSet.Headword; } catch { }
+                    try { wordOfTheDayDictionary["wordOfTheDayPartOfSpeech"] = resultSet.PartOfSpeech;} catch { }
+                    try { wordOfTheDayDictionary["wordOfTheDayDefinition"] = resultSet.Senses[0].Definition; } catch { }
+                    try { wordOfTheDayDictionary["wordOfTheDayExample"] = resultSet.Senses[0].Examples[0].Text; } catch { }
                 }
             }
 

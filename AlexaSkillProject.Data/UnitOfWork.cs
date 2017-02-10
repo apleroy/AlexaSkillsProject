@@ -15,10 +15,12 @@ namespace AlexaSkillProject.Repository
             _context = context;
             AlexaMembers = new AlexaMemberRepository(_context);
             AlexaRequests = new AlexaRequestRepository(_context);
+            Words = new WordRepository(_context);
         }
 
         public IAlexaMemberRepository AlexaMembers { get; private set; }
         public IAlexaRequestRepository AlexaRequests { get; private set; }
+        public IWordRepository Words { get; private set; }
 
         public int Complete()
         {
