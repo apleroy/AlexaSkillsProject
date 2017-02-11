@@ -11,6 +11,10 @@ using AlexaSkillProject.Repository;
 
 namespace AlexaSkillProject.WebApp.Controllers
 {
+
+    //https://code.msdn.microsoft.com/ASPNET-MVC-5-Security-And-44cbdb97
+
+    [Authorize(Roles = "Admin")]
     public class WordsController : Controller
     {
         private AlexaSkillProjectDataContext db = new AlexaSkillProjectDataContext();

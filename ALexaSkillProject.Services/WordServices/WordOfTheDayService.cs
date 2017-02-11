@@ -17,22 +17,35 @@ namespace AlexaSkillProject.Services
             _unitOfWork = new UnitOfWork(new AlexaSkillProjectDataContext());
         }
 
+        public Word GetRandomWord()
+        {
+            // get list of all words that are not today's word
+            IEnumerable<Word> words = _unitOfWork.Words.Find(w => w.WordOfTheDayDate != DateTime.Now);
+
+            // determine total number and generate the random number
+            int count = _unitOfWork.Words.Count();
+            int index = new Random().Next(count);
+
+            // second rountrip to get the random word
+            Word word = words.Skip(index).FirstOrDefault();
+
+            return word;
+        }
+
         public Word GetWordOfTheDay()
         {
-
-
-            Word w = new Word();
+            Word word = new Word();
             try
             {
-                w = _unitOfWork.Words.Get(2);
+                word = _unitOfWork.Words.Find(w => w.WordOfTheDayDate == DateTime.Now).FirstOrDefault();
             }
             catch (Exception e)
             {
-                var m = e.Message;
-                return null;
+                // if there is no word for today, get a random one
+                word = GetRandomWord();                
             }
             
-            return w;
+            return word;
         }
     }
 }

@@ -10,5 +10,6 @@ namespace AlexaSkillProject.Services
     public interface IWordOfTheDayService
     {
         Word GetWordOfTheDay();
+        Word GetRandomWord();
     }
 }

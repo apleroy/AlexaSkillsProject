@@ -69,7 +69,7 @@
     <Compile Include="Repositories\WordRepository.cs" />
     <Compile Include="Repositories\AlexaMemberRepository.cs" />
     <Compile Include="Repositories\AlexaRequestRepository.cs" />
-    <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\AbstractGenericRepository.cs" />
     <Compile Include="RepositoryInterfaces\IWordRepository.cs" />
     <Compile Include="RepositoryInterfaces\IAlexaMemberRepository.cs" />
     <Compile Include="RepositoryInterfaces\IAlexaRequestRepository.cs" />
@@ -81,6 +81,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AlexaSkillProject.Core\AlexaSkillProject.Core.csproj">
+      <Project>{fe53974a-4155-4044-91fb-412e9df3e170}</Project>
+      <Name>AlexaSkillProject.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AlexaSkillProject.Domain\AlexaSkillProject.Domain.csproj">
       <Project>{a482121f-3175-4419-b2c7-81c4024a4fe0}</Project>
       <Name>AlexaSkillProject.Domain</Name>

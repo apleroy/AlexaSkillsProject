@@ -56,5 +56,15 @@ namespace AlexaSkillProject.Repository
         {
             Context.Set<TEntity>().RemoveRange(entities);
         }
+
+        public int Count()
+        {
+            return Context.Set<TEntity>().Count();
+        }
+
+        public int QueryCount(Expression<Func<TEntity, Boolean>> predicate)
+        {
+            return Context.Set<TEntity>().Count(predicate);   
+        }
     }
 }

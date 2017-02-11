@@ -1,5 +1,6 @@
 ﻿using AlexaSkillProject.Domain;
 using AlexaSkillProject.Services;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace AlexaSkillProject.Controllers
 {
     public class AlexaController : ApiController
     {
-        //private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private readonly IAlexaRequestService _alexaRequestService;
 
@@ -20,39 +21,22 @@ namespace AlexaSkillProject.Controllers
             _alexaRequestService = alexaRequestService;
         }
 
-        [HttpPost, Route("api/alexa/test")]
+        [HttpPost, Route("api/v1/alexa/test")]
         public dynamic Test(AlexaRequestInputModel alexaRequestInput)
         {
             return new AlexaResponse("Working");
         }
 
-        [HttpPost, Route("api/alexa/demo")]
+        [HttpPost, Route("api/v1/alexa/demo")]
         public dynamic Yoda(AlexaRequestInputModel alexaRequestInput)
         {
-            try
-            {
-                return _alexaRequestService.ProcessAlexaRequest(alexaRequestInput);
-            }
-            catch (Exception exception)
-            {
-                //Log.Error("Error: " + exception.Message);
-            }
-            return null;
+            return _alexaRequestService.ProcessAlexaRequest(alexaRequestInput);          
         }
 
-        [HttpPost, Route("api/alexa/wod")]
+        [HttpPost, Route("api/v1/alexa/wod")]
         public dynamic WordOfTheDay(AlexaRequestInputModel alexaRequestInput)
         {
-            try
-            { 
-                return _alexaRequestService.ProcessAlexaRequest(alexaRequestInput);
-            }
-            catch (Exception exception)
-            {
-                //Log.Error("Error: " + exception.Message);
-            }
-            return null;
-
+            return _alexaRequestService.ProcessAlexaRequest(alexaRequestInput);
         }
 
 

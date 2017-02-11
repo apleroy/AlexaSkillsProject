@@ -272,6 +272,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\PublishProfiles\AlexaSkillProjectWebApp.pubxml" />
+    <None Include="Properties\PublishProfiles\Local_IIS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -340,6 +341,10 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AlexaSkillProject.Core\AlexaSkillProject.Core.csproj">
+      <Project>{fe53974a-4155-4044-91fb-412e9df3e170}</Project>
+      <Name>AlexaSkillProject.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AlexaSkillProject.Data\AlexaSkillProject.Repository.csproj">
       <Project>{13cfa573-6ac4-49e1-aab2-11e82c9687bc}</Project>
       <Name>AlexaSkillProject.Repository</Name>

@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlexaErrorHandling\AlexaWordErrorResponse.cs" />
     <Compile Include="AlexaRequestHandlerStrategies\ConcreteClasses\WordOfTheDayIntentHandlerStrategy.cs" />
     <Compile Include="AlexaRequestHandlerStrategyFactories\AlexaRequestHandlerStrategyFactory.cs" />
     <Compile Include="AlexaRequestHandlerStrategies\ConcreteClasses\CancelOrStopIntentHandlerStrategy.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="AlexaRequestHandlerStrategies\ConcreteClasses\HelloWorldIntentHandlerStrategy.cs" />
     <Compile Include="AlexaRequestHandlerStrategyFactories\ConcreteClasses\IntentRequestHandlerFactory.cs" />
     <Compile Include="AlexaRequestHandlerStrategyFactories\ConcreteClasses\SessionEndedRequestHandlerFactory.cs" />
+    <Compile Include="AlexaErrorHandling\AbstractAlexaErrorResponse.cs" />
     <Compile Include="PearsonsApiServices\IPearsonsDictionaryApiService.cs" />
     <Compile Include="PearsonsApiServices\PearsonsDictionaryApiService.cs" />
     <Compile Include="PersistenceAndMapping\AlexaRequestMapper.cs" />
@@ -87,6 +89,10 @@
     <Compile Include="WordServices\WordOfTheDayService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AlexaSkillProject.Core\AlexaSkillProject.Core.csproj">
+      <Project>{FE53974A-4155-4044-91FB-412E9DF3E170}</Project>
+      <Name>AlexaSkillProject.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AlexaSkillProject.Data\AlexaSkillProject.Repository.csproj">
       <Project>{13CFA573-6AC4-49E1-AAB2-11E82C9687BC}</Project>
       <Name>AlexaSkillProject.Repository</Name>
