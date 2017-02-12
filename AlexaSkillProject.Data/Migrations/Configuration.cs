@@ -28,11 +28,12 @@ namespace AlexaSkillProject.Repository.Migrations
             //    );
             //
 
-            if (context.Words.Count() < 10)
+            if (context.Words.Count() < 100)
             {
                 context.Words.AddOrUpdate(
                     w => w.WordName,
 
+                    new Word { WordName = "jubilation", WordOfTheDayDate = DateTime.Now },
                     new Word { WordName = "abbreviate", WordOfTheDayDate = DateTime.Now.AddDays(1) },
                     new Word { WordName = "amicable", WordOfTheDayDate = DateTime.Now.AddDays(2) },
                     new Word { WordName = "anachronistic", WordOfTheDayDate = DateTime.Now.AddDays(3) },

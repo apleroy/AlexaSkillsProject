@@ -62,6 +62,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlexaErrorHandling\AlexaWordErrorResponse.cs" />
+    <Compile Include="AlexaRequestHandlerStrategies\AbstractWordIntentHandlerStrategy.cs" />
+    <Compile Include="AlexaRequestHandlerStrategies\ConcreteClasses\AnotherWordIntentHandlerStrategy.cs" />
+    <Compile Include="AlexaRequestHandlerStrategies\ConcreteClasses\SayWordIntentHandlerStrategy.cs" />
     <Compile Include="AlexaRequestHandlerStrategies\ConcreteClasses\WordOfTheDayIntentHandlerStrategy.cs" />
     <Compile Include="AlexaRequestHandlerStrategyFactories\AlexaRequestHandlerStrategyFactory.cs" />
     <Compile Include="AlexaRequestHandlerStrategies\ConcreteClasses\CancelOrStopIntentHandlerStrategy.cs" />

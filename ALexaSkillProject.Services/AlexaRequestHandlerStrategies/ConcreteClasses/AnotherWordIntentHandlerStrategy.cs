@@ -17,27 +17,15 @@ using AlexaSkillProject.Core;
 
 namespace AlexaSkillProject.Services
 {
-    public enum WordEnum
-    {  
-        [Description("Word")]
-        Word,
 
-        [Description("WordPartOfSpeech")]
-        WordPartOfSpeech,
-
-        [Description("WordDefinition")]
-        WordDefinition,
-
-        [Description("WordExample")]
-        WordExample,
-    }
-
-    public class WordOfTheDayIntentHandlerStrategy : AbstractWordIntentHandlerStrategy
+    public class AnotherWordIntentHandlerStrategy : AbstractWordIntentHandlerStrategy
     {
+
+        //public AnotherWordIntentHandlerStrategy() : base() { }
 
         internal override Word GetWord()
         {
-            return _wordOfTheDayService.GetWordOfTheDay();
+            return _wordOfTheDayService.GetRandomWord();
         }
 
         internal override AlexaResponse BuildAlexaResponse(AlexaRequest alexaRequest, Dictionary<string, string> pearsonResponseDictionary)
@@ -47,7 +35,7 @@ namespace AlexaSkillProject.Services
             alexaResponse.Response.OutputSpeech.Ssml = string.Format("<speak>{0}</speak>", BuildOutputSpeech(pearsonResponseDictionary));
             alexaResponse.Session.MemberId = alexaRequest.AlexaMemberId;
             alexaResponse.Response.Card.Title = "Vocabulary App";
-            alexaResponse.Response.Card.Content = String.Format("The Word of the Day is {0}.",
+            alexaResponse.Response.Card.Content = String.Format("The Word is {0}.",
                 pearsonResponseDictionary[Utility.GetDescriptionFromEnumValue(WordEnum.Word)]);
             alexaResponse.Response.Reprompt.OutputSpeech.Ssml = "What Would You like to do next?";
             alexaResponse.Response.ShouldEndSession = false;
@@ -60,7 +48,7 @@ namespace AlexaSkillProject.Services
         {
 
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append(string.Format("<p>The Word of the Day is {0}</p>",
+            stringBuilder.Append(string.Format("<p>The Next Word is {0}</p>",
                 pearsonResponseDictionary[Utility.GetDescriptionFromEnumValue(WordEnum.Word)]));
 
             stringBuilder.Append(string.Format("<p>{0} is a {1}</p>",
@@ -82,17 +70,7 @@ namespace AlexaSkillProject.Services
 
             return stringBuilder.ToString();
         }
-
     }
 
-
-
-
-
-
-
-
-
-
-
+        
 }

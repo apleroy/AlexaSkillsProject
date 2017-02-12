@@ -12,7 +12,7 @@ namespace AlexaSkillProject.Services
         
         public AlexaResponse HandleAlexaRequest(AlexaRequest alexaRequest)
         {
-
+            
             var response = new AlexaResponse("Welcome to the Vocabulary App.  You can start by asking What is the word of the day?");
             response.Session.MemberId = alexaRequest.AlexaMemberId;
             response.Response.Card.Title = "Vocabulary App";

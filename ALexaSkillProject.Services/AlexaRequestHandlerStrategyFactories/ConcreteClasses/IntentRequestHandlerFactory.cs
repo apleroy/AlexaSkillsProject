@@ -28,6 +28,11 @@ namespace AlexaSkillProject.Services
                 case "WordOfTheDayIntent":
                     return new WordOfTheDayIntentHandlerStrategy();
 
+                case "AnotherWordIntent":
+                    return new AnotherWordIntentHandlerStrategy();
+
+                case "SayWordIntent":
+                    return new SayWordIntentHandlerStrategy();
 
                 case "AMAZON.HelpIntent":
                     return new HelpIntentHandlerStrategy();
