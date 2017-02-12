@@ -37,14 +37,11 @@ namespace AlexaSkillProject.Services
         private readonly IPearsonsDictionaryApiService _pearsonsDictionaryApiService;
         private readonly IWordOfTheDayService _wordOfTheDayService;
 
-        
-
         public WordOfTheDayIntentHandlerStrategy()
         {
             _pearsonsDictionaryApiService = new PearsonsDictionaryApiService();
             _wordOfTheDayService = new WordOfTheDayService();
         }
-
 
         public AlexaResponse HandleAlexaRequest(AlexaRequest alexaRequest)
         {

@@ -64,6 +64,10 @@
     <Compile Include="Migrations\201702091927129_AddWords.Designer.cs">
       <DependentUpon>201702091927129_AddWords.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702120019470_AddWordOfTheDayDateToWords.cs" />
+    <Compile Include="Migrations\201702120019470_AddWordOfTheDayDateToWords.Designer.cs">
+      <DependentUpon>201702120019470_AddWordOfTheDayDateToWords.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\WordRepository.cs" />
@@ -96,6 +100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702091927129_AddWords.resx">
       <DependentUpon>201702091927129_AddWords.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702120019470_AddWordOfTheDayDateToWords.resx">
+      <DependentUpon>201702120019470_AddWordOfTheDayDateToWords.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
