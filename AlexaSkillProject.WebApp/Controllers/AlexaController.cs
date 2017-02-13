@@ -15,10 +15,12 @@ namespace AlexaSkillProject.Controllers
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private readonly IAlexaRequestService _alexaRequestService;
+        private readonly IAlexaRequestValidationService _alexaRequestValidationService;
 
-        public AlexaController(IAlexaRequestService alexaRequestService)
+        public AlexaController(IAlexaRequestService alexaRequestService, IAlexaRequestValidationService alexaRequestValidationService)
         {
             _alexaRequestService = alexaRequestService;
+            _alexaRequestValidationService = alexaRequestValidationService;
         }
 
         [HttpPost, Route("api/v1/alexa/test")]
@@ -34,9 +36,13 @@ namespace AlexaSkillProject.Controllers
         }
 
         [HttpPost, Route("api/v1/alexa/wod")]
-        public dynamic WordOfTheDay(AlexaRequestInputModel alexaRequestInput)
+        public dynamic WordOfTheDay(HttpRequestMessage httpRequest)
         {
-            return _alexaRequestService.ProcessAlexaRequest(alexaRequestInput);
+            AlexaRequestInputModel alexaRequestInputModel = _alexaRequestValidationService.ValidateAlexaHttpRequest(httpRequest);
+            // validate request and pass in message
+            // parse per json contract
+            // pass to service
+            return _alexaRequestService.ProcessAlexaRequest(alexaRequestInputModel);
         }
 
 

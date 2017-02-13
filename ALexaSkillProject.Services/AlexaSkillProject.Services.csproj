@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.1\lib\BouncyCastle.Crypto.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
@@ -52,6 +56,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -61,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlexaCertificateHelper.cs" />
     <Compile Include="AlexaErrorHandling\AlexaWordErrorResponse.cs" />
     <Compile Include="AlexaRequestHandlerStrategies\AbstractWordIntentHandlerStrategy.cs" />
     <Compile Include="AlexaRequestHandlerStrategies\ConcreteClasses\AnotherWordIntentHandlerStrategy.cs" />
@@ -76,6 +82,11 @@
     <Compile Include="AlexaRequestHandlerStrategyFactories\ConcreteClasses\IntentRequestHandlerFactory.cs" />
     <Compile Include="AlexaRequestHandlerStrategyFactories\ConcreteClasses\SessionEndedRequestHandlerFactory.cs" />
     <Compile Include="AlexaErrorHandling\AbstractAlexaErrorResponse.cs" />
+    <Compile Include="AlexaRequestValidation\AlexaRequestValidationService.cs" />
+    <Compile Include="AlexaRequestValidation\AlexaRequestSignatureVerifierService.cs" />
+    <Compile Include="AlexaRequestValidation\AlexaSdk.cs" />
+    <Compile Include="AlexaRequestValidation\IAlexaRequestSignatureVerifierService.cs" />
+    <Compile Include="AlexaRequestValidation\IAlexaRequestValidationService.cs" />
     <Compile Include="PearsonsApiServices\IPearsonsDictionaryApiService.cs" />
     <Compile Include="PearsonsApiServices\PearsonsDictionaryApiService.cs" />
     <Compile Include="PersistenceAndMapping\AlexaRequestMapper.cs" />

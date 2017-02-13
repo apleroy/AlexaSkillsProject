@@ -11,7 +11,15 @@ namespace AlexaSkillProject.Services
     {
         public AlexaResponse HandleAlexaRequest(AlexaRequest alexaRequest)
         {
-            throw new NotImplementedException();
+            var wordSaid = alexaRequest.SlotsList.FirstOrDefault(s => s.Key == "Word").Value;
+
+            return null;
         }
     }
+
+
+
+    
+
+    
 }

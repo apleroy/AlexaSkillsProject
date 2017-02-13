@@ -1,0 +1,16 @@
+﻿SayWordIntent The word is {Word}
+
+WordOfTheDayIntent what is todays word of the day
+WordOfTheDayIntent word of the day
+WordOfTheDayIntent get the word of the day
+
+AnotherWordIntent get another word
+AnotherWordIntent what is the next word
+AnotherWordIntent i would like another word
+AnotherWordIntent one more word
+AnotherWordIntent next word
+AnotherWordIntent another word
+
+AMAZON.CancelIntent cease everything
+AMAZON.StopIntent abort eloquency
+AMAZON.HelpIntent give me guidance

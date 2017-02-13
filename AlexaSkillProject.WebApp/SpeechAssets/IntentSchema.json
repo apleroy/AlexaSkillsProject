@@ -1,0 +1,33 @@
+﻿{
+  "intents": [
+    {
+      "intent": "WordOfTheDayIntent",
+      "slots": []
+    },
+    {
+      "intent": "AnotherWordIntent",
+      "slots": []
+    },
+    {
+      "intent": "SayWordIntent",
+      "slots": [
+        {
+          "name": "Word",
+          "type": "LIST_OF_WORDS"
+        }
+      ]
+    },
+    {
+      "intent": "AMAZON.CancelIntent",
+      "slots": []
+    },
+    {
+      "intent": "AMAZON.StopIntent",
+      "slots": []
+    },
+    {
+      "intent": "AMAZON.HelpIntent",
+      "slots": []
+    }
+  ]
+}
