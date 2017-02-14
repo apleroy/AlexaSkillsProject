@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AlexaSkillProject.Services
 {
-    public interface IWordOfTheDayService
+    public interface IWordService
     {
         Word GetWordOfTheDay();
         Word GetRandomWord();

@@ -6,51 +6,83 @@ using System.Threading.Tasks;
 using AlexaSkillProject.Domain;
 using System.Net;
 using AlexaSkillProject.Core;
+using System.Runtime.Caching;
 
 namespace AlexaSkillProject.Services
 {
     public abstract class AbstractWordIntentHandlerStrategy : IAlexaRequestHandlerStrategy
     {
         protected readonly IPearsonsDictionaryApiService _pearsonsDictionaryApiService;
-        protected readonly IWordOfTheDayService _wordOfTheDayService;
+        protected readonly IWordService _wordService;
 
         public AbstractWordIntentHandlerStrategy()
         {
+            _wordService = new WordService();
             _pearsonsDictionaryApiService = new PearsonsDictionaryApiService();
-            _wordOfTheDayService = new WordOfTheDayService();
         }
 
         internal abstract Word GetWord();
 
         internal abstract string BuildOutputSpeech(Dictionary<string, string> pearsonResponseDictionary);
 
-        internal abstract AlexaResponse BuildAlexaResponse(AlexaRequest alexaRequest, Dictionary<string, string> pearsonResponseDictionary);
+        internal abstract AlexaResponse BuildAlexaResponse(AlexaRequestPayload alexaRequest, Dictionary<string, string> pearsonResponseDictionary);
 
-        public AlexaResponse HandleAlexaRequest(AlexaRequest alexaRequest)
+        public AlexaResponse HandleAlexaRequest(AlexaRequestPayload alexaRequest)
         {
             try
             {
-                // Get the word of the day - implemented in base class
-                Word wordOfTheDay = GetWord();
-
                 // build and send the api call
+                Word word = null;
+                int count = 0;
                 PearsonsDictionaryApiResponse pearsonsDictionaryApiResponse = null;
-                try
-                {
-                    // create and parse the web request to pearsons dictionary api  
-                    HttpWebRequest webRequest = _pearsonsDictionaryApiService.CreateDictionaryApiRequest(wordOfTheDay.WordName);
-                    pearsonsDictionaryApiResponse = _pearsonsDictionaryApiService.ParseDictionaryApiRequest(webRequest);
-                }
-                catch (Exception exception)
-                {
-                    var e = exception.Message;
-                }
+                Dictionary<string, string> pearsonResponseDictionary = null;
+                string wordApiResponse = null;
 
-                // parse the api response
-                Dictionary<string, string> pearsonResponseDictionary = ConvertPearsonResponseToDictionary(pearsonsDictionaryApiResponse);
+                // repeat api call and parse
+                while (wordApiResponse == null)
+                {
+                    // Get the word - implemented in base class
+                    if (count == 0)
+                    {
+                        word = GetWord();
+                    }
+                    // Get random word - there was an issue with the first word
+                    else
+                    {
+                        word = _wordService.GetRandomWord();
+                    }
+
+                    try
+                    {
+                        // create and parse the web request to pearsons dictionary api  
+                        HttpWebRequest webRequest = _pearsonsDictionaryApiService.CreateDictionaryApiRequest(word.WordName);
+                        pearsonsDictionaryApiResponse = _pearsonsDictionaryApiService.ParseDictionaryApiRequest(webRequest);
+                    }
+                    catch (Exception exception)
+                    {
+                        var e = exception.Message;
+                    }
+
+                    // parse the api response
+                    pearsonResponseDictionary = ConvertPearsonResponseToDictionary(pearsonsDictionaryApiResponse);
+                    wordApiResponse = pearsonResponseDictionary[Utility.GetDescriptionFromEnumValue(WordEnum.Word)];
+                    count += 1;
+                }
 
                 // build the alexa response - implemented in base class
                 AlexaResponse alexaResponse = BuildAlexaResponse(alexaRequest, pearsonResponseDictionary);
+
+                // assign word to request for caching the request between intents
+                alexaRequest.Session.Attributes.LastWord = word.WordName;
+
+                // use set to add sessionid/request to memory cache
+                // http://stackoverflow.com/questions/8868486/whats-the-difference-between-memorycache-add-and-memorycache-set
+
+                MemoryCache.Default.Set(alexaRequest.Session.SessionId,
+                    alexaRequest,
+                    new CacheItemPolicy()
+                    );
+
 
                 return alexaResponse;
             }
@@ -60,8 +92,8 @@ namespace AlexaSkillProject.Services
             }
         }
 
-
-        protected Dictionary<string, string> ConvertPearsonResponseToDictionary(PearsonsDictionaryApiResponse pearsonsDictionaryApiResponse)
+       
+        private Dictionary<string, string> ConvertPearsonResponseToDictionary(PearsonsDictionaryApiResponse pearsonsDictionaryApiResponse)
         {
             Dictionary<string, string> wordOfTheDayDictionary = new Dictionary<string, string>
             {
@@ -86,6 +118,8 @@ namespace AlexaSkillProject.Services
             return wordOfTheDayDictionary;
 
         }
+
+        
 
         
     }

@@ -13,7 +13,7 @@ using System.Collections;
 
 namespace AlexaSkillProject.Services
 {
-    public static class AlexaRequestSignatureVerifierService// : IAlexaRequestSignatureVerifierService
+    public static class AlexaRequestSignatureVerifierService
     {
         private static Func<string, string> _getCertCacheKey = (string url) => string.Format("{0}_{1}", AlexaSdk.SIGNATURE_CERT_URL_REQUEST_HEADER, url);
 

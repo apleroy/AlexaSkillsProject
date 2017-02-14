@@ -11,9 +11,9 @@ namespace AlexaSkillProject.Services
     public class IntentRequestHandlerFactory
     {
 
-        public IAlexaRequestHandlerStrategy CreateAlexaRequestHandlerStrategy(AlexaRequest alexaRequest)
+        public IAlexaRequestHandlerStrategy CreateAlexaRequestHandlerStrategy(AlexaRequestPayload alexaRequest)
         {
-            switch (alexaRequest.Intent)
+            switch (alexaRequest.Request.Intent.Name)
             {
                 case "NewCoursesIntent":
                     return new NewCoursesIntentHandlerStrategy();

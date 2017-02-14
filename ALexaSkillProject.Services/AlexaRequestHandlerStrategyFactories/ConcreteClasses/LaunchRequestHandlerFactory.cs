@@ -10,7 +10,7 @@ namespace AlexaSkillProject.Services
     public class LaunchRequestHandlerFactory
     {
         
-        public IAlexaRequestHandlerStrategy CreateAlexaRequestHandlerStrategy(AlexaRequest alexaRequest)
+        public IAlexaRequestHandlerStrategy CreateAlexaRequestHandlerStrategy(AlexaRequestPayload alexaRequest)
         {
             return new LaunchRequestHandlerStrategy();
         }

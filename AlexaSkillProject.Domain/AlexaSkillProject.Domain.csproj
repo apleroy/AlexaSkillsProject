@@ -59,7 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataModels\Word.cs" />
-    <Compile Include="Domain\AlexaRequestInputModel.cs" />
+    <Compile Include="Domain\AlexaRequestPayload.cs" />
     <Compile Include="Domain\AlexaResponse.cs" />
     <Compile Include="DataModels\AlexaMember.cs" />
     <Compile Include="DataModels\AlexaRequest.cs" />

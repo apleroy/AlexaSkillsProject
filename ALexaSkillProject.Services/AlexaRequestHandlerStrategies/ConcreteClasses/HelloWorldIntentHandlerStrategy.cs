@@ -9,7 +9,7 @@ namespace AlexaSkillProject.Services
 {
     public class HelloWorldIntentHandlerStrategy : IAlexaRequestHandlerStrategy
     {
-        public AlexaResponse HandleAlexaRequest(AlexaRequest alexaRequest)
+        public AlexaResponse HandleAlexaRequest(AlexaRequestPayload alexaRequest)
         {
             return new AlexaResponse("Hello Andy");
         }

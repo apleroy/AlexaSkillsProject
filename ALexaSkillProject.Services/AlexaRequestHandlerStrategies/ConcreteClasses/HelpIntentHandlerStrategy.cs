@@ -9,7 +9,7 @@ namespace AlexaSkillProject.Services
 {
     public class HelpIntentHandlerStrategy : IAlexaRequestHandlerStrategy
     {
-        public AlexaResponse HandleAlexaRequest(AlexaRequest alexaRequest)
+        public AlexaResponse HandleAlexaRequest(AlexaRequestPayload alexaRequest)
         {
             throw new NotImplementedException();
         }

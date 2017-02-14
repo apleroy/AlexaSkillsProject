@@ -8,6 +8,7 @@ using AlexaSkillProject.Domain;
 using Newtonsoft.Json;
 using System.IO;
 using AlexaSkillProject.Core;
+using System.Configuration;
 
 namespace AlexaSkillProject.Services
 {
@@ -16,9 +17,14 @@ namespace AlexaSkillProject.Services
 
         const string URLREQUEST = "http://api.pearson.com/v2/dictionaries/entries?headword=";
         
+
         public HttpWebRequest CreateDictionaryApiRequest(string word)
         {
-            string requestUrl = string.Format("{0}{1}{2}{3}", URLREQUEST, word, "&apikey=", EnvironmentVariable.PearsonsApiKey());
+            string requestUrl = string.Format("{0}{1}{2}{3}", 
+                URLREQUEST, 
+                word, 
+                "&apikey=", 
+                ConfigurationSettings.AppSettings["PearsonsApiKey"]);
             return (HttpWebRequest)WebRequest.Create(requestUrl);
         }
 

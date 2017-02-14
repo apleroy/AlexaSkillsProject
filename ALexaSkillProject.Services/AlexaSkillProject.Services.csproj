@@ -86,8 +86,8 @@
     <Compile Include="AlexaRequestValidation\AlexaRequestValidationService.cs" />
     <Compile Include="AlexaRequestValidation\AlexaRequestSignatureVerifierService.cs" />
     <Compile Include="AlexaRequestValidation\AlexaSdk.cs" />
-    <Compile Include="AlexaRequestValidation\IAlexaRequestSignatureVerifierService.cs" />
     <Compile Include="AlexaRequestValidation\IAlexaRequestValidationService.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="PearsonsApiServices\IPearsonsDictionaryApiService.cs" />
     <Compile Include="PearsonsApiServices\PearsonsDictionaryApiService.cs" />
     <Compile Include="PersistenceAndMapping\AlexaRequestMapper.cs" />
@@ -100,8 +100,8 @@
     <Compile Include="IAlexaRequestService.cs" />
     <Compile Include="AlexaRequestHandlerStrategyFactories\ConcreteClasses\LaunchRequestHandlerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WordServices\IWordOfTheDayService.cs" />
-    <Compile Include="WordServices\WordOfTheDayService.cs" />
+    <Compile Include="WordServices\IWordService.cs" />
+    <Compile Include="WordServices\WordService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AlexaSkillProject.Core\AlexaSkillProject.Core.csproj">

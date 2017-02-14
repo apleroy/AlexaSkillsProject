@@ -21,25 +21,33 @@ namespace AlexaSkillProject.Services
     public class AnotherWordIntentHandlerStrategy : AbstractWordIntentHandlerStrategy
     {
 
-        //public AnotherWordIntentHandlerStrategy() : base() { }
-
         internal override Word GetWord()
         {
-            return _wordOfTheDayService.GetRandomWord();
+            Word word = null;
+            while (word == null)
+            {
+                word = _wordService.GetRandomWord();
+            }
+            return word;
         }
 
-        internal override AlexaResponse BuildAlexaResponse(AlexaRequest alexaRequest, Dictionary<string, string> pearsonResponseDictionary)
+        internal override AlexaResponse BuildAlexaResponse(AlexaRequestPayload alexaRequest, Dictionary<string, string> pearsonResponseDictionary)
         {
             AlexaResponse alexaResponse = new AlexaResponse();
 
             alexaResponse.Response.OutputSpeech.Ssml = string.Format("<speak>{0}</speak>", BuildOutputSpeech(pearsonResponseDictionary));
-            alexaResponse.Session.MemberId = alexaRequest.AlexaMemberId;
+
             alexaResponse.Response.Card.Title = "Vocabulary App";
-            alexaResponse.Response.Card.Content = String.Format("The Word is {0}.",
+            alexaResponse.Response.Card.Content = string.Format("The Word is {0}.",
                 pearsonResponseDictionary[Utility.GetDescriptionFromEnumValue(WordEnum.Word)]);
-            alexaResponse.Response.Reprompt.OutputSpeech.Ssml = "What Would You like to do next?";
+
+            alexaResponse.Response.Reprompt.OutputSpeech.Ssml = string.Format("<speak><p>You can say</p><p>The word is {0}</p><p>Or you can say</p><p>Get another word</p></speak>",
+                pearsonResponseDictionary[Utility.GetDescriptionFromEnumValue(WordEnum.Word)]);
+
             alexaResponse.Response.ShouldEndSession = false;
+
             alexaResponse.Response.OutputSpeech.Type = "SSML";
+            alexaResponse.Response.Reprompt.OutputSpeech.Type = "SSML";
 
             return alexaResponse;
         }
@@ -66,7 +74,8 @@ namespace AlexaSkillProject.Services
                     pearsonResponseDictionary[Utility.GetDescriptionFromEnumValue(WordEnum.WordExample)]));
             }
 
-            // Okay your turn...
+            stringBuilder.Append(string.Format("<p>Okay your turn now</p><p>Say</p><p>The word is {0}</p>",
+                pearsonResponseDictionary[Utility.GetDescriptionFromEnumValue(WordEnum.Word)]));
 
             return stringBuilder.ToString();
         }

@@ -11,7 +11,7 @@ namespace AlexaSkillProject.Services
     public class AlexaRequestMapper : IAlexaRequestMapper
     {
         
-        public AlexaRequest MapAlexaRequest(AlexaRequestInputModel alexaRequestInputModel)
+        public AlexaRequest MapAlexaRequest(AlexaRequestPayload alexaRequestInputModel)
         {
             AlexaRequest alexaRequest = new AlexaRequest
             {

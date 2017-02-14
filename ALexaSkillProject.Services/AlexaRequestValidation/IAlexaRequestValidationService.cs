@@ -11,7 +11,7 @@ namespace AlexaSkillProject.Services
 {
     public interface IAlexaRequestValidationService
     {
-        SpeechletRequestValidationResult ValidateAlexaRequest(AlexaRequestInputModel httpRequest);
+        SpeechletRequestValidationResult ValidateAlexaRequest(AlexaRequestPayload alexaRequest);
         
     }
 }

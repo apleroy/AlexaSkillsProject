@@ -23,19 +23,19 @@ namespace AlexaSkillProject.Controllers
         }
 
         [HttpPost, Route("api/v1/alexa/test")]
-        public dynamic Test(AlexaRequestInputModel alexaRequestInput)
+        public dynamic Test(AlexaRequestPayload alexaRequestInput)
         {
             return new AlexaResponse("Working");
         }
 
         [HttpPost, Route("api/v1/alexa/demo")]
-        public dynamic Yoda(AlexaRequestInputModel alexaRequestInput)
+        public dynamic Yoda(AlexaRequestPayload alexaRequestInput)
         {
             return _alexaRequestService.ProcessAlexaRequest(alexaRequestInput);          
         }
 
         [HttpPost, Route("api/v1/alexa/wod")]
-        public dynamic WordOfTheDay(AlexaRequestInputModel alexaRequestInput)
+        public dynamic WordOfTheDay(AlexaRequestPayload alexaRequestInput)
         {
             return _alexaRequestService.ProcessAlexaRequest(alexaRequestInput); 
         }

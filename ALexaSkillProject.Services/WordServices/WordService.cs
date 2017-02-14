@@ -8,11 +8,11 @@ using AlexaSkillProject.Repository;
 
 namespace AlexaSkillProject.Services
 {
-    class WordOfTheDayService : IWordOfTheDayService
+    class WordService : IWordService
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public WordOfTheDayService()
+        public WordService()
         {
             _unitOfWork = new UnitOfWork(new AlexaSkillProjectDataContext());
         }

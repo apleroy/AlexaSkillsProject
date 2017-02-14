@@ -18,42 +18,45 @@ namespace AlexaSkillProject.Services
     public class AlexaRequestValidationService : IAlexaRequestValidationService
     {
         
-        public SpeechletRequestValidationResult ValidateAlexaRequest(AlexaRequestInputModel alexaRequestInputModel)
+        public SpeechletRequestValidationResult ValidateAlexaRequest(AlexaRequestPayload alexaRequest)
         {
             SpeechletRequestValidationResult validationResult = SpeechletRequestValidationResult.OK;
-            
-            // check timestamp
-            if (!VerifyRequestTimestamp(alexaRequestInputModel, DateTime.UtcNow))
+
+            if (!ConfigurationSettings.AppSettings["Mode"].Equals("Debug"))
             {
-                validationResult = SpeechletRequestValidationResult.InvalidTimestamp;
-                throw new Exception(validationResult.ToString());
+                // check timestamp
+                if (!VerifyRequestTimestamp(alexaRequest, DateTime.UtcNow))
+                {
+                    validationResult = SpeechletRequestValidationResult.InvalidTimestamp;
+                    throw new Exception(validationResult.ToString());
+                }
+
+                // check app id
+                if (!VerifyApplicationIdHeader(alexaRequest))
+                {
+                    validationResult = SpeechletRequestValidationResult.InvalidAppId;
+                    throw new Exception(validationResult.ToString());
+                }
+
             }
 
-            // check app id
-            if (!VerifyApplicationIdHeader(alexaRequestInputModel))
-            {
-                validationResult = SpeechletRequestValidationResult.InvalidAppId;
-                throw new Exception(validationResult.ToString());
-            }
-
-            
             return validationResult;
             
         }
 
 
-        private bool VerifyRequestTimestamp(AlexaRequestInputModel alexaRequestInputModel, DateTime referenceTimeUtc)
+        private bool VerifyRequestTimestamp(AlexaRequestPayload alexaRequest, DateTime referenceTimeUtc)
         {
             // verify timestamp is within tolerance
-            var diff = referenceTimeUtc - alexaRequestInputModel.Request.Timestamp;
+            var diff = referenceTimeUtc - alexaRequest.Request.Timestamp;
             return (Math.Abs((decimal)diff.TotalSeconds) <= AlexaSdk.TIMESTAMP_TOLERANCE_SEC);
         }
 
-        private bool VerifyApplicationIdHeader(AlexaRequestInputModel alexaRequestInputModel)
+        private bool VerifyApplicationIdHeader(AlexaRequestPayload alexaRequest)
         {
             string alexaApplicationId = ConfigurationSettings.AppSettings["AlexaApplicationId"];
 
-            return alexaRequestInputModel.Session.Application.ApplicationId.Equals(alexaApplicationId);   
+            return alexaRequest.Session.Application.ApplicationId.Equals(alexaApplicationId);   
         }
     }
 }

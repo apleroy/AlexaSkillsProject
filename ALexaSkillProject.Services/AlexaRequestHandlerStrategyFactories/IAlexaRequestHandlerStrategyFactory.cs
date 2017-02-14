@@ -9,6 +9,6 @@ namespace AlexaSkillProject.Services
 {
     public interface IAlexaRequestHandlerStrategyFactory
     {
-        IAlexaRequestHandlerStrategy CreateAlexaRequestHandlerStrategy(AlexaRequest alexaRequest);
+        IAlexaRequestHandlerStrategy CreateAlexaRequestHandlerStrategy(AlexaRequestPayload alexaRequest);
     }
 }

@@ -9,6 +9,6 @@ namespace AlexaSkillProject.Services
 {
     public interface IAlexaRequestMapper
     {
-        AlexaRequest MapAlexaRequest(AlexaRequestInputModel alexaRequestInputModel);
+        AlexaRequest MapAlexaRequest(AlexaRequestPayload alexaRequest);
     }
 }

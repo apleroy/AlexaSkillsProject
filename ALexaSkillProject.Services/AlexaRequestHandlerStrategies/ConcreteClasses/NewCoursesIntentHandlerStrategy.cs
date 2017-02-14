@@ -11,7 +11,7 @@ namespace AlexaSkillProject.Services
     {
         
 
-        public AlexaResponse HandleAlexaRequest(AlexaRequest alexaRequest)
+        public AlexaResponse HandleAlexaRequest(AlexaRequestPayload alexaRequest)
         {
             var output = new StringBuilder("Here are the latest courses. ");
 

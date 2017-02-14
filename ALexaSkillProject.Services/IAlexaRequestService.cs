@@ -9,6 +9,6 @@ namespace AlexaSkillProject.Services
 {
     public interface IAlexaRequestService
     {
-        AlexaResponse ProcessAlexaRequest(AlexaRequestInputModel alexaRequestInput);
+        AlexaResponse ProcessAlexaRequest(AlexaRequestPayload alexaRequestInput);
     }
 }

@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 namespace AlexaSkillProject.Domain
 {
     [JsonObject]
-    public class AlexaRequestInputModel
+    public class AlexaRequestPayload
     {
         [JsonProperty("version")]
         public string Version { get; set; }
@@ -24,6 +24,12 @@ namespace AlexaSkillProject.Domain
         {
             [JsonProperty("memberId")]
             public int MemberId { get; set; }
+
+            [JsonProperty("lastWord")]
+            public string LastWord { get; set; }
+
+            [JsonProperty("numberCorrect")]
+            public int CorrectCount { get; set; }
         }
 
         [JsonObject("session")]
