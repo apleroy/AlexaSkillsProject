@@ -49,7 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlexaRequestValidationHandler.cs" />
     <Compile Include="AsyncHelpers.cs" />
     <Compile Include="EnvironmentVariable.cs" />
     <Compile Include="Utility.cs" />

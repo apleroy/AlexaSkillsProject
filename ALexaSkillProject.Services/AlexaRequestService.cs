@@ -15,37 +15,47 @@ namespace AlexaSkillProject.Services
         private readonly IAlexaRequestMapper _alexaRequestMapper;
         private readonly IAlexaRequestPersistenceService _alexaRequestPersistenceService;
         private readonly IAlexaRequestHandlerStrategyFactory _alexaRequestHandlerStrategyFactory;
+        private readonly IAlexaRequestValidationService _alexaRequestValidationService;
+
 
         public AlexaRequestService(
             IAlexaRequestMapper alexaRequestMapper, 
             IAlexaRequestPersistenceService alexaRequestPersistenceService,
-            IAlexaRequestHandlerStrategyFactory alexaRequestHandlerStrategyFactory)
+            IAlexaRequestHandlerStrategyFactory alexaRequestHandlerStrategyFactory,
+            IAlexaRequestValidationService alexaRequestValidationService
+        )
         {
             _alexaRequestMapper = alexaRequestMapper;
             _alexaRequestPersistenceService = alexaRequestPersistenceService;
             _alexaRequestHandlerStrategyFactory = alexaRequestHandlerStrategyFactory;
+            _alexaRequestValidationService = alexaRequestValidationService;
         }
 
         public AlexaResponse ProcessAlexaRequest(AlexaRequestInputModel alexaRequestInputModel)
         {
-            // transform request
-            AlexaRequest alexaRequest = _alexaRequestMapper.MapAlexaRequest(alexaRequestInputModel);
+            // validate request time stamp and app id
+            SpeechletRequestValidationResult validationResult = _alexaRequestValidationService.ValidateAlexaRequest(alexaRequestInputModel);
 
-            // persist request and member
-            _alexaRequestPersistenceService.PersistAlexaRequestAndMember(alexaRequest);
+            if (validationResult == SpeechletRequestValidationResult.OK)
+            {
+                // transform request
+                AlexaRequest alexaRequest = _alexaRequestMapper.MapAlexaRequest(alexaRequestInputModel);
 
-            // create a request handler strategy from the alexarequest
-            IAlexaRequestHandlerStrategy alexaRequestHandlerStrategy = _alexaRequestHandlerStrategyFactory.CreateAlexaRequestHandlerStrategy(alexaRequest);
+                // persist request and member
+                _alexaRequestPersistenceService.PersistAlexaRequestAndMember(alexaRequest);
 
-            // use the handlerstrategy to process the request and generate a response
-            AlexaResponse alexaResponse = alexaRequestHandlerStrategy.HandleAlexaRequest(alexaRequest);
+                // create a request handler strategy from the alexarequest
+                IAlexaRequestHandlerStrategy alexaRequestHandlerStrategy = _alexaRequestHandlerStrategyFactory.CreateAlexaRequestHandlerStrategy(alexaRequest);
 
-            // return response
-            return alexaResponse;
+                // use the handlerstrategy to process the request and generate a response
+                AlexaResponse alexaResponse = alexaRequestHandlerStrategy.HandleAlexaRequest(alexaRequest);
+
+                // return response
+                return alexaResponse;
+            }
+
+            return null;
         }
-
-        
-
 
     }
 }

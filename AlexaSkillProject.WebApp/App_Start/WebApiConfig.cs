@@ -41,12 +41,16 @@ namespace AlexaSkillProject
 
             container.RegisterType<IAlexaRequestHandlerStrategyFactory, AlexaRequestHandlerStrategyFactory>(new HierarchicalLifetimeManager());
 
+            container.RegisterType<IAlexaRequestValidationService, AlexaRequestValidationService>(new HierarchicalLifetimeManager());
+
             container.RegisterType<IAlexaRequestService, AlexaRequestService>(new HierarchicalLifetimeManager());
 
             
             config.DependencyResolver = new UnityResolver(container);
 
 
+            // does certificate and header level validation for all api requests
+            // make route specific if needed
             config.MessageHandlers.Add(new AlexaRequestValidationHandler());
 
 
