@@ -8,7 +8,7 @@ using Newtonsoft.Json.Serialization;
 using Microsoft.Practices.Unity;
 using AlexaSkillProject.Services;
 using AlexaSkillProject.Repository;
-using AlexaSkillProject.Core;
+using System.Configuration;
 
 namespace AlexaSkillProject
 {
@@ -31,8 +31,6 @@ namespace AlexaSkillProject
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
-
-            //config.MessageHandlers.Add(new AlexaRequestValidationHandler());
             
             var container = new UnityContainer();
             
@@ -45,10 +43,12 @@ namespace AlexaSkillProject
 
             container.RegisterType<IAlexaRequestService, AlexaRequestService>(new HierarchicalLifetimeManager());
 
-            container.RegisterType<IAlexaRequestSignatureVerifierService, AlexaRequestSignatureVerifierService>(new HierarchicalLifetimeManager());
-            container.RegisterType<IAlexaRequestValidationService, AlexaRequestValidationService>(new HierarchicalLifetimeManager());
-
+            
             config.DependencyResolver = new UnityResolver(container);
+
+
+            config.MessageHandlers.Add(new AlexaRequestValidationHandler());
+
 
         }
     }

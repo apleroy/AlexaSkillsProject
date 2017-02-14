@@ -3,6 +3,7 @@ using AlexaSkillProject.Services;
 using log4net;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -15,12 +16,12 @@ namespace AlexaSkillProject.Controllers
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private readonly IAlexaRequestService _alexaRequestService;
-        private readonly IAlexaRequestValidationService _alexaRequestValidationService;
+        //private readonly IAlexaRequestValidationService _alexaRequestValidationService;
 
-        public AlexaController(IAlexaRequestService alexaRequestService, IAlexaRequestValidationService alexaRequestValidationService)
+        public AlexaController(IAlexaRequestService alexaRequestService)
         {
             _alexaRequestService = alexaRequestService;
-            _alexaRequestValidationService = alexaRequestValidationService;
+            //_alexaRequestValidationService = alexaRequestValidationService;
         }
 
         [HttpPost, Route("api/v1/alexa/test")]
@@ -36,13 +37,20 @@ namespace AlexaSkillProject.Controllers
         }
 
         [HttpPost, Route("api/v1/alexa/wod")]
-        public dynamic WordOfTheDay(HttpRequestMessage httpRequest)
+        public dynamic WordOfTheDay(AlexaRequestInputModel alexaRequestInput)
         {
-            AlexaRequestInputModel alexaRequestInputModel = _alexaRequestValidationService.ValidateAlexaHttpRequest(httpRequest);
+            //HttpContent requestContent = Request.Content;
+            //string jsonContent = requestContent.ReadAsStringAsync().Result;
+
+            //HttpRequestMessage httpRequest = Request;
+            //AlexaRequestInputModel alexaRequestInputModel = _alexaRequestValidationService.ValidateAlexaHttpRequest(httpRequest);
+
+            // var result = _alexaRequestValidationService.ValidateAlexaHttpRequest(httpRequest);
             // validate request and pass in message
             // parse per json contract
             // pass to service
-            return _alexaRequestService.ProcessAlexaRequest(alexaRequestInputModel);
+            return _alexaRequestService.ProcessAlexaRequest(alexaRequestInput);
+            
         }
 
 

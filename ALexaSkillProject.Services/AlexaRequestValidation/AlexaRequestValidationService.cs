@@ -3,6 +3,7 @@ using AlexaSkillProject.Domain;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -23,106 +24,92 @@ namespace AlexaSkillProject.Services
         InvalidJson = 16
     }
 
-    public class AlexaRequestValidationService : IAlexaRequestValidationService
-    {
-        private readonly IAlexaRequestSignatureVerifierService _alexaRequestSignatureVerifierService;
+    //public class AlexaRequestValidationService : IAlexaRequestValidationService
+    //{
+    //    private readonly IAlexaRequestSignatureVerifierService _alexaRequestSignatureVerifierService;
 
-        public AlexaRequestValidationService(
-            IAlexaRequestSignatureVerifierService alexaRequestSignatureVerifierService)
-        {
-            _alexaRequestSignatureVerifierService = alexaRequestSignatureVerifierService;
-        }
+    //    public AlexaRequestValidationService(
+    //        IAlexaRequestSignatureVerifierService alexaRequestSignatureVerifierService)
+    //    {
+    //        _alexaRequestSignatureVerifierService = alexaRequestSignatureVerifierService;
+    //    }
 
-        public AlexaRequestInputModel ValidateAlexaHttpRequest(HttpRequestMessage httpRequest)
-        {
-            AlexaRequestInputModel alexaRequestInputModel = null;
+    //    public AlexaRequestInputModel ValidateAlexaHttpRequest(HttpRequestMessage httpRequest)
+    //    {
+    //        AlexaRequestInputModel alexaRequestInputModel = null;
+
+    //        // validate header per amazons sdk and method
+    //        SpeechletRequestValidationResult validationResult = ValidateAlexaRequestHeader(httpRequest);
+
+    //        // serialize into alexarequest per json specs and contract
+    //        string buildMode = ConfigurationSettings.AppSettings["Mode"];
+
+    //        if (buildMode.Equals("Debug") || validationResult == SpeechletRequestValidationResult.OK)
+    //        {
+    //            alexaRequestInputModel = DeserializeHttpRequest(httpRequest);
+    //        }
+
+    //        // check timestamp
+    //        DateTime now = DateTime.UtcNow; // reference time for this request
+
+    //        if (!VerifyRequestTimestamp(alexaRequestInputModel, now))
+    //        {
+    //            return null;
+    //        }
+
+    //        // check appid
+
+
+    //        // return validated request
+    //        return alexaRequestInputModel;
+    //    }
+
+    //    private SpeechletRequestValidationResult ValidateAlexaRequestHeader(HttpRequestMessage httpRequest)
+    //    {
+    //        SpeechletRequestValidationResult validationResult = SpeechletRequestValidationResult.OK;
             
-            // validate header per amazons sdk and method
-            SpeechletRequestValidationResult validationResult = ValidateAlexaRequestHeader(httpRequest);
+    //        string chainUrl = null;
+    //        if (!httpRequest.Headers.Contains(AlexaSdk.SIGNATURE_CERT_URL_REQUEST_HEADER) ||
+    //            String.IsNullOrEmpty(chainUrl = httpRequest.Headers.GetValues(AlexaSdk.SIGNATURE_CERT_URL_REQUEST_HEADER).First()))
+    //        {
+    //            validationResult = validationResult | SpeechletRequestValidationResult.NoCertHeader;
+    //        }
 
-            // serialize into alexarequest per json specs and contract
-            if (validationResult == SpeechletRequestValidationResult.OK)
-            {
-                alexaRequestInputModel = DeserializeHttpRequest(httpRequest);
+    //        string signature = null;
+    //        if (!httpRequest.Headers.Contains(AlexaSdk.SIGNATURE_REQUEST_HEADER) ||
+    //            String.IsNullOrEmpty(signature = httpRequest.Headers.GetValues(AlexaSdk.SIGNATURE_REQUEST_HEADER).First()))
+    //        {
+    //            validationResult = validationResult | SpeechletRequestValidationResult.NoSignatureHeader;
+    //        }
 
-                // check timestamp
-                DateTime now = DateTime.UtcNow; // reference time for this request
-
-                if (!VerifyRequestTimestamp(alexaRequestInputModel, now))
-                {
-                    return null;
-                }
-            }
-
-            // check appid
-
-
-            // return validated request
-            return alexaRequestInputModel;
-        }
-
-        private SpeechletRequestValidationResult ValidateAlexaRequestHeader(HttpRequestMessage httpRequest)
-        {
-            SpeechletRequestValidationResult validationResult = SpeechletRequestValidationResult.OK;
+    //        var alexaBytes = AsyncHelpers.RunSync<byte[]>(() => httpRequest.Content.ReadAsByteArrayAsync());
             
-            string chainUrl = null;
-            if (!httpRequest.Headers.Contains(AlexaSdk.SIGNATURE_CERT_URL_REQUEST_HEADER) ||
-                String.IsNullOrEmpty(chainUrl = httpRequest.Headers.GetValues(AlexaSdk.SIGNATURE_CERT_URL_REQUEST_HEADER).First()))
-            {
-                validationResult = validationResult | SpeechletRequestValidationResult.NoCertHeader;
-            }
+    //        // attempt to verify signature only if we were able to locate certificate and signature headers
+    //        if (validationResult == SpeechletRequestValidationResult.OK)
+    //        {
+    //            if (!_alexaRequestSignatureVerifierService.VerifyRequestSignature(alexaBytes, signature, chainUrl))
+    //            {
+    //                validationResult = validationResult | SpeechletRequestValidationResult.InvalidSignature;
+    //            }
+    //        }
 
-            string signature = null;
-            if (!httpRequest.Headers.Contains(AlexaSdk.SIGNATURE_REQUEST_HEADER) ||
-                String.IsNullOrEmpty(signature = httpRequest.Headers.GetValues(AlexaSdk.SIGNATURE_REQUEST_HEADER).First()))
-            {
-                validationResult = validationResult | SpeechletRequestValidationResult.NoSignatureHeader;
-            }
+    //        return validationResult;
 
-            var alexaBytes = AsyncHelpers.RunSync<byte[]>(() => httpRequest.Content.ReadAsByteArrayAsync());
-            
-            // attempt to verify signature only if we were able to locate certificate and signature headers
-            if (validationResult == SpeechletRequestValidationResult.OK)
-            {
-                if (!_alexaRequestSignatureVerifierService.VerifyRequestSignature(alexaBytes, signature, chainUrl))
-                {
-                    validationResult = validationResult | SpeechletRequestValidationResult.InvalidSignature;
-                }
-            }
+    //    }
 
-            return validationResult;
 
-        }
 
-        private AlexaRequestInputModel DeserializeHttpRequest(HttpRequestMessage requestMessage)
-        {
-            AlexaRequestInputModel alexaRequestInputModel = null;
+    //    private bool VerifyRequestTimestamp(AlexaRequestInputModel alexaRequestInputModel, DateTime referenceTimeUtc)
+    //    {
+    //        // verify timestamp is within tolerance
+    //        var diff = referenceTimeUtc - alexaRequestInputModel.Request.Timestamp;
+    //        return (Math.Abs((decimal)diff.TotalSeconds) <= AlexaSdk.TIMESTAMP_TOLERANCE_SEC);
+    //    }
 
-            try
-            {
-                alexaRequestInputModel = JsonConvert.DeserializeObject<AlexaRequestInputModel>(requestMessage.Content.ReadAsStringAsync().Result);
-
-            }
-            catch (Exception e)
-            {
-                throw;
-            }
-
-            return alexaRequestInputModel;
-            
-        }
-
-        private bool VerifyRequestTimestamp(AlexaRequestInputModel alexaRequestInputModel, DateTime referenceTimeUtc)
-        {
-            // verify timestamp is within tolerance
-            var diff = referenceTimeUtc - alexaRequestInputModel.Request.Timestamp;
-            return (Math.Abs((decimal)diff.TotalSeconds) <= AlexaSdk.TIMESTAMP_TOLERANCE_SEC);
-        }
-
-        private bool VerifyApplicationIdHeader(AlexaRequestInputModel alexaRequestInputModel)
-        {
-            //if id == this id
-            return true;
-        }
-    }
+    //    private bool VerifyApplicationIdHeader(AlexaRequestInputModel alexaRequestInputModel)
+    //    {
+    //        //if id == this id
+    //        return true;
+    //    }
+    //}
 }

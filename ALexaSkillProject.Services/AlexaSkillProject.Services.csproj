@@ -82,6 +82,7 @@
     <Compile Include="AlexaRequestHandlerStrategyFactories\ConcreteClasses\IntentRequestHandlerFactory.cs" />
     <Compile Include="AlexaRequestHandlerStrategyFactories\ConcreteClasses\SessionEndedRequestHandlerFactory.cs" />
     <Compile Include="AlexaErrorHandling\AbstractAlexaErrorResponse.cs" />
+    <Compile Include="AlexaRequestValidationHandler.cs" />
     <Compile Include="AlexaRequestValidation\AlexaRequestValidationService.cs" />
     <Compile Include="AlexaRequestValidation\AlexaRequestSignatureVerifierService.cs" />
     <Compile Include="AlexaRequestValidation\AlexaSdk.cs" />

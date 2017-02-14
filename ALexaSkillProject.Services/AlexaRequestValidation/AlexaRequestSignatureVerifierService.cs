@@ -13,7 +13,7 @@ using System.Collections;
 
 namespace AlexaSkillProject.Services
 {
-    public class AlexaRequestSignatureVerifierService : IAlexaRequestSignatureVerifierService
+    public static class AlexaRequestSignatureVerifierService// : IAlexaRequestSignatureVerifierService
     {
         private static Func<string, string> _getCertCacheKey = (string url) => string.Format("{0}_{1}", AlexaSdk.SIGNATURE_CERT_URL_REQUEST_HEADER, url);
 
@@ -28,7 +28,7 @@ namespace AlexaSkillProject.Services
         /// Verifying the Signature Certificate URL per requirements documented at
         /// https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/developing-an-alexa-skill-as-a-web-service
         /// </summary>
-        public bool VerifyCertificateUrl(string certChainUrl)
+        public static bool VerifyCertificateUrl(string certChainUrl)
         {
             if (String.IsNullOrEmpty(certChainUrl))
             {
@@ -52,7 +52,7 @@ namespace AlexaSkillProject.Services
         /// <summary>
         /// Verifies request signature and manages the caching of the signature certificate
         /// </summary>
-        public bool VerifyRequestSignature(
+        public static bool VerifyRequestSignature(
             byte[] serializedSpeechletRequest, string expectedSignature, string certChainUrl)
         {
 
@@ -79,7 +79,7 @@ namespace AlexaSkillProject.Services
         /// <summary>
         /// Verifies request signature and manages the caching of the signature certificate
         /// </summary>
-        public async Task<bool> VerifyRequestSignatureAsync(
+        public static async Task<bool> VerifyRequestSignatureAsync(
             byte[] serializedSpeechletRequest, string expectedSignature, string certChainUrl)
         {
 
@@ -106,7 +106,7 @@ namespace AlexaSkillProject.Services
         /// <summary>
         /// 
         /// </summary>
-        public X509Certificate RetrieveAndVerifyCertificate(string certChainUrl)
+        public static X509Certificate RetrieveAndVerifyCertificate(string certChainUrl)
         {
             // making requests to externally-supplied URLs is an open invitation to DoS
             // so restrict host to an Alexa controlled subdomain/path
@@ -138,7 +138,7 @@ namespace AlexaSkillProject.Services
         /// <summary>
         /// 
         /// </summary>
-        public async Task<X509Certificate> RetrieveAndVerifyCertificateAsync(string certChainUrl)
+        public static async Task<X509Certificate> RetrieveAndVerifyCertificateAsync(string certChainUrl)
         {
             // making requests to externally-supplied URLs is an open invitation to DoS
             // so restrict host to an Alexa controlled subdomain/path
@@ -172,7 +172,7 @@ namespace AlexaSkillProject.Services
         /// <summary>
         /// 
         /// </summary>
-        public bool CheckRequestSignature(byte[] serializedSpeechletRequest, string expectedSignature, X509Certificate cert)
+        public static bool CheckRequestSignature(byte[] serializedSpeechletRequest, string expectedSignature, X509Certificate cert)
         {
 
             byte[] expectedSig = null;
@@ -197,7 +197,7 @@ namespace AlexaSkillProject.Services
         /// <summary>
         /// 
         /// </summary>
-        private bool CheckCertSubjectNames(X509Certificate cert)
+        private static bool CheckCertSubjectNames(X509Certificate cert)
         {
             bool found = false;
             ArrayList subjectNamesList = (ArrayList)cert.GetSubjectAlternativeNames();
