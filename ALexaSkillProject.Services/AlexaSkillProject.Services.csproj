@@ -76,7 +76,6 @@
     <Compile Include="AlexaRequestHandlerStrategies\ConcreteClasses\CancelOrStopIntentHandlerStrategy.cs" />
     <Compile Include="AlexaRequestHandlerStrategies\ConcreteClasses\HelpIntentHandlerStrategy.cs" />
     <Compile Include="AlexaRequestHandlerStrategies\ConcreteClasses\LaunchRequestHandlerStrategy.cs" />
-    <Compile Include="AlexaRequestHandlerStrategies\ConcreteClasses\NewCoursesIntentHandlerStrategy.cs" />
     <Compile Include="AlexaRequestHandlerStrategies\ConcreteClasses\SessionEndedRequestHandlerStrategy.cs" />
     <Compile Include="AlexaRequestHandlerStrategies\ConcreteClasses\HelloWorldIntentHandlerStrategy.cs" />
     <Compile Include="AlexaRequestHandlerStrategyFactories\ConcreteClasses\IntentRequestHandlerFactory.cs" />
@@ -87,9 +86,9 @@
     <Compile Include="AlexaRequestValidation\AlexaRequestSignatureVerifierService.cs" />
     <Compile Include="AlexaRequestValidation\AlexaSdk.cs" />
     <Compile Include="AlexaRequestValidation\IAlexaRequestValidationService.cs" />
+    <Compile Include="DictionaryApiServices\IDictionaryService.cs" />
     <Compile Include="Enums.cs" />
-    <Compile Include="PearsonsApiServices\IPearsonsDictionaryApiService.cs" />
-    <Compile Include="PearsonsApiServices\PearsonsDictionaryApiService.cs" />
+    <Compile Include="DictionaryApiServices\PearsonsDictionaryApiService.cs" />
     <Compile Include="PersistenceAndMapping\AlexaRequestMapper.cs" />
     <Compile Include="PersistenceAndMapping\AlexaRequestPersistenceService.cs" />
     <Compile Include="AlexaRequestService.cs" />

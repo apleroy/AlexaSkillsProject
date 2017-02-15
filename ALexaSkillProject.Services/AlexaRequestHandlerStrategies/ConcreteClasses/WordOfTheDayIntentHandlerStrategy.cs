@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using AlexaSkillProject.Domain;
 using AlexaSkillProject.Core;
+using System.Configuration;
 
 namespace AlexaSkillProject.Services
 {
@@ -23,19 +24,19 @@ namespace AlexaSkillProject.Services
             return word;
         }
 
-        internal override AlexaResponse BuildAlexaResponse(AlexaRequestPayload alexaRequest, Dictionary<string, string> pearsonResponseDictionary)
+        internal override AlexaResponse BuildAlexaResponse(AlexaRequestPayload alexaRequest, Dictionary<WordEnum, string> wordResponseDictionary)
         {
             AlexaResponse alexaResponse = new AlexaResponse();
 
-            alexaResponse.Response.OutputSpeech.Ssml = string.Format("<speak>{0}</speak>", BuildOutputSpeech(pearsonResponseDictionary));
+            alexaResponse.Response.OutputSpeech.Ssml = string.Format("<speak>{0}</speak>", BuildOutputSpeech(wordResponseDictionary));
             
-            alexaResponse.Response.Card.Title = "Vocabulary App";
+            alexaResponse.Response.Card.Title = ConfigurationSettings.AppSettings["AppTitle"];
             alexaResponse.Response.Card.Content = string.Format("The Word of the Day is {0}.",
-                pearsonResponseDictionary[Utility.GetDescriptionFromEnumValue(WordEnum.Word)]);
+                wordResponseDictionary[WordEnum.Word]);
 
             alexaResponse.Response.Reprompt.OutputSpeech.Ssml = 
                 string.Format("<speak><p>You can say</p><p>The word is {0}</p><p>Or you can say</p><p>Get another word</p></speak>",
-                pearsonResponseDictionary[Utility.GetDescriptionFromEnumValue(WordEnum.Word)]);
+                wordResponseDictionary[WordEnum.Word]);
 
             alexaResponse.Response.ShouldEndSession = false;
 
@@ -45,33 +46,6 @@ namespace AlexaSkillProject.Services
             return alexaResponse;
         }
 
-        internal override string BuildOutputSpeech(Dictionary<string, string> pearsonResponseDictionary)
-        {
-
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append(string.Format("<p>The Word of the Day is {0}</p>",
-                pearsonResponseDictionary[Utility.GetDescriptionFromEnumValue(WordEnum.Word)]));
-
-            stringBuilder.Append(string.Format("<p>{0} is a {1}</p>",
-                pearsonResponseDictionary[Utility.GetDescriptionFromEnumValue(WordEnum.Word)],
-                pearsonResponseDictionary[Utility.GetDescriptionFromEnumValue(WordEnum.WordPartOfSpeech)]));
-
-            stringBuilder.Append(string.Format("<p>The Definition of {0} is</p><p>{1}</p>",
-                pearsonResponseDictionary[Utility.GetDescriptionFromEnumValue(WordEnum.Word)],
-                pearsonResponseDictionary[Utility.GetDescriptionFromEnumValue(WordEnum.WordDefinition)]));
-
-            if (pearsonResponseDictionary[Utility.GetDescriptionFromEnumValue(WordEnum.WordExample)] != null)
-            {
-                stringBuilder.Append(string.Format("<p>{0} can be used in an example like </p><p>{1}</p>",
-                    pearsonResponseDictionary[Utility.GetDescriptionFromEnumValue(WordEnum.Word)],
-                    pearsonResponseDictionary[Utility.GetDescriptionFromEnumValue(WordEnum.WordExample)]));
-            }
-
-            stringBuilder.Append(string.Format("<p>Okay your turn now</p><p>Say</p><p>The word is {0}</p>",
-                pearsonResponseDictionary[Utility.GetDescriptionFromEnumValue(WordEnum.Word)]));
-
-            return stringBuilder.ToString();
-        }
 
     }
 

@@ -15,12 +15,12 @@ namespace AlexaSkillProject.Services
         {
             switch (alexaRequest.Request.Intent.Name)
             {
-                case "NewCoursesIntent":
-                    return new NewCoursesIntentHandlerStrategy();
-
                 case "AMAZON.CancelIntent":
                 case "AMAZON.StopIntent":
                     return new CancelOrStopIntentHandlerStrategy();
+
+                case "AMAZON.HelpIntent":
+                    return new HelpIntentHandlerStrategy();
 
                 case "HelloWorldIntent":
                     return new HelloWorldIntentHandlerStrategy();
@@ -33,9 +33,6 @@ namespace AlexaSkillProject.Services
 
                 case "SayWordIntent":
                     return new SayWordIntentHandlerStrategy();
-
-                case "AMAZON.HelpIntent":
-                    return new HelpIntentHandlerStrategy();
 
                 default:
                     throw new NotImplementedException();

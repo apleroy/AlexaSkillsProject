@@ -27,10 +27,12 @@ namespace AlexaSkillProject.Services
 
             // compare with the last word given to user
             string lastWordGiven = null;
+            string lastWordGivenDefinition = null;
             try
             {
                 AlexaRequestPayload lastRequest = (AlexaRequestPayload)MemoryCache.Default.Get(alexaRequest.Session.SessionId);
                 lastWordGiven = lastRequest.Session.Attributes.LastWord;
+                lastWordGivenDefinition = lastRequest.Session.Attributes.LastWordDefinition;
             }
             catch
             {
@@ -41,7 +43,7 @@ namespace AlexaSkillProject.Services
             string outputSpeech = null;
             if (wordSaid.Equals(lastWordGiven))
             {
-                outputSpeech = BuildSuccessResponse(wordSaid, lastWordGiven);
+                outputSpeech = BuildSuccessResponse(wordSaid, lastWordGiven, lastWordGivenDefinition);
             }
             else
             {
@@ -61,12 +63,16 @@ namespace AlexaSkillProject.Services
             return alexaResponse;
         }
 
-        private string BuildSuccessResponse(string wordSaid, string lastWordGiven)
+        private string BuildSuccessResponse(string wordSaid, string lastWordGiven, string lastWordGivenDefinition)
         {
             StringBuilder stringBuilder = new StringBuilder();
 
             stringBuilder.Append(string.Format("<p>I heard {0}</p><p>{1}</p>", 
                 wordSaid, Utility.GetDescriptionFromEnumValue(SuccessPhrases.Great)));
+
+            stringBuilder.Append(string.Format("<p>To recap</p><p>The definition of {0} is {1}</p>", lastWordGiven, lastWordGivenDefinition));
+
+            stringBuilder.Append(string.Format("<p>Good job.  Let's keep it up!</p>"));
 
             stringBuilder.Append("<p>You can continue by saying</p>");
             stringBuilder.Append("<p>Get Another Word</p>");

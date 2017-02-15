@@ -28,6 +28,9 @@ namespace AlexaSkillProject.Domain
             [JsonProperty("lastWord")]
             public string LastWord { get; set; }
 
+            [JsonProperty("lastWordDefinition")]
+            public string LastWordDefinition { get; set; }
+
             [JsonProperty("numberCorrect")]
             public int CorrectCount { get; set; }
         }

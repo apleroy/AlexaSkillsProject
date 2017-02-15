@@ -31,7 +31,9 @@ namespace AlexaSkillProject
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
-            
+
+            // https://msdn.microsoft.com/en-us/library/dn178469(v=pandp.30).aspx
+
             var container = new UnityContainer();
             
             container.RegisterType<IUnitOfWork, UnitOfWork>(new HierarchicalLifetimeManager());
@@ -39,11 +41,11 @@ namespace AlexaSkillProject
             container.RegisterType<IAlexaRequestMapper, AlexaRequestMapper>(new HierarchicalLifetimeManager());
             container.RegisterType<IAlexaRequestPersistenceService, AlexaRequestPersistenceService>(new HierarchicalLifetimeManager());
 
-            container.RegisterType<IAlexaRequestHandlerStrategyFactory, AlexaRequestHandlerStrategyFactory>(new HierarchicalLifetimeManager());
+            container.RegisterType<IAlexaRequestHandlerStrategyFactory, AlexaRequestHandlerStrategyFactory>();
 
             container.RegisterType<IAlexaRequestValidationService, AlexaRequestValidationService>(new HierarchicalLifetimeManager());
 
-            container.RegisterType<IAlexaRequestService, AlexaRequestService>(new HierarchicalLifetimeManager());
+            container.RegisterType<IAlexaRequestService, AlexaRequestService>();
 
             
             config.DependencyResolver = new UnityResolver(container);

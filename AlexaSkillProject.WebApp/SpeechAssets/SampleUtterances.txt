@@ -1,10 +1,13 @@
 ﻿SayWordIntent The word is {Word}
+SayWordIntent word is {Word}
 
 WordOfTheDayIntent what is todays word of the day
 WordOfTheDayIntent word of the day
 WordOfTheDayIntent get the word of the day
+WordOfTheDayIntent to get the word of the day
 
 AnotherWordIntent get another word
+AnotherWordIntent to get another word
 AnotherWordIntent what is the next word
 AnotherWordIntent i would like another word
 AnotherWordIntent one more word
