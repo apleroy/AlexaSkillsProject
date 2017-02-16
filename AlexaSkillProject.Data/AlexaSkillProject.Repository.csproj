@@ -68,6 +68,14 @@
     <Compile Include="Migrations\201702120019470_AddWordOfTheDayDateToWords.Designer.cs">
       <DependentUpon>201702120019470_AddWordOfTheDayDateToWords.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702151758329_AddDefinitionsToWords.cs" />
+    <Compile Include="Migrations\201702151758329_AddDefinitionsToWords.Designer.cs">
+      <DependentUpon>201702151758329_AddDefinitionsToWords.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702160006139_AddValidationToWords.cs" />
+    <Compile Include="Migrations\201702160006139_AddValidationToWords.Designer.cs">
+      <DependentUpon>201702160006139_AddValidationToWords.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\WordRepository.cs" />
@@ -103,6 +111,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702120019470_AddWordOfTheDayDateToWords.resx">
       <DependentUpon>201702120019470_AddWordOfTheDayDateToWords.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702151758329_AddDefinitionsToWords.resx">
+      <DependentUpon>201702151758329_AddDefinitionsToWords.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702160006139_AddValidationToWords.resx">
+      <DependentUpon>201702160006139_AddValidationToWords.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

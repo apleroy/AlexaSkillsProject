@@ -47,7 +47,8 @@ namespace AlexaSkillProject
 
             container.RegisterType<IAlexaRequestService, AlexaRequestService>();
 
-            
+            container.RegisterType<IWordService, WordService>();
+
             config.DependencyResolver = new UnityResolver(container);
 
 

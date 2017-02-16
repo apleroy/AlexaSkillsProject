@@ -9,9 +9,9 @@ using System.Configuration;
 namespace AlexaSkillProject.Services
 {
     
-
     public class WordOfTheDayIntentHandlerStrategy : AbstractWordIntentHandlerStrategy
     {
+        public WordOfTheDayIntentHandlerStrategy(IWordService wordService, IDictionaryService dictionaryService) : base(wordService, dictionaryService) { }
 
         internal override Word GetWord()
         {

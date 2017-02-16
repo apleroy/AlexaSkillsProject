@@ -31,24 +31,24 @@ namespace AlexaSkillProject.Services
             _alexaRequestValidationService = alexaRequestValidationService;
         }
 
-        public AlexaResponse ProcessAlexaRequest(AlexaRequestPayload alexaRequestInputModel)
+        public AlexaResponse ProcessAlexaRequest(AlexaRequestPayload alexaRequestPayload)
         {
             // validate request time stamp and app id
-            SpeechletRequestValidationResult validationResult = _alexaRequestValidationService.ValidateAlexaRequest(alexaRequestInputModel);
+            SpeechletRequestValidationResult validationResult = _alexaRequestValidationService.ValidateAlexaRequest(alexaRequestPayload);
 
             if (validationResult == SpeechletRequestValidationResult.OK)
             {
                 // transform request
-                AlexaRequest alexaRequest = _alexaRequestMapper.MapAlexaRequest(alexaRequestInputModel);
+                AlexaRequest alexaRequest = _alexaRequestMapper.MapAlexaRequest(alexaRequestPayload);
 
                 // persist request and member
                 _alexaRequestPersistenceService.PersistAlexaRequestAndMember(alexaRequest);
 
                 // create a request handler strategy from the alexarequest
-                IAlexaRequestHandlerStrategy alexaRequestHandlerStrategy = _alexaRequestHandlerStrategyFactory.CreateAlexaRequestHandlerStrategy(alexaRequestInputModel);
+                IAlexaRequestHandlerStrategy alexaRequestHandlerStrategy = _alexaRequestHandlerStrategyFactory.CreateAlexaRequestHandlerStrategy(alexaRequestPayload);
 
                 // use the handlerstrategy to process the request and generate a response
-                AlexaResponse alexaResponse = alexaRequestHandlerStrategy.HandleAlexaRequest(alexaRequestInputModel);
+                AlexaResponse alexaResponse = alexaRequestHandlerStrategy.HandleAlexaRequest(alexaRequestPayload);
 
                 // return response
                 return alexaResponse;

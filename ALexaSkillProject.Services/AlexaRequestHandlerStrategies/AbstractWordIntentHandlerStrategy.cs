@@ -12,21 +12,26 @@ namespace AlexaSkillProject.Services
 {
     public abstract class AbstractWordIntentHandlerStrategy : IAlexaRequestHandlerStrategy
     {
-        protected readonly IDictionaryService _dictionaryService;
+        // gets a word from our database
         protected readonly IWordService _wordService;
+        
+        // maps a word to its values (could be from db or third party api)
+        protected readonly IDictionaryService _dictionaryService;
+        
 
-        public AbstractWordIntentHandlerStrategy()
+        public AbstractWordIntentHandlerStrategy(IWordService wordService, IDictionaryService dictionaryService)
         {
-            // TODO:  DI from the top level ??  Adding into parameterless contructor
+            // TODO:  DI from the top level ??  Adding into parameterless contructor / strategy pattern
             // http://stackoverflow.com/questions/1945611/setting-the-parameterless-constructor-as-the-injection-constructor-in-container
 
-            _wordService = new WordService();
-            _dictionaryService = new PearsonsDictionaryApiService();
+            _wordService = wordService;
+            _dictionaryService = dictionaryService;
+           
         }
 
         internal abstract Word GetWord();
 
-        internal abstract AlexaResponse BuildAlexaResponse(AlexaRequestPayload alexaRequest, Dictionary<WordEnum, string> pearsonResponseDictionary);
+        internal abstract AlexaResponse BuildAlexaResponse(AlexaRequestPayload alexaRequest, Dictionary<WordEnum, string> responseDictionary);
 
         public AlexaResponse HandleAlexaRequest(AlexaRequestPayload alexaRequest)
         {

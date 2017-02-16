@@ -57,6 +57,12 @@ namespace AlexaSkillProject.Repository
             Context.Set<TEntity>().RemoveRange(entities);
         }
 
+        public void Update(TEntity entity)
+        {
+            Context.Entry(entity).State = EntityState.Modified;
+        }
+
+
         public int Count()
         {
             return Context.Set<TEntity>().Count();

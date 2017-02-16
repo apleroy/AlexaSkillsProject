@@ -12,6 +12,9 @@ namespace AlexaSkillProject.Services
     public class AnotherWordIntentHandlerStrategy : AbstractWordIntentHandlerStrategy
     {
 
+        public AnotherWordIntentHandlerStrategy(IWordService wordService, IDictionaryService dictionaryService) : base(wordService, dictionaryService) { }
+
+
         internal override Word GetWord()
         {
             Word word = null;

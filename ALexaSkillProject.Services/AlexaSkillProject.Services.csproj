@@ -66,7 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlexaCertificateHelper.cs" />
+    <Compile Include="AlexaRequestValidation\AlexaCertificateHelper.cs" />
     <Compile Include="AlexaErrorHandling\AlexaWordErrorResponse.cs" />
     <Compile Include="AlexaRequestHandlerStrategies\AbstractWordIntentHandlerStrategy.cs" />
     <Compile Include="AlexaRequestHandlerStrategies\ConcreteClasses\AnotherWordIntentHandlerStrategy.cs" />
@@ -81,14 +81,15 @@
     <Compile Include="AlexaRequestHandlerStrategyFactories\ConcreteClasses\IntentRequestHandlerFactory.cs" />
     <Compile Include="AlexaRequestHandlerStrategyFactories\ConcreteClasses\SessionEndedRequestHandlerFactory.cs" />
     <Compile Include="AlexaErrorHandling\AbstractAlexaErrorResponse.cs" />
-    <Compile Include="AlexaRequestValidationHandler.cs" />
+    <Compile Include="AlexaRequestValidation\AlexaRequestValidationHandler.cs" />
     <Compile Include="AlexaRequestValidation\AlexaRequestValidationService.cs" />
     <Compile Include="AlexaRequestValidation\AlexaRequestSignatureVerifierService.cs" />
     <Compile Include="AlexaRequestValidation\AlexaSdk.cs" />
     <Compile Include="AlexaRequestValidation\IAlexaRequestValidationService.cs" />
-    <Compile Include="DictionaryApiServices\IDictionaryService.cs" />
+    <Compile Include="DictionaryServices\IDictionaryService.cs" />
+    <Compile Include="DictionaryServices\LocalDictionaryService.cs" />
     <Compile Include="Enums.cs" />
-    <Compile Include="DictionaryApiServices\PearsonsDictionaryApiService.cs" />
+    <Compile Include="DictionaryServices\PearsonsDictionaryApiService.cs" />
     <Compile Include="PersistenceAndMapping\AlexaRequestMapper.cs" />
     <Compile Include="PersistenceAndMapping\AlexaRequestPersistenceService.cs" />
     <Compile Include="AlexaRequestService.cs" />

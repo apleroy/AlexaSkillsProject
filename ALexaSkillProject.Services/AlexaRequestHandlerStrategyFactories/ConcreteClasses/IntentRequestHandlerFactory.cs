@@ -10,6 +10,14 @@ namespace AlexaSkillProject.Services
 {
     public class IntentRequestHandlerFactory
     {
+        private readonly IWordService _wordService;
+        private readonly IDictionaryService _dictionaryService;
+
+        public IntentRequestHandlerFactory(IWordService wordService, IDictionaryService dictionaryService)
+        {
+            _wordService = wordService;
+            _dictionaryService = dictionaryService;
+        }
 
         public IAlexaRequestHandlerStrategy CreateAlexaRequestHandlerStrategy(AlexaRequestPayload alexaRequest)
         {
@@ -26,10 +34,10 @@ namespace AlexaSkillProject.Services
                     return new HelloWorldIntentHandlerStrategy();
 
                 case "WordOfTheDayIntent":
-                    return new WordOfTheDayIntentHandlerStrategy();
+                    return new WordOfTheDayIntentHandlerStrategy(_wordService, _dictionaryService);
 
                 case "AnotherWordIntent":
-                    return new AnotherWordIntentHandlerStrategy();
+                    return new AnotherWordIntentHandlerStrategy(_wordService, _dictionaryService);
 
                 case "SayWordIntent":
                     return new SayWordIntentHandlerStrategy();

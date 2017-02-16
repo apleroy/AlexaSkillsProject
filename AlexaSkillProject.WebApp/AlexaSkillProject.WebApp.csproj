@@ -259,8 +259,10 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\WordViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="UnityConfig.cs" />
     <Compile Include="UnityResolver.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -326,12 +328,13 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
+    <Content Include="SpeechAssets\IntentSchema.json" />
     <Content Include="Views\Words\Create.cshtml" />
     <Content Include="Views\Words\Delete.cshtml" />
     <Content Include="Views\Words\Details.cshtml" />
     <Content Include="Views\Words\Edit.cshtml" />
     <Content Include="Views\Words\Index.cshtml" />
-    <Content Include="SpeechAssets\IntentSchema.json" />
+    <Content Include="Views\Words\BatchInsert.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
