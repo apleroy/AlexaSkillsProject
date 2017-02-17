@@ -55,7 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlexaSkillProjectDataContext.cs" />
-    <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="UnitOfWork\IUnitOfWork.cs" />
     <Compile Include="Migrations\201702090334081_Initial.cs" />
     <Compile Include="Migrations\201702090334081_Initial.Designer.cs">
       <DependentUpon>201702090334081_Initial.cs</DependentUpon>
@@ -86,15 +86,16 @@
     <Compile Include="Repositories\AlexaMemberRepository.cs" />
     <Compile Include="Repositories\AlexaRequestRepository.cs" />
     <Compile Include="Repositories\AbstractGenericRepository.cs" />
-    <Compile Include="RepositoryInterfaces\IWordRepository.cs" />
-    <Compile Include="RepositoryInterfaces\IAlexaMemberRepository.cs" />
-    <Compile Include="RepositoryInterfaces\IAlexaRequestRepository.cs" />
-    <Compile Include="RepositoryInterfaces\IRepository.cs" />
-    <Compile Include="UnitOfWork.cs" />
+    <Compile Include="Repositories\RepositoryInterfaces\IWordRepository.cs" />
+    <Compile Include="Repositories\RepositoryInterfaces\IAlexaMemberRepository.cs" />
+    <Compile Include="Repositories\RepositoryInterfaces\IAlexaRequestRepository.cs" />
+    <Compile Include="Repositories\RepositoryInterfaces\IRepository.cs" />
+    <Compile Include="UnitOfWork\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AlexaSkillProject.Core\AlexaSkillProject.Core.csproj">

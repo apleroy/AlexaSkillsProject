@@ -1,10 +1,4 @@
 ﻿using AlexaSkillProject.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity;
 
 namespace AlexaSkillProject.Repository
 {
@@ -12,11 +6,6 @@ namespace AlexaSkillProject.Repository
     {
         public AlexaRequestRepository(AlexaSkillProjectDataContext context) : base(context)
         {
-        }
-
-        public IEnumerable<AlexaRequest> GetRequestsWithMembers(int pageIndex, int pageSize)
-        {
-            throw new NotImplementedException();
         }
 
         public AlexaSkillProjectDataContext AlexaSkillProjectDataContext

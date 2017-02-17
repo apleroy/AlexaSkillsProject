@@ -29,6 +29,7 @@ namespace AlexaSkillProject.Services
         // used with third party api to make and save request for a word
         // example is to go find a new word, pass it in and hit an api, save the response as a Word record
         void GetAndSaveWordInformation(string word);
-        
+
+        void Dispose();
     }
 }

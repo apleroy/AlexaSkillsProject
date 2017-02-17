@@ -1,13 +1,13 @@
 ﻿using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Http.Dependencies;
-using System.Web.Mvc;
 
 namespace AlexaSkillProject
 {
+    /// <summary>
+    /// Unity Dependency Injection Resolver for WebAPi and Web MVC
+    /// </summary>
     public class UnityResolver : System.Web.Http.Dependencies.IDependencyResolver, System.Web.Mvc.IDependencyResolver
     {
         protected IUnityContainer container;

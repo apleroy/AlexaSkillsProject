@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AlexaSkillProject.Domain
 {
+    /// <summary>
+    /// Models the response from the Pearson Dictionary API
+    /// </summary>
     [DataContract]
     public class PearsonsDictionaryApiResponse
     {

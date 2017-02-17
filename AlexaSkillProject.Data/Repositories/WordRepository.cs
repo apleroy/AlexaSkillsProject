@@ -1,13 +1,10 @@
 ﻿using AlexaSkillProject.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity;
 
 namespace AlexaSkillProject.Repository
 {
+    /// <summary>
+    /// Base WordRepository 
+    /// </summary>
     public class WordRepository : AbstractGenericRepository<Word>, IWordRepository
     {
         public WordRepository(AlexaSkillProjectDataContext context) : base(context)

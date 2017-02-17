@@ -1,15 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AlexaSkillProject.Core
 {
     public static class Utility
     {
+        /// <summary>
+        /// Helper to return the string value of an enum's description
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static string GetDescriptionFromEnumValue(Enum value)
         {
             DescriptionAttribute attribute = value.GetType()
@@ -19,6 +21,12 @@ namespace AlexaSkillProject.Core
             return attribute == null ? value.ToString() : attribute.Description;
         }
 
+        /// <summary>
+        /// Helper to return the enum value of a description associatted with an enum
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="description"></param>
+        /// <returns></returns>
         public static T GetEnumValueFromDescription<T>(string description)
         {
             var type = typeof(T);

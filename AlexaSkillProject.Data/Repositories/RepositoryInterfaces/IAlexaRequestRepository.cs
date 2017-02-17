@@ -9,6 +9,5 @@ namespace AlexaSkillProject.Repository
 {
     public interface IAlexaRequestRepository : IRepository<AlexaRequest>
     {
-        IEnumerable<AlexaRequest> GetRequestsWithMembers(int pageIndex, int pageSize);
     }
 }

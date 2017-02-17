@@ -17,8 +17,7 @@ namespace AlexaSkillProject.Controllers
     [Authorize(Roles = "Admin")]
     public class WordsController : Controller
     {
-        private AlexaSkillProjectDataContext db = new AlexaSkillProjectDataContext();
-
+        
         private readonly IWordService _wordService;
 
         public WordsController(IWordService wordService)
@@ -29,7 +28,6 @@ namespace AlexaSkillProject.Controllers
         // GET: Words
         public ActionResult Index()
         {
-            //return View(db.Words.ToList());
             return View(_wordService.Words());
         }
 
@@ -78,7 +76,7 @@ namespace AlexaSkillProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Word word = db.Words.Find(id);
+
             Word word = _wordService.Find(id);
             if (word == null)
             {
@@ -98,12 +96,10 @@ namespace AlexaSkillProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,WordName,PartOfSpeech,Definition,Example")] Word word)
+        public ActionResult Create([Bind(Include = "Id,WordName,PartOfSpeech,Definition,Example,WordOfTheDay")] Word word)
         {
             if (ModelState.IsValid)
             {
-                //db.Words.Add(word);
-                //db.SaveChanges();
                 _wordService.AddWord(word);
                 return RedirectToAction("Index");
             }
@@ -118,7 +114,7 @@ namespace AlexaSkillProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Word word = db.Words.Find(id);
+
             Word word = _wordService.Find(id);
             if (word == null)
             {
@@ -136,9 +132,7 @@ namespace AlexaSkillProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                //db.Entry(word).State = EntityState.Modified;
-                //db.SaveChanges();
-                
+
                 _wordService.UpdateWord(word);
                 return RedirectToAction("Index");
             }
@@ -166,22 +160,24 @@ namespace AlexaSkillProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-
             Word word = _wordService.Find(id);
             _wordService.Remove(word);
             return RedirectToAction("Index");
         }
 
-        //protected override void Dispose(bool disposing)
-        //{
-        //    //if (disposing)
-        //    //{
-        //    //    db.Dispose();
-        //    //}
-        //    //base.Dispose(disposing);
 
-        //    _wordService.Dispose();
-        //    base.Dispose(disposing);
-        //}
+        // http://stackoverflow.com/questions/23765228/controllers-services-and-unit-of-work-should-i-really-dispose-database-contex
+        // http://cpratt.co/idisposable-and-dependency-injection/
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _wordService.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        
     }
 }

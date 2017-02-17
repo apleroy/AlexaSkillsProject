@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace AlexaSkillProject.Domain
 {
+    /// <summary>
+    /// This Payload is standard from Amazon from a user interacting with Alexa
+    /// </summary>
     [JsonObject]
     public class AlexaRequestPayload
     {
@@ -25,9 +25,15 @@ namespace AlexaSkillProject.Domain
             [JsonProperty("memberId")]
             public int MemberId { get; set; }
 
+            /// <summary>
+            /// The LastWord is saved with a request payload for caching between intents from a user
+            /// </summary>
             [JsonProperty("lastWord")]
             public string LastWord { get; set; }
 
+            /// <summary>
+            /// The LastWordDefinition is saved with a request payload for caching between intents from a user
+            /// </summary>
             [JsonProperty("lastWordDefinition")]
             public string LastWordDefinition { get; set; }
 

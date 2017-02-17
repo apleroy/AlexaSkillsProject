@@ -7,6 +7,9 @@ using AlexaSkillProject.Domain;
 
 namespace AlexaSkillProject.Services
 {
+    /// <summary>
+    /// This class serves as an abstract factory - based on the request type, it 
+    /// </summary>
     public class AlexaRequestHandlerStrategyFactory : IAlexaRequestHandlerStrategyFactory
     {
 

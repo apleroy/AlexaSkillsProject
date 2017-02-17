@@ -7,6 +7,7 @@ using AlexaSkillProject.Domain;
 using AlexaSkillProject.Repository;
 using System.Linq.Expressions;
 
+
 namespace AlexaSkillProject.Services
 {
     public class WordService : IWordService
@@ -16,17 +17,18 @@ namespace AlexaSkillProject.Services
 
         public WordService(IUnitOfWork unitOfWork, IDictionaryService dictionaryService)
         {
-            _unitOfWork = unitOfWork; //new UnitOfWork(new AlexaSkillProjectDataContext());
+            _unitOfWork = unitOfWork; 
             _dictionaryService = dictionaryService;
 
         }
 
-        // CRUD methods - pulled out of controller from Entity Framework
+        // CRUD methods 
 
         // Index
         public List<Word> Words()
         {
             return _unitOfWork.Words.GetAll().ToList();
+            
         }
 
         // Post
@@ -50,6 +52,7 @@ namespace AlexaSkillProject.Services
         {
             _unitOfWork.Words.UpdateEntity(word);
             _unitOfWork.Complete();
+
         }
 
         // Delete
@@ -65,6 +68,7 @@ namespace AlexaSkillProject.Services
         {
             return _unitOfWork.Words.Find(w => w.WordName == word).FirstOrDefault();
         }
+
 
         public Word GetWordOfTheDay()
         {
@@ -123,6 +127,9 @@ namespace AlexaSkillProject.Services
             
         }
 
-        
+        public void Dispose()
+        {
+            _unitOfWork.Dispose();
+        }
     }
 }

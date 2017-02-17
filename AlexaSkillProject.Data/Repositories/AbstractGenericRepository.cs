@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AlexaSkillProject.Repository
 {
+    /// <summary>
+    /// Abstract implementation of Genric IRepository interface
+    /// </summary>
+    /// <typeparam name="TEntity"></typeparam>
     public abstract class AbstractGenericRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         protected readonly DbContext Context;
@@ -59,10 +61,8 @@ namespace AlexaSkillProject.Repository
 
         
         public void UpdateEntity(TEntity entity)
-        {
-            
+        {           
             Context.Entry(entity).State = EntityState.Modified;
-            //Context.Set<TEntity>().Attach(entity);
         }
 
 

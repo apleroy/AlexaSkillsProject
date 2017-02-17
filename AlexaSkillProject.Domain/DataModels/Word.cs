@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AlexaSkillProject.Domain
 {
+    /// <summary>
+    /// A Word is a domain object mapped to EF
+    /// All fields are required to preserve quality for the user 
+    /// </summary>
     public class Word
     {
         public int Id { get; set; }
@@ -26,6 +25,9 @@ namespace AlexaSkillProject.Domain
         [Required]
         public string Example { get; set; }
 
+        /// <summary>
+        /// Set to true of this word is the 'word of the day'
+        /// </summary>
         [Required]
         public bool WordOfTheDay { get; set; }
     }

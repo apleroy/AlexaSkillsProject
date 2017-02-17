@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AlexaSkillProject.Domain;
-using AlexaSkillProject.Repository;
-
+﻿using AlexaSkillProject.Domain;
 
 namespace AlexaSkillProject.Services
 {
+    /// <summary>
+    /// This class is the main entry point and serves as the wrapper service for each AlexaRequest
+    /// AlexaRequests come through the Web API AlexaController (in the WebApp project)
+    /// </summary>
     public class AlexaRequestService : IAlexaRequestService
     {
-
         private readonly IAlexaRequestMapper _alexaRequestMapper;
         private readonly IAlexaRequestPersistenceService _alexaRequestPersistenceService;
         private readonly IAlexaRequestHandlerStrategyFactory _alexaRequestHandlerStrategyFactory;
@@ -34,6 +30,7 @@ namespace AlexaSkillProject.Services
         public AlexaResponse ProcessAlexaRequest(AlexaRequestPayload alexaRequestPayload)
         {
             // validate request time stamp and app id
+            // note that there is custom validation in the AlexaRequestValidationHandler
             SpeechletRequestValidationResult validationResult = _alexaRequestValidationService.ValidateAlexaRequest(alexaRequestPayload);
 
             if (validationResult == SpeechletRequestValidationResult.OK)

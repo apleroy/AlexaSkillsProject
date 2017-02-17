@@ -14,6 +14,10 @@ namespace AlexaSkillProject
 {
     public static class WebApiConfig
     {
+        /// <summary>
+        /// WebAPI specifics and setup - includes Dependency Injection and custom Validation Handler
+        /// </summary>
+        /// <param name="config"></param>
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
@@ -35,21 +39,40 @@ namespace AlexaSkillProject
             // https://msdn.microsoft.com/en-us/library/dn178469(v=pandp.30).aspx
 
             var container = new UnityContainer();
-            
-            container.RegisterType<IUnitOfWork, UnitOfWork>(new HierarchicalLifetimeManager());
 
-            container.RegisterType<IAlexaRequestMapper, AlexaRequestMapper>(new HierarchicalLifetimeManager());
-            container.RegisterType<IAlexaRequestPersistenceService, AlexaRequestPersistenceService>(new HierarchicalLifetimeManager());
+            #region UnitOfWork
 
+            container.RegisterType<IUnitOfWork, UnitOfWork>();
+
+            #endregion
+
+
+            #region RequestMapping and Persistence
+
+            container.RegisterType<IAlexaRequestMapper, AlexaRequestMapper>();
+            container.RegisterType<IAlexaRequestPersistenceService, AlexaRequestPersistenceService>();
+
+            #endregion
+
+
+            #region Dictionary Mapping
             container.RegisterType<IDictionaryService, LocalDictionaryService>();
+            #endregion
+
+
+            #region Handler Services
 
             container.RegisterType<IAlexaRequestHandlerStrategyFactory, AlexaRequestHandlerStrategyFactory>();
-
-            container.RegisterType<IAlexaRequestValidationService, AlexaRequestValidationService>(new HierarchicalLifetimeManager());
-
+            container.RegisterType<IAlexaRequestValidationService, AlexaRequestValidationService>();
             container.RegisterType<IAlexaRequestService, AlexaRequestService>();
 
+            #endregion
+
+            #region Repository Services
+
             container.RegisterType<IWordService, WordService>();
+
+            #endregion
 
 
 
