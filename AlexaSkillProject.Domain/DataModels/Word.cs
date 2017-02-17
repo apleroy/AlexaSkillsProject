@@ -10,7 +10,7 @@ namespace AlexaSkillProject.Domain
 {
     public class Word
     {
-        public int Id { get; private set; }
+        public int Id { get; set; }
 
         [Required]
         [Index(IsUnique = true)]
@@ -25,5 +25,8 @@ namespace AlexaSkillProject.Domain
 
         [Required]
         public string Example { get; set; }
+
+        [Required]
+        public bool WordOfTheDay { get; set; }
     }
 }

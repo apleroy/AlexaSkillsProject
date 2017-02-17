@@ -17,7 +17,7 @@ namespace AlexaSkillProject.Controllers
     [Authorize(Roles = "Admin")]
     public class WordsController : Controller
     {
-        //private AlexaSkillProjectDataContext db = new AlexaSkillProjectDataContext();
+        private AlexaSkillProjectDataContext db = new AlexaSkillProjectDataContext();
 
         private readonly IWordService _wordService;
 
@@ -47,22 +47,28 @@ namespace AlexaSkillProject.Controllers
             string[] wordList = wordViewModel.WordList.Split(
                 new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
 
+            List<Exception> exceptionList = new List<Exception>();
+            List<string> failedWords = new List<string>();
+
             foreach(string word in wordList)
             {
                 if (word != null)
                 {
                     try
                     {
-                        _wordService.GetAndSaveWordInformation(word);
+                        _wordService.GetAndSaveWordInformation(word.ToLower());
                     }
-                    catch
+                    catch (Exception e)
                     {
-                        // no need to do anything just ignore and continue (one off for admin only)
+                        failedWords.Add(word);
+                        exceptionList.Add(e);
                     }
                 }
             }
 
-            return View();
+            wordViewModel.WordList = string.Join(string.Empty, failedWords);
+
+            return View(wordViewModel);
         }
 
         // GET: Words/Details/5
@@ -126,7 +132,7 @@ namespace AlexaSkillProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,WordName,PartOfSpeech,Definition,Example")] Word word)
+        public ActionResult Edit([Bind(Include = "Id,WordName,PartOfSpeech,Definition,Example,WordOfTheDay")] Word word)
         {
             if (ModelState.IsValid)
             {
@@ -146,7 +152,7 @@ namespace AlexaSkillProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Word word = db.Words.Find(id);
+
             Word word = _wordService.Find(id);
             if (word == null)
             {
@@ -160,9 +166,7 @@ namespace AlexaSkillProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            //Word word = db.Words.Find(id);
-            //db.Words.Remove(word);
-            //db.SaveChanges();
+
             Word word = _wordService.Find(id);
             _wordService.Remove(word);
             return RedirectToAction("Index");
@@ -170,10 +174,13 @@ namespace AlexaSkillProject.Controllers
 
         //protected override void Dispose(bool disposing)
         //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
+        //    //if (disposing)
+        //    //{
+        //    //    db.Dispose();
+        //    //}
+        //    //base.Dispose(disposing);
+
+        //    _wordService.Dispose();
         //    base.Dispose(disposing);
         //}
     }

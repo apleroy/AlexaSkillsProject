@@ -76,6 +76,10 @@
     <Compile Include="Migrations\201702160006139_AddValidationToWords.Designer.cs">
       <DependentUpon>201702160006139_AddValidationToWords.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702162350451_AddWordOfTheDayToWords.cs" />
+    <Compile Include="Migrations\201702162350451_AddWordOfTheDayToWords.Designer.cs">
+      <DependentUpon>201702162350451_AddWordOfTheDayToWords.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\WordRepository.cs" />
@@ -117,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702160006139_AddValidationToWords.resx">
       <DependentUpon>201702160006139_AddValidationToWords.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702162350451_AddWordOfTheDayToWords.resx">
+      <DependentUpon>201702162350451_AddWordOfTheDayToWords.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -33,6 +33,7 @@ namespace AlexaSkillProject.Services
         public void AddWord(Word word)
         {
             _unitOfWork.Words.Add(word);
+            _unitOfWork.Complete();
         }
 
         // Get
@@ -47,13 +48,16 @@ namespace AlexaSkillProject.Services
         // Put
         public void UpdateWord(Word word)
         {
-            _unitOfWork.Words.Update(word);
+            _unitOfWork.Words.UpdateEntity(word);
+            _unitOfWork.Complete();
         }
 
         // Delete
         public void Remove(Word word)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Words.Remove(word);
+            _unitOfWork.Complete();
+            
         }
 
         
@@ -65,9 +69,7 @@ namespace AlexaSkillProject.Services
         public Word GetWordOfTheDay()
         {
             Word word = new Word();
-
-            int dayNumber = DateTime.Today.DayOfYear;
-            word = _unitOfWork.Words.Get(dayNumber);
+            word = _unitOfWork.Words.Find(w => w.WordOfTheDay == true).FirstOrDefault();
 
             // if there is no word for today, get a random one
             if (word == null)
@@ -80,9 +82,7 @@ namespace AlexaSkillProject.Services
 
         public Word GetRandomWord()
         {
-
-            int dayNumber = DateTime.Today.DayOfYear;
-            IEnumerable<Word> words = _unitOfWork.Words.Find(w => w.Id == dayNumber);
+            IEnumerable<Word> words = _unitOfWork.Words.Find(w => !w.WordOfTheDay);
 
             // determine total number and generate the random number
             int count = _unitOfWork.Words.Count();
@@ -97,29 +97,30 @@ namespace AlexaSkillProject.Services
 
         public void GetAndSaveWordInformation(string word)
         {
-            if (word == null)
-            {
-                throw new Exception("Word is null");
-            }
-            Dictionary<WordEnum, string> responseDictionary = _dictionaryService.GetWordDictionaryFromString(word);
-
-            if (responseDictionary[WordEnum.Word] != null 
-                && responseDictionary[WordEnum.Word].Equals(word)
-                && responseDictionary[WordEnum.WordPartOfSpeech] != null
-                && responseDictionary[WordEnum.WordDefinition] != null
-                && responseDictionary[WordEnum.WordExample] != null)
-            {
-                Word w = new Word
+            
+                if (word == null)
                 {
-                    WordName = responseDictionary[WordEnum.Word],
-                    PartOfSpeech = responseDictionary[WordEnum.WordPartOfSpeech],
-                    Definition = responseDictionary[WordEnum.WordDefinition],
-                    Example = responseDictionary[WordEnum.WordExample]
-                };
+                    throw new Exception("Word is null");
+                }
+                Dictionary<WordEnum, string> responseDictionary = _dictionaryService.GetWordDictionaryFromString(word);
 
-                _unitOfWork.Words.Add(w);
-                _unitOfWork.Complete();
-            }
+                if (responseDictionary[WordEnum.Word] != null
+                    && responseDictionary[WordEnum.Word].Equals(word)
+                    && responseDictionary[WordEnum.WordPartOfSpeech] != null
+                    && responseDictionary[WordEnum.WordDefinition] != null
+                    && responseDictionary[WordEnum.WordExample] != null)
+                {
+                    Word w = new Word
+                    {
+                        WordName = responseDictionary[WordEnum.Word],
+                        PartOfSpeech = responseDictionary[WordEnum.WordPartOfSpeech],
+                        Definition = responseDictionary[WordEnum.WordDefinition],
+                        Example = responseDictionary[WordEnum.WordExample]
+                    };
+
+                    _unitOfWork.Words.Add(w);
+                }
+            
         }
 
         

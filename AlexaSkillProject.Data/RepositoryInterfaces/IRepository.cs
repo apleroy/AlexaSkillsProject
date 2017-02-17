@@ -21,6 +21,8 @@ namespace AlexaSkillProject.Repository
         void Remove(TEntity entity);
         void RemoveRange(IEnumerable<TEntity> entities);
 
+        void UpdateEntity(TEntity entity);
+
         int QueryCount(Expression<Func<TEntity, bool>> predicate);
         int Count();
     }

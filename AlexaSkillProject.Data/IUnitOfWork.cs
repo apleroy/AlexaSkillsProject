@@ -13,6 +13,7 @@ namespace AlexaSkillProject.Repository
         IAlexaMemberRepository AlexaMembers { get; }
         IAlexaRequestRepository AlexaRequests { get; }
         IWordRepository Words { get; }
+
         int Complete();
     }
 }

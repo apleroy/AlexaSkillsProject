@@ -28,6 +28,8 @@ namespace AlexaSkillProject.WebApp
             container.RegisterType<IAlexaRequestMapper, AlexaRequestMapper>(new HierarchicalLifetimeManager());
             container.RegisterType<IAlexaRequestPersistenceService, AlexaRequestPersistenceService>(new HierarchicalLifetimeManager());
 
+            container.RegisterType<IDictionaryService, PearsonsDictionaryApiService>();
+
             container.RegisterType<IAlexaRequestHandlerStrategyFactory, AlexaRequestHandlerStrategyFactory>();
 
             container.RegisterType<IAlexaRequestValidationService, AlexaRequestValidationService>(new HierarchicalLifetimeManager());
@@ -35,9 +37,6 @@ namespace AlexaSkillProject.WebApp
             container.RegisterType<IAlexaRequestService, AlexaRequestService>();
 
             container.RegisterType<IWordService, WordService>();
-
-            //config.DependencyResolver = new UnityResolver(container);
-
 
 
             DependencyResolver.SetResolver(new UnityResolver(container));

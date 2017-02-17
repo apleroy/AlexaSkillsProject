@@ -9,6 +9,6 @@ namespace AlexaSkillProject.Repository
 {
     public interface IWordRepository : IRepository<Word>
     {
-        void Update(Word word);
+
     }
 }

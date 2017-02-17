@@ -67,7 +67,7 @@ namespace AlexaSkillProject.Services
             }
             catch (Exception e)
             {
-                return null;
+                throw new Exception("Error parsing the api request: " + e.Message + " " + e.StackTrace);
             }
         }
 
@@ -81,17 +81,23 @@ namespace AlexaSkillProject.Services
                 {WordEnum.WordExample, null },
             };
 
-            foreach (PearsonsDictionaryApiResponse.ResultSet resultSet in pearsonsDictionaryApiResponse.Results)
+            try
             {
-                if (resultSet.Datasets.Contains("laad3"))
+                foreach (PearsonsDictionaryApiResponse.ResultSet resultSet in pearsonsDictionaryApiResponse.Results)
                 {
-                    try { wordDictionary[WordEnum.Word] = resultSet.Headword; } catch { }
-                    try { wordDictionary[WordEnum.WordPartOfSpeech] = resultSet.PartOfSpeech; } catch { }
-                    try { wordDictionary[WordEnum.WordDefinition] = resultSet.Senses[0].Definition; } catch { }
-                    try { wordDictionary[WordEnum.WordExample] = resultSet.Senses[0].Examples[0].Text; } catch { }
+                    if (resultSet.Datasets.Contains("laad3"))
+                    {
+                        try { wordDictionary[WordEnum.Word] = resultSet.Headword; } catch { }
+                        try { wordDictionary[WordEnum.WordPartOfSpeech] = resultSet.PartOfSpeech; } catch { }
+                        try { wordDictionary[WordEnum.WordDefinition] = resultSet.Senses[0].Definition; } catch { }
+                        try { wordDictionary[WordEnum.WordExample] = resultSet.Senses[0].Examples[0].Text; } catch { }
+                    }
                 }
             }
-
+            catch (Exception e)
+            {
+                throw new Exception("There was an error converting the pearson api response to a dictionary: " + e.Message + " " + e.StackTrace);
+            }
             return wordDictionary;
 
         }
