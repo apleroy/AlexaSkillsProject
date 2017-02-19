@@ -355,15 +355,15 @@
       <Project>{fe53974a-4155-4044-91fb-412e9df3e170}</Project>
       <Name>AlexaSkillProject.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AlexaSkillProject.Data\AlexaSkillProject.Repository.csproj">
-      <Project>{13cfa573-6ac4-49e1-aab2-11e82c9687bc}</Project>
-      <Name>AlexaSkillProject.Repository</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AlexaSkillProject.Domain\AlexaSkillProject.Domain.csproj">
       <Project>{a482121f-3175-4419-b2c7-81c4024a4fe0}</Project>
       <Name>AlexaSkillProject.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ALexaSkillProject.Services\AlexaSkillProject.Services.csproj">
+    <ProjectReference Include="..\AlexaSkillProject.Repository\AlexaSkillProject.Repository.csproj">
+      <Project>{13cfa573-6ac4-49e1-aab2-11e82c9687bc}</Project>
+      <Name>AlexaSkillProject.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AlexaSkillProject.Services\AlexaSkillProject.Services.csproj">
       <Project>{c89056ef-76ea-4589-8253-3a713efebc03}</Project>
       <Name>AlexaSkillProject.Services</Name>
     </ProjectReference>

@@ -241,6 +241,7 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /AlexaSkillProject/Properties/PublishProfiles/AlexaSkillProjectWebAPI - Web Deploy.pubxml
+/AlexaSkillProject/Properties/PublishProfiles/AlexaSkillProjectWebApp.pubxml
 /AlexaSkillProject.WebApp/Web.config
 /AlexaSkillProject.WebApp/Web.Debug.config
 /AlexaSkillProject.WebApp/Web.Release.config

@@ -39,7 +39,7 @@ namespace AlexaSkillProject.Services
                 URLREQUEST,
                 word,
                 "&apikey=",
-                "DxX5OEpMwkG6NvB2pqUh7dI333GRpZGb"); //ConfigurationSettings.AppSettings["PearsonsApiKey"]);
+                ConfigurationSettings.AppSettings["PearsonsApiKey"]);
             return (HttpWebRequest)WebRequest.Create(requestUrl);
         }
 

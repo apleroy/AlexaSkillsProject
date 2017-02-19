@@ -55,7 +55,7 @@
       <Project>{a482121f-3175-4419-b2c7-81c4024a4fe0}</Project>
       <Name>AlexaSkillProject.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ALexaSkillProject.Services\AlexaSkillProject.Services.csproj">
+    <ProjectReference Include="..\AlexaSkillProject.Services\AlexaSkillProject.Services.csproj">
       <Project>{c89056ef-76ea-4589-8253-3a713efebc03}</Project>
       <Name>AlexaSkillProject.Services</Name>
     </ProjectReference>
