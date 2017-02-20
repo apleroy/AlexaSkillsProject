@@ -249,3 +249,4 @@ ModelManifest.xml
 /AlexaSkillProject/Properties/PublishProfiles/AlexaSkillProjectDataContext - Production.pubxml
 /AlexaSkillProject.WebApp/Properties/PublishProfiles/AlexaSkillProjectWebApp.pubxml
 /AlexaSkillProject.Core/EnvironmentVariable.cs
+/AlexaSkillProject.TestHelpers/AlexaRequestPayloadTest.json
