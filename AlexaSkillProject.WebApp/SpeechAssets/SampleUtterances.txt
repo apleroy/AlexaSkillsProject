@@ -5,6 +5,7 @@ WordOfTheDayIntent what is todays word of the day
 WordOfTheDayIntent word of the day
 WordOfTheDayIntent get the word of the day
 WordOfTheDayIntent to get the word of the day
+WordOfTheDayIntent what is the word of the day
 
 AnotherWordIntent get another word
 AnotherWordIntent to get another word

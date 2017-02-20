@@ -91,7 +91,7 @@ namespace AlexaSkillProject.Services
             stringBuilder.Append(string.Format("<p>The last word is {0}</p>", lastWordGiven));
             stringBuilder.Append("<p>Could you please try again?</p>");
             stringBuilder.Append("<p>Please say</p>");
-            stringBuilder.Append(string.Format("<p>The word is </p>", lastWordGiven));
+            stringBuilder.Append(string.Format("<p>The word is {0}</p>", lastWordGiven));
 
             return stringBuilder.ToString();
         }

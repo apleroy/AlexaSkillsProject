@@ -11,11 +11,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlexaSkillProject.WebApp.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlexaSkillProject.Core", "AlexaSkillProject.Core\AlexaSkillProject.Core.csproj", "{FE53974A-4155-4044-91FB-412E9DF3E170}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PearsonsApiWordCheck", "PearsonsApiWordCheck.cs\PearsonsApiWordCheck.csproj", "{FC4581B3-2442-44EA-A9E7-60028F162F4A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlexaSkillProject.Repository", "AlexaSkillProject.Repository\AlexaSkillProject.Repository.csproj", "{13CFA573-6AC4-49E1-AAB2-11E82C9687BC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlexaSkillProject.Services", "AlexaSkillProject.Services\AlexaSkillProject.Services.csproj", "{C89056EF-76EA-4589-8253-3A713EFEBC03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlexaSkillProject.Services.Test", "AlexaSkillProject.Services.Test\AlexaSkillProject.Services.Test.csproj", "{031547C6-0732-40B2-9A61-5DAAD82A0C0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlexaSkillProject.TestHelpers", "AlexaSkillProject.TestHelpers\AlexaSkillProject.TestHelpers.csproj", "{E2DD7E36-233C-4E9A-B0D1-67F3875D005F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,10 +41,6 @@ Global
 		{FE53974A-4155-4044-91FB-412E9DF3E170}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE53974A-4155-4044-91FB-412E9DF3E170}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE53974A-4155-4044-91FB-412E9DF3E170}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FC4581B3-2442-44EA-A9E7-60028F162F4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FC4581B3-2442-44EA-A9E7-60028F162F4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FC4581B3-2442-44EA-A9E7-60028F162F4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FC4581B3-2442-44EA-A9E7-60028F162F4A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{13CFA573-6AC4-49E1-AAB2-11E82C9687BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{13CFA573-6AC4-49E1-AAB2-11E82C9687BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13CFA573-6AC4-49E1-AAB2-11E82C9687BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,6 +49,14 @@ Global
 		{C89056EF-76EA-4589-8253-3A713EFEBC03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C89056EF-76EA-4589-8253-3A713EFEBC03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C89056EF-76EA-4589-8253-3A713EFEBC03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{031547C6-0732-40B2-9A61-5DAAD82A0C0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{031547C6-0732-40B2-9A61-5DAAD82A0C0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{031547C6-0732-40B2-9A61-5DAAD82A0C0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{031547C6-0732-40B2-9A61-5DAAD82A0C0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2DD7E36-233C-4E9A-B0D1-67F3875D005F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2DD7E36-233C-4E9A-B0D1-67F3875D005F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2DD7E36-233C-4E9A-B0D1-67F3875D005F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2DD7E36-233C-4E9A-B0D1-67F3875D005F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

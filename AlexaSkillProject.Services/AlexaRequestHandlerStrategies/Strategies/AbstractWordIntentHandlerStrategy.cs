@@ -29,9 +29,9 @@ namespace AlexaSkillProject.Services
            
         }
 
-        internal abstract Word GetWord();
+        protected abstract Word GetWord();
 
-        internal abstract AlexaResponse BuildAlexaResponse(AlexaRequestPayload alexaRequest, Dictionary<WordEnum, string> responseDictionary);
+        protected abstract AlexaResponse BuildAlexaResponse(AlexaRequestPayload alexaRequest, Dictionary<WordEnum, string> responseDictionary);
 
         public AlexaResponse HandleAlexaRequest(AlexaRequestPayload alexaRequest)
         {

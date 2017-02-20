@@ -278,7 +278,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\PublishProfiles\AlexaSkillProjectWebApp.pubxml" />
-    <None Include="Properties\PublishProfiles\Local_IIS.pubxml" />
+    <None Include="Properties\Local_IIS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

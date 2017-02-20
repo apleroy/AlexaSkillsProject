@@ -15,7 +15,7 @@ namespace AlexaSkillProject.Services
         public AnotherWordIntentHandlerStrategy(IWordService wordService, IDictionaryService dictionaryService) : base(wordService, dictionaryService) { }
 
 
-        internal override Word GetWord()
+        protected override Word GetWord()
         {
             Word word = null;
             while (word == null)
@@ -25,7 +25,7 @@ namespace AlexaSkillProject.Services
             return word;
         }
 
-        internal override AlexaResponse BuildAlexaResponse(AlexaRequestPayload alexaRequest, Dictionary<WordEnum, string> wordResponseDictionary)
+        protected override AlexaResponse BuildAlexaResponse(AlexaRequestPayload alexaRequest, Dictionary<WordEnum, string> wordResponseDictionary)
         {
             AlexaResponse alexaResponse = new AlexaResponse();
 
