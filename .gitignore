@@ -250,3 +250,4 @@ ModelManifest.xml
 /AlexaSkillProject.WebApp/Properties/PublishProfiles/AlexaSkillProjectWebApp.pubxml
 /AlexaSkillProject.Core/EnvironmentVariable.cs
 /AlexaSkillProject.TestHelpers/AlexaRequestPayloadTest.json
+/PearsonsApiWordCheck.cs
