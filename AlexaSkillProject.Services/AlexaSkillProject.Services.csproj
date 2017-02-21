@@ -66,7 +66,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlexaRequestValidation\AlexaCertificateHelper.cs" />
     <Compile Include="AlexaErrorHandling\AlexaWordErrorResponse.cs" />
     <Compile Include="AlexaRequestHandlerStrategies\Strategies\AbstractWordIntentHandlerStrategy.cs" />
     <Compile Include="AlexaRequestHandlerStrategies\Strategies\AnotherWordIntentHandlerStrategy.cs" />
@@ -89,6 +88,8 @@
     <Compile Include="DictionaryServices\IDictionaryService.cs" />
     <Compile Include="DictionaryServices\LocalDictionaryService.cs" />
     <Compile Include="DictionaryServices\PearsonsDictionaryApiService.cs" />
+    <Compile Include="CacheServices\ICacheService.cs" />
+    <Compile Include="CacheServices\MemoryCacheService.cs" />
     <Compile Include="PersistenceAndMapping\AlexaRequestMapper.cs" />
     <Compile Include="PersistenceAndMapping\AlexaRequestPersistenceService.cs" />
     <Compile Include="AlexaEntryPoint\AlexaRequestService.cs" />

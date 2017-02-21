@@ -6,18 +6,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Moq;
-using AlexaSkillProject.TestHelpers;
 using AlexaSkillProject.Domain;
+using AlexaSkillProject.TestHelpers;
 
 namespace AlexaSkillProject.Services.Tests
 {
     [TestClass()]
-    public class WordOfTheDayIntentHandlerStrategyTests
+    public class AlexaRequestServiceTests
     {
         [TestMethod()]
-        public void HandleAlexaRequestTest()
+        public void ProcessAlexaRequestTest()
         {
             // arrange
+            AlexaRequestPayload alexaRequestPayload = AlexaSkillProjectTestHelpers.GetAlexaRequestPayload("AlexaRequestPayloadTest.json");
+
+            var alexaRequestMapper = new Mock<IAlexaRequestMapper>();
+
+            var alexaRequestPersistenceService = new Mock<IAlexaRequestPersistenceService>();
+
             Word word = new Word
             {
                 Id = 1,
@@ -30,6 +36,8 @@ namespace AlexaSkillProject.Services.Tests
             var wordService = new Mock<IWordService>();
             wordService.Setup(w => w.GetRandomWord()).Returns(word);
 
+            var cacheService = new Mock<ICacheService>();
+            //cacheService.Setup(c => c.CacheAlexaRequest(alexaRequestPayload))
 
             Dictionary<WordEnum, string> mockDictionary = new Dictionary<WordEnum, string>();
             mockDictionary[WordEnum.Word] = word.WordName;
@@ -41,23 +49,33 @@ namespace AlexaSkillProject.Services.Tests
             var dictionaryService = new Mock<IDictionaryService>();
             dictionaryService.Setup(w => w.GetWordDictionaryFromString(word.WordName)).Returns(mockDictionary);
 
-            var cacheService = new Mock<ICacheService>();
-
             var wordOfTheDayIntentHandlerStrategy = new WordOfTheDayIntentHandlerStrategy(wordService.Object, dictionaryService.Object, cacheService.Object);
 
-            AlexaRequestPayload alexaRequestPayload = AlexaSkillProjectTestHelpers.GetAlexaRequestPayload("AlexaRequestPayloadTest.json");
+            var alexaRequestHandlerStrategyFactory = new Mock<IAlexaRequestHandlerStrategyFactory>();
+            alexaRequestHandlerStrategyFactory.Setup(x => x.CreateAlexaRequestHandlerStrategy(alexaRequestPayload)).Returns(wordOfTheDayIntentHandlerStrategy);
+
+
+            var alexaRequestValidationService = new Mock<IAlexaRequestValidationService>();
+            alexaRequestValidationService.Setup(x => x.ValidateAlexaRequest(alexaRequestPayload)).Returns(SpeechletRequestValidationResult.OK);
+
+
+            var alexaRequestService = new AlexaRequestService(
+                alexaRequestMapper.Object,
+                alexaRequestPersistenceService.Object,
+                alexaRequestHandlerStrategyFactory.Object,
+                alexaRequestValidationService.Object
+                );
+
+            
             alexaRequestPayload.Request.Type = "IntentRequest";
             alexaRequestPayload.Request.Intent.Name = "WordOfTheDayIntent";
 
             // act
-            AlexaResponse alexaResponse = wordOfTheDayIntentHandlerStrategy.HandleAlexaRequest(alexaRequestPayload);
+            AlexaResponse alexaResponse = alexaRequestService.ProcessAlexaRequest(alexaRequestPayload);
 
             // assert
             Assert.IsTrue(alexaResponse.Response.OutputSpeech.Ssml.Contains("<speak><p>The Word is test</p>"));
-            Assert.AreEqual(alexaRequestPayload.Session.Attributes.LastWord, word.WordName);
-            Assert.AreEqual(alexaRequestPayload.Session.Attributes.LastWordDefinition, word.Definition);
+            
         }
-
-
     }
 }

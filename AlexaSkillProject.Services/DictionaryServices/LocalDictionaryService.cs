@@ -1,16 +1,15 @@
 ﻿using AlexaSkillProject.Domain;
 using AlexaSkillProject.Repository;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AlexaSkillProject.Services
 {
+    /// <summary>
+    /// Because of preprocessing words to the pearsons api - we can make local calls instead of api calls to retrieve word information
+    /// </summary>
     public class LocalDictionaryService : IDictionaryService
     {
-
         private readonly IUnitOfWork _unitOfWork;
 
         public LocalDictionaryService(IUnitOfWork unitOfWork)

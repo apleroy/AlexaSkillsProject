@@ -1,11 +1,8 @@
-﻿using System;
+﻿using AlexaSkillProject.Domain;
+using AlexaSkillProject.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AlexaSkillProject.Domain;
-using AlexaSkillProject.Repository;
-using System.Linq.Expressions;
 
 
 namespace AlexaSkillProject.Services
@@ -19,7 +16,6 @@ namespace AlexaSkillProject.Services
         {
             _unitOfWork = unitOfWork; 
             _dictionaryService = dictionaryService;
-
         }
 
         // CRUD methods 
@@ -99,6 +95,10 @@ namespace AlexaSkillProject.Services
         }
 
 
+        /// <summary>
+        /// Can be used to hit the pearsons api to preprocess words and save them locally
+        /// </summary>
+        /// <param name="word"></param>
         public void GetAndSaveWordInformation(string word)
         {
             
@@ -127,6 +127,10 @@ namespace AlexaSkillProject.Services
             
         }
 
+        /// <summary>
+        /// Make sure the unit of work is disposed between calls, otherwise concurrent access exceptions can occur
+        /// See an Entity Framework crud controller for examples at the controller (not the service) level
+        /// </summary>
         public void Dispose()
         {
             _unitOfWork.Dispose();

@@ -8,31 +8,32 @@ using System.Threading.Tasks;
 using AlexaSkillProject.Services;
 using Moq;
 using AlexaSkillProject.Domain;
+using AlexaSkillProject.TestHelpers;
 
 namespace AlexaSkillProject.Controllers.Tests
 {
     [TestClass()]
     public class AlexaControllerTests
     {
+
+
         [TestMethod()]
         public void WordOfTheDayTest()
         {
-            Assert.Fail();
+            // arrange
+            AlexaRequestPayload alexaRequestPayload = new AlexaRequestPayload();
+            
+            var alexaRequestService = new Mock<IAlexaRequestService>();
+            alexaRequestService.Setup(s => s.ProcessAlexaRequest(alexaRequestPayload)).Returns(new AlexaResponse("hello"));
+
+            AlexaController controller = new AlexaController(alexaRequestService.Object);
+            
+            // act
+            AlexaResponse result = controller.WordOfTheDay(alexaRequestPayload);
+
+            // assert
+            Assert.AreEqual(result.Response.OutputSpeech.Text, "hello");
         }
 
-
-        //[TestMethod()]
-        //public void InstantiateControllerTest()
-        //{
-        //    var alexaRequestService = new Mock<IAlexaRequestService>();
-        //    var controller = new AlexaController(alexaRequestService.Object);
-        //    var AlexaRequest
-
-        //}
-
-        //public AlexaRequestPayload GetTestRequest()
-        //{
-            
-        //}
     }
 }

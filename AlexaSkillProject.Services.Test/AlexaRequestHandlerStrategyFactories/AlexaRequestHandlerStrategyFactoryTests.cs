@@ -23,7 +23,7 @@ namespace AlexaSkillProject.Services.Tests
             // arrange
             AlexaRequestHandlerStrategyFactory alexaRequestHandlerStrategyFactory = BuildTestAlexaRequestHandlerStrategyFactory();
 
-            var alexaRequestPayload = AlexaSkillProjectTestHelpers.GetAlexaRequestPayload();
+            var alexaRequestPayload = AlexaSkillProjectTestHelpers.GetAlexaRequestPayload("AlexaRequestPayloadTest.json");
             alexaRequestPayload.Request.Type = "LaunchRequest";
 
             // act
@@ -39,7 +39,7 @@ namespace AlexaSkillProject.Services.Tests
             // arrange
             AlexaRequestHandlerStrategyFactory alexaRequestHandlerStrategyFactory = BuildTestAlexaRequestHandlerStrategyFactory();
 
-            var alexaRequestPayload = AlexaSkillProjectTestHelpers.GetAlexaRequestPayload();
+            var alexaRequestPayload = AlexaSkillProjectTestHelpers.GetAlexaRequestPayload("AlexaRequestPayloadTest.json");
             alexaRequestPayload.Request.Type = "SessionEndedRequest";
 
             // act
@@ -55,7 +55,7 @@ namespace AlexaSkillProject.Services.Tests
             // arrange
             AlexaRequestHandlerStrategyFactory alexaRequestHandlerStrategyFactory = BuildTestAlexaRequestHandlerStrategyFactory();
 
-            var alexaRequestPayload = AlexaSkillProjectTestHelpers.GetAlexaRequestPayload();
+            var alexaRequestPayload = AlexaSkillProjectTestHelpers.GetAlexaRequestPayload("AlexaRequestPayloadTest.json");
             alexaRequestPayload.Request.Type = "IntentRequest";
             alexaRequestPayload.Request.Intent.Name = "AnotherWordIntent";
 
@@ -72,7 +72,7 @@ namespace AlexaSkillProject.Services.Tests
             // arrange
             AlexaRequestHandlerStrategyFactory alexaRequestHandlerStrategyFactory = BuildTestAlexaRequestHandlerStrategyFactory();
 
-            var alexaRequestPayload = AlexaSkillProjectTestHelpers.GetAlexaRequestPayload();
+            var alexaRequestPayload = AlexaSkillProjectTestHelpers.GetAlexaRequestPayload("AlexaRequestPayloadTest.json");
             alexaRequestPayload.Request.Type = "IntentRequest";
             alexaRequestPayload.Request.Intent.Name = "WordOfTheDayIntent";
 
@@ -89,7 +89,7 @@ namespace AlexaSkillProject.Services.Tests
             // arrange
             AlexaRequestHandlerStrategyFactory alexaRequestHandlerStrategyFactory = BuildTestAlexaRequestHandlerStrategyFactory();
 
-            var alexaRequestPayload = AlexaSkillProjectTestHelpers.GetAlexaRequestPayload();
+            var alexaRequestPayload = AlexaSkillProjectTestHelpers.GetAlexaRequestPayload("AlexaRequestPayloadTest.json");
             alexaRequestPayload.Request.Type = "IntentRequest";
             alexaRequestPayload.Request.Intent.Name = "SayWordIntent";
 
@@ -100,14 +100,50 @@ namespace AlexaSkillProject.Services.Tests
             Assert.AreEqual(strategyHandler.GetType(), typeof(SayWordIntentHandlerStrategy));
         }
 
+        [TestMethod()]
+        [ExpectedException(typeof(NotImplementedException))]
+        public void CreateAlexaRequestHandlerStrategyTest_IntentRequestHandlerStrategy_NullIntentHandlerStrategy()
+        {
+            // arrange
+            AlexaRequestHandlerStrategyFactory alexaRequestHandlerStrategyFactory = BuildTestAlexaRequestHandlerStrategyFactory();
+
+            var alexaRequestPayload = AlexaSkillProjectTestHelpers.GetAlexaRequestPayload("AlexaRequestPayloadTest.json");
+            alexaRequestPayload.Request.Type = "IntentRequest";
+            alexaRequestPayload.Request.Intent.Name = "DoesNotExist";
+
+            // act
+            var strategyHandler = alexaRequestHandlerStrategyFactory.CreateAlexaRequestHandlerStrategy(alexaRequestPayload);
+
+            // assert
+            Assert.AreEqual(strategyHandler.GetType(), typeof(Exception));
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(NotImplementedException))]
+        public void CreateAlexaRequestHandlerStrategyTest_NullRequestHandlerStrategy()
+        {
+            // arrange
+            AlexaRequestHandlerStrategyFactory alexaRequestHandlerStrategyFactory = BuildTestAlexaRequestHandlerStrategyFactory();
+
+            var alexaRequestPayload = AlexaSkillProjectTestHelpers.GetAlexaRequestPayload("AlexaRequestPayloadTest.json");
+            alexaRequestPayload.Request.Type = "NullRequest";
+
+            // act
+            var strategyHandler = alexaRequestHandlerStrategyFactory.CreateAlexaRequestHandlerStrategy(alexaRequestPayload);
+
+            // assert
+            Assert.AreEqual(strategyHandler.GetType(), typeof(Exception));
+        }
+
 
 
         private AlexaRequestHandlerStrategyFactory BuildTestAlexaRequestHandlerStrategyFactory()
         {
             var wordService = new Mock<IWordService>();
             var dictionaryService = new Mock<IDictionaryService>();
+            var cacheService = new Mock<ICacheService>();
 
-            var alexaRequestHandlerStrategyFactory = new AlexaRequestHandlerStrategyFactory(wordService.Object, dictionaryService.Object);
+            var alexaRequestHandlerStrategyFactory = new AlexaRequestHandlerStrategyFactory(wordService.Object, dictionaryService.Object, cacheService.Object);
 
             return alexaRequestHandlerStrategyFactory;
         }

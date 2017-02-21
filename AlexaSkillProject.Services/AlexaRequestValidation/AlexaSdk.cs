@@ -1,12 +1,11 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AlexaSkillProject.Services
 {
+    /// <summary>
+    /// https://github.com/AreYouFreeBusy/AlexaSkillsKit.NET
+    /// </summary>
     public static class AlexaSdk
     {
         public const string VERSION = "1.0";

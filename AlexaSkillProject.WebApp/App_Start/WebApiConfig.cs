@@ -46,6 +46,11 @@ namespace AlexaSkillProject
 
             #endregion
 
+            #region Caching
+
+            container.RegisterType<ICacheService, MemoryCacheService>();
+
+            #endregion
 
             #region RequestMapping and Persistence
 
@@ -54,11 +59,9 @@ namespace AlexaSkillProject
 
             #endregion
 
-
             #region Dictionary Mapping
             container.RegisterType<IDictionaryService, LocalDictionaryService>();
             #endregion
-
 
             #region Handler Services
 
@@ -73,7 +76,6 @@ namespace AlexaSkillProject
             container.RegisterType<IWordService, WordService>();
 
             #endregion
-
 
 
             config.DependencyResolver = new UnityResolver(container);

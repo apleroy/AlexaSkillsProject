@@ -28,6 +28,11 @@ namespace AlexaSkillProject.WebApp
 
             #endregion
 
+            #region Caching
+
+            container.RegisterType<ICacheService, MemoryCacheService>();
+
+            #endregion
 
             #region RequestMapping and Persistence
 
@@ -36,11 +41,9 @@ namespace AlexaSkillProject.WebApp
 
             #endregion
 
-
             #region Dictionary Mapping
             container.RegisterType<IDictionaryService, LocalDictionaryService>();
             #endregion
-
 
             #region Handler Services
 

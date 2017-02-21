@@ -1,4 +1,5 @@
 ﻿using AlexaSkillProject.Domain;
+using System;
 
 namespace AlexaSkillProject.Services
 {
@@ -35,20 +36,28 @@ namespace AlexaSkillProject.Services
 
             if (validationResult == SpeechletRequestValidationResult.OK)
             {
-                // transform request
-                AlexaRequest alexaRequest = _alexaRequestMapper.MapAlexaRequest(alexaRequestPayload);
+                try
+                {
+                    // transform request
+                    AlexaRequest alexaRequest = _alexaRequestMapper.MapAlexaRequest(alexaRequestPayload);
 
-                // persist request and member
-                _alexaRequestPersistenceService.PersistAlexaRequestAndMember(alexaRequest);
+                    // persist request and member
+                    _alexaRequestPersistenceService.PersistAlexaRequestAndMember(alexaRequest);
 
-                // create a request handler strategy from the alexarequest
-                IAlexaRequestHandlerStrategy alexaRequestHandlerStrategy = _alexaRequestHandlerStrategyFactory.CreateAlexaRequestHandlerStrategy(alexaRequestPayload);
+                    // create a request handler strategy from the alexarequest
+                    IAlexaRequestHandlerStrategy alexaRequestHandlerStrategy = _alexaRequestHandlerStrategyFactory.CreateAlexaRequestHandlerStrategy(alexaRequestPayload);
 
-                // use the handlerstrategy to process the request and generate a response
-                AlexaResponse alexaResponse = alexaRequestHandlerStrategy.HandleAlexaRequest(alexaRequestPayload);
+                    // use the handlerstrategy to process the request and generate a response
+                    AlexaResponse alexaResponse = alexaRequestHandlerStrategy.HandleAlexaRequest(alexaRequestPayload);
 
-                // return response
-                return alexaResponse;
+                    // return response
+                    return alexaResponse;
+                }
+                catch (Exception exception)
+                {
+                    // todo: log the error
+                    return new AlexaWordErrorResponse().GenerateCustomError();
+                }
             }
 
             return null;

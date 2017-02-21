@@ -1,18 +1,17 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using AlexaSkillProject.Services;
+﻿using AlexaSkillProject.Domain;
+using AlexaSkillProject.TestHelpers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Moq;
-using AlexaSkillProject.TestHelpers;
-using AlexaSkillProject.Domain;
 
-namespace AlexaSkillProject.Services.Tests
+namespace AlexaSkillProject.Services.Test
 {
     [TestClass()]
-    public class WordOfTheDayIntentHandlerStrategyTests
+    public class AnotherWordIntentHandlerStrategyTests
     {
         [TestMethod()]
         public void HandleAlexaRequestTest()
@@ -43,11 +42,11 @@ namespace AlexaSkillProject.Services.Tests
 
             var cacheService = new Mock<ICacheService>();
 
-            var wordOfTheDayIntentHandlerStrategy = new WordOfTheDayIntentHandlerStrategy(wordService.Object, dictionaryService.Object, cacheService.Object);
+            var wordOfTheDayIntentHandlerStrategy = new AnotherWordIntentHandlerStrategy(wordService.Object, dictionaryService.Object, cacheService.Object);
 
             AlexaRequestPayload alexaRequestPayload = AlexaSkillProjectTestHelpers.GetAlexaRequestPayload("AlexaRequestPayloadTest.json");
             alexaRequestPayload.Request.Type = "IntentRequest";
-            alexaRequestPayload.Request.Intent.Name = "WordOfTheDayIntent";
+            alexaRequestPayload.Request.Intent.Name = "AnotherWordIntent";
 
             // act
             AlexaResponse alexaResponse = wordOfTheDayIntentHandlerStrategy.HandleAlexaRequest(alexaRequestPayload);
@@ -57,7 +56,5 @@ namespace AlexaSkillProject.Services.Tests
             Assert.AreEqual(alexaRequestPayload.Session.Attributes.LastWord, word.WordName);
             Assert.AreEqual(alexaRequestPayload.Session.Attributes.LastWordDefinition, word.Definition);
         }
-
-
     }
 }

@@ -1,13 +1,11 @@
-﻿using AlexaSkillProject.Services;
+﻿using AlexaSkillProject.Domain;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AlexaSkillProject.Domain;
 
 namespace AlexaSkillProject.Services
 {
+    /// <summary>
+    /// Maps an AlexaRequestPayload object into SQL savable object
+    /// </summary>
     public class AlexaRequestMapper : IAlexaRequestMapper
     {
         

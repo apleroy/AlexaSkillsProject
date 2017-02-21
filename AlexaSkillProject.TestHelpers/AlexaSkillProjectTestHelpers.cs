@@ -1,21 +1,16 @@
 ﻿using AlexaSkillProject.Domain;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AlexaSkillProject.TestHelpers
 {
     public static class AlexaSkillProjectTestHelpers
     {
 
-        public static AlexaRequestPayload GetAlexaRequestPayload()
+        public static AlexaRequestPayload GetAlexaRequestPayload(string filename)
         {
             var dir = Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).FullName);
-            var filename = "AlexaRequestPayloadTest.json";
             var path = string.Format("{0}\\{1}", dir, filename);
 
             AlexaRequestPayload alexaRequestPayload = null;

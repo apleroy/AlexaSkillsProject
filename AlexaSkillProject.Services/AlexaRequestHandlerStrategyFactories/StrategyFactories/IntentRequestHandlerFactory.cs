@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AlexaSkillProject.Domain;
-using AlexaSkillProject.Repository;
+﻿using AlexaSkillProject.Domain;
+using System;
 
 namespace AlexaSkillProject.Services
 {
@@ -12,11 +7,16 @@ namespace AlexaSkillProject.Services
     {
         private readonly IWordService _wordService;
         private readonly IDictionaryService _dictionaryService;
+        private readonly ICacheService _cacheService;
 
-        public IntentRequestHandlerFactory(IWordService wordService, IDictionaryService dictionaryService)
+        public IntentRequestHandlerFactory(
+            IWordService wordService, 
+            IDictionaryService dictionaryService,
+            ICacheService cacheService)
         {
             _wordService = wordService;
             _dictionaryService = dictionaryService;
+            _cacheService = cacheService;
         }
 
         public IAlexaRequestHandlerStrategy CreateAlexaRequestHandlerStrategy(AlexaRequestPayload alexaRequest)
@@ -34,13 +34,13 @@ namespace AlexaSkillProject.Services
                     return new HelloWorldIntentHandlerStrategy();
 
                 case "WordOfTheDayIntent":
-                    return new WordOfTheDayIntentHandlerStrategy(_wordService, _dictionaryService);
+                    return new WordOfTheDayIntentHandlerStrategy(_wordService, _dictionaryService, _cacheService);
 
                 case "AnotherWordIntent":
-                    return new AnotherWordIntentHandlerStrategy(_wordService, _dictionaryService);
+                    return new AnotherWordIntentHandlerStrategy(_wordService, _dictionaryService, _cacheService);
 
                 case "SayWordIntent":
-                    return new SayWordIntentHandlerStrategy();
+                    return new SayWordIntentHandlerStrategy(_cacheService);
 
                 default:
                     throw new NotImplementedException();

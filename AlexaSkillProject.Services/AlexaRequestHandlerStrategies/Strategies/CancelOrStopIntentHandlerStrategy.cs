@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AlexaSkillProject.Domain;
+﻿using AlexaSkillProject.Domain;
 
 namespace AlexaSkillProject.Services
 {
@@ -11,7 +6,11 @@ namespace AlexaSkillProject.Services
     {
         public AlexaResponse HandleAlexaRequest(AlexaRequestPayload alexaRequest)
         {
-            throw new NotImplementedException();
+            var response = new AlexaResponse("Thanks for using the Eloquency Skill.  You can also visit Eloquency App dot com for more information.  I hope to see you again soon.");
+
+            response.Response.ShouldEndSession = true;
+
+            return response;
         }
     }
 }

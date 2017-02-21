@@ -1,18 +1,22 @@
-﻿using System;
+﻿using AlexaSkillProject.Domain;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AlexaSkillProject.Domain;
 using System.Configuration;
 
 namespace AlexaSkillProject.Services
 {
 
+    /// <summary>
+    /// This method is called for users requesting 'another word'
+    /// Implements a random word override method
+    /// </summary>
     public class AnotherWordIntentHandlerStrategy : AbstractWordIntentHandlerStrategy
     {
 
-        public AnotherWordIntentHandlerStrategy(IWordService wordService, IDictionaryService dictionaryService) : base(wordService, dictionaryService) { }
+        public AnotherWordIntentHandlerStrategy(
+            IWordService wordService, 
+            IDictionaryService dictionaryService,
+            ICacheService cacheService
+            ) : base(wordService, dictionaryService, cacheService) { }
 
 
         protected override Word GetWord()
@@ -23,28 +27,7 @@ namespace AlexaSkillProject.Services
                 word = _wordService.GetRandomWord();
             }
             return word;
-        }
-
-        protected override AlexaResponse BuildAlexaResponse(AlexaRequestPayload alexaRequest, Dictionary<WordEnum, string> wordResponseDictionary)
-        {
-            AlexaResponse alexaResponse = new AlexaResponse();
-
-            alexaResponse.Response.OutputSpeech.Ssml = string.Format("<speak>{0}</speak>", BuildOutputSpeech(wordResponseDictionary));
-
-            alexaResponse.Response.Card.Title = ConfigurationSettings.AppSettings["AppTitle"];
-            alexaResponse.Response.Card.Content = string.Format("The Word is {0}.",
-                wordResponseDictionary[WordEnum.Word]);
-
-            alexaResponse.Response.Reprompt.OutputSpeech.Ssml = string.Format("<speak><p>You can say</p><p>The word is {0}</p><p>Or you can say</p><p>Get another word</p></speak>",
-                wordResponseDictionary[WordEnum.Word]);
-
-            alexaResponse.Response.ShouldEndSession = false;
-
-            alexaResponse.Response.OutputSpeech.Type = "SSML";
-            alexaResponse.Response.Reprompt.OutputSpeech.Type = "SSML";
-
-            return alexaResponse;
-        }
+        } 
 
     }
 

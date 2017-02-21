@@ -1,13 +1,13 @@
 ﻿using AlexaSkillProject.Domain;
 using AlexaSkillProject.Repository;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AlexaSkillProject.Services
 {
+    /// <summary>
+    /// Saves the AlexaRequest and Upserts AlexaMember information with the request
+    /// </summary>
     public class AlexaRequestPersistenceService : IAlexaRequestPersistenceService
     {
         private readonly IUnitOfWork _unitOfWork;

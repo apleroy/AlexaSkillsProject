@@ -8,18 +8,23 @@ using AlexaSkillProject.Domain;
 namespace AlexaSkillProject.Services
 {
     /// <summary>
-    /// This class serves as an abstract factory - based on the request type, it 
+    /// This class serves as an abstract factory - based on the request type, it returns a handler strategy
     /// </summary>
     public class AlexaRequestHandlerStrategyFactory : IAlexaRequestHandlerStrategyFactory
     {
 
         private readonly IWordService _wordService;
         private readonly IDictionaryService _dictionaryService;
+        private readonly ICacheService _cacheService;
 
-        public AlexaRequestHandlerStrategyFactory(IWordService wordService, IDictionaryService dictionaryService)
+        public AlexaRequestHandlerStrategyFactory(
+            IWordService wordService, 
+            IDictionaryService dictionaryService,
+            ICacheService cacheService)
         {
             _wordService = wordService;
             _dictionaryService = dictionaryService;
+            _cacheService = cacheService;
         }
 
         public IAlexaRequestHandlerStrategy CreateAlexaRequestHandlerStrategy(AlexaRequestPayload alexaRequest)
@@ -33,7 +38,7 @@ namespace AlexaSkillProject.Services
                     return new SessionEndedRequestHandlerFactory().CreateAlexaRequestHandlerStrategy(alexaRequest);
 
                 case "IntentRequest":
-                    return new IntentRequestHandlerFactory(_wordService, _dictionaryService).CreateAlexaRequestHandlerStrategy(alexaRequest);
+                    return new IntentRequestHandlerFactory(_wordService, _dictionaryService, _cacheService).CreateAlexaRequestHandlerStrategy(alexaRequest);
 
                 default:
                     throw new NotImplementedException();

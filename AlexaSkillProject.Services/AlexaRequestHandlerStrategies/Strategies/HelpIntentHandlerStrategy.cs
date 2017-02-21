@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AlexaSkillProject.Domain;
+﻿using AlexaSkillProject.Domain;
 
 namespace AlexaSkillProject.Services
 {
@@ -11,7 +6,11 @@ namespace AlexaSkillProject.Services
     {
         public AlexaResponse HandleAlexaRequest(AlexaRequestPayload alexaRequest)
         {
-            throw new NotImplementedException();
+            var response = new AlexaResponse("You can ask What is the Word of the Day.  You can also visit Eloquency App dot com for more information.");
+
+            response.Response.ShouldEndSession = false;
+
+            return response;
         }
     }
 }

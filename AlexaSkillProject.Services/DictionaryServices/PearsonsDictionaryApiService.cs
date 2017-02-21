@@ -1,17 +1,19 @@
-﻿using System;
+﻿using AlexaSkillProject.Domain;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using AlexaSkillProject.Domain;
-using Newtonsoft.Json;
-using System.IO;
-using AlexaSkillProject.Core;
-using System.Configuration;
 
 namespace AlexaSkillProject.Services
 {
+    /// <summary>
+    /// This class outlines the creation, response, and response transformation of sending a word to the 
+    /// pearson's dictionary api and retrieving associated word details (like definition and example)
+    /// api docs here: http://developer.pearson.com/apis/dictionaries
+    /// </summary>
     public class PearsonsDictionaryApiService : IDictionaryService
     {
         private const string URLREQUEST = "http://api.pearson.com/v2/dictionaries/entries?headword=";
@@ -30,7 +32,6 @@ namespace AlexaSkillProject.Services
 
             return responseDictionary;
         }
-
 
 
         private HttpWebRequest CreateDictionaryApiRequest(string word)

@@ -6,9 +6,7 @@ namespace AlexaSkillProject.Services
     {
         public override AlexaResponse GenerateCustomError()
         {
-            AlexaResponse alexaResponse = new AlexaResponse();
-            alexaResponse.Response.Card.Title = "Vocabulary App";
-            alexaResponse.Response.Card.Content = "I'm Sorry, I couldn't understand your request.  Please ask What is the Word of the Day?";
+            AlexaResponse alexaResponse = new AlexaResponse("I'm Sorry, I couldn't understand your request.  Please ask What is the Word of the Day?");
             alexaResponse.Response.Reprompt.OutputSpeech.Text = "Please ask What is the Word of the Day?";
             alexaResponse.Response.ShouldEndSession = false;
 

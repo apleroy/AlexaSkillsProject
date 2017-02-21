@@ -11,9 +11,22 @@ using System.Configuration;
 
 namespace AlexaSkillProject.Services
 {
+    /// <summary>
+    /// This handler is called before the controller model binding occurs
+    /// The below code is a combination of :
+    /// https://github.com/AreYouFreeBusy/AlexaSkillsKit.NET & pluralsight C# Alexa course code
+    /// Note that the build mode environment variable is set to bypass validation checks when in debug mode
+    /// </summary>
     public class AlexaRequestValidationHandler : DelegatingHandler
     {
 
+        /// <summary>
+        /// Check to verify request headers and certificates per Amazon's validation requirements
+        /// Note this method does not apply in debug mode
+        /// </summary>
+        /// <param name="httpRequest"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage httpRequest, CancellationToken cancellationToken)
         {
             string buildMode = ConfigurationSettings.AppSettings["Mode"];

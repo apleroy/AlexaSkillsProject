@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Org.BouncyCastle.Security.Certificates;
+using Org.BouncyCastle.X509;
+using System;
+using System.Collections;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Runtime.Caching;
 using System.Threading.Tasks;
-using Org.BouncyCastle.X509;
-using Org.BouncyCastle.Security.Certificates;
-using System.Text;
-using System.Collections;
 
 namespace AlexaSkillProject.Services
 {
+    /// <summary>
+    /// https://github.com/AreYouFreeBusy/AlexaSkillsKit.NET
+    /// </summary>
     public static class AlexaRequestSignatureVerifierService
     {
         private static Func<string, string> _getCertCacheKey = (string url) => string.Format("{0}_{1}", AlexaSdk.SIGNATURE_CERT_URL_REQUEST_HEADER, url);

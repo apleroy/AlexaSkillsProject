@@ -62,6 +62,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="AlexaEntryPoint\AlexaRequestServiceTests.cs" />
+    <Compile Include="AlexaRequestHandlerStrategies\Strategies\AnotherWordIntentHandlerStrategyTests.cs" />
+    <Compile Include="AlexaRequestHandlerStrategies\Strategies\SayWordIntentHandlerStrategyTests.cs" />
     <Compile Include="AlexaRequestHandlerStrategies\Strategies\WordOfTheDayIntentHandlerStrategyTests.cs" />
     <Compile Include="AlexaRequestHandlerStrategyFactories\AlexaRequestHandlerStrategyFactoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -89,6 +92,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="AlexaRequestPayloadSayWordIntent.json" />
     <None Include="AlexaRequestPayloadTest.json" />
     <None Include="packages.config" />
   </ItemGroup>

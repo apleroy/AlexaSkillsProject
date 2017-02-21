@@ -1,13 +1,12 @@
 ﻿using AlexaSkillProject.Domain;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AlexaSkillProject.Services
 {
-    // The IWordService is responsible for extracting and persisting word objects
+
+    /// <summary>
+    /// Responsible for extracting and persisting word objects from the WordRepository
+    /// </summary>
     public interface IWordService
     {
         // CRUD methods

@@ -1,20 +1,14 @@
-﻿using AlexaSkillProject.Core;
-using AlexaSkillProject.Domain;
-using Newtonsoft.Json;
+﻿using AlexaSkillProject.Domain;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AlexaSkillProject.Services
 {
-    
 
+    /// <summary>
+    /// This class verifies that each call to the alexa app has valida data for the timestamp and alexa app id
+    /// This class ensures no posts carry on for > 150 seconds and that requests are for this application specifically
+    /// </summary>
     public class AlexaRequestValidationService : IAlexaRequestValidationService
     {
         
