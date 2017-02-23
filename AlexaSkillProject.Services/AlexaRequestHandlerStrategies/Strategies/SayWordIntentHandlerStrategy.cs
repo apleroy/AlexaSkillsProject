@@ -15,7 +15,7 @@ namespace AlexaSkillProject.Services
     {
         private readonly ICacheService _cacheService;
 
-        public string SupportedRequestType
+        public string SupportedRequestIntentName
         {
             get
             {
@@ -23,7 +23,7 @@ namespace AlexaSkillProject.Services
             }
         }
 
-        public string SupportedRequestIntentName
+        public string SupportedRequestType
         {
             get
             {

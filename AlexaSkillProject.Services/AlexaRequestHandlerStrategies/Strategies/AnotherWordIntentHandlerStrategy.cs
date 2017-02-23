@@ -23,15 +23,15 @@ namespace AlexaSkillProject.Services
         {
             get
             {
-                return StrategyHandlerTypes.IntentRequest.ToString();
+                return "AnotherWordIntent";
             }
         }
 
         public override string SupportedRequestType
         {
             get
-            {
-                return "AnotherWordIntent";
+            { 
+                return StrategyHandlerTypes.IntentRequest.ToString();
             }
         }
 
