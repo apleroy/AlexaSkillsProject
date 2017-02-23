@@ -27,3 +27,7 @@ This project is an Alexa Skill application called "Eloquency".
 * Alexa will give a word of the day, its part of speech, definition, and an example.  Alexa will then prompt the user to repeat the word.
 
 * Alexa will continue with additional words with "Get Another Word".
+
+##About the Web App 
+
+* EloquencyApp.com is under construction.  The current azure web site (http://alexaskillprojectwebapp.azurewebsites.net/) has a basic UI for administrator login to add words.
