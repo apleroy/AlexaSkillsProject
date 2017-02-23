@@ -142,8 +142,9 @@ namespace AlexaSkillProject.Services.Tests
             var wordService = new Mock<IWordService>();
             var dictionaryService = new Mock<IDictionaryService>();
             var cacheService = new Mock<ICacheService>();
+            var availableServices = new Mock<IEnumerable<IAlexaRequestHandlerStrategy>> ();
 
-            var alexaRequestHandlerStrategyFactory = new AlexaRequestHandlerStrategyFactory(wordService.Object, dictionaryService.Object, cacheService.Object);
+            var alexaRequestHandlerStrategyFactory = new AlexaRequestHandlerStrategyFactory(availableServices.Object);
 
             return alexaRequestHandlerStrategyFactory;
         }

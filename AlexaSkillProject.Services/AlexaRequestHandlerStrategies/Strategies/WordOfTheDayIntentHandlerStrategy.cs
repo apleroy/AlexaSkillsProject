@@ -14,11 +14,31 @@ namespace AlexaSkillProject.Services
     /// </summary>
     public class WordOfTheDayIntentHandlerStrategy : AbstractWordIntentHandlerStrategy
     {
+        
+        public override string SupportedRequestIntentName
+        {
+            get
+            {
+                return "WordOfTheDayIntent";
+            }
+        }
+
+        public override string SupportedRequestType
+        {
+            get
+            {
+
+                return StrategyHandlerTypes.IntentRequest.ToString();
+            }
+        }
+
         public WordOfTheDayIntentHandlerStrategy(
             IWordService wordService, 
             IDictionaryService dictionaryService,
             ICacheService cacheService
             ) : base(wordService, dictionaryService, cacheService) { }
+
+        
 
         /// <summary>
         /// One record in the Words table is marked as 'WordOfTheDay' == true
@@ -34,6 +54,7 @@ namespace AlexaSkillProject.Services
             }
             return word;
         }
+
         
     }
 

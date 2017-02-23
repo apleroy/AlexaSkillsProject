@@ -17,18 +17,19 @@ namespace AlexaSkillProject.Services
 
         protected readonly ICacheService _cacheService;
 
+        public abstract string SupportedRequestType { get; }
+
+        public abstract string SupportedRequestIntentName { get; }
+        
+
         public AbstractWordIntentHandlerStrategy(
             IWordService wordService, 
             IDictionaryService dictionaryService,
             ICacheService cacheService)
         {
-            // TODO:  DI from the top level ??  Adding into parameterless contructor / strategy pattern
-            // http://stackoverflow.com/questions/1945611/setting-the-parameterless-constructor-as-the-injection-constructor-in-container
-
             _wordService = wordService;
             _dictionaryService = dictionaryService;
             _cacheService = cacheService;
-           
         }
 
         protected abstract Word GetWord();
@@ -85,16 +86,8 @@ namespace AlexaSkillProject.Services
                 alexaRequest.Session.Attributes.LastWord = word.WordName; // use the word from the db as it is saved in intent slots
                 alexaRequest.Session.Attributes.LastWordDefinition = wordResponseDictionary[WordEnum.WordDefinition];
 
+                // cache the request and its above added session attributes
                 _cacheService.CacheAlexaRequest(alexaRequest);
-
-                //// use set to add sessionid/request to memory cache
-                //// http://stackoverflow.com/questions/8868486/whats-the-difference-between-memorycache-add-and-memorycache-set
-
-                //MemoryCache.Default.Set(alexaRequest.Session.SessionId,
-                //    alexaRequest,
-                //    new CacheItemPolicy()
-                //    );
-
 
                 return alexaResponse;
             }

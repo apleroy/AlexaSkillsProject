@@ -60,14 +60,31 @@ namespace AlexaSkillProject
             #endregion
 
             #region Dictionary Mapping
+
             container.RegisterType<IDictionaryService, LocalDictionaryService>();
+
             #endregion
 
-            #region Handler Services
+            #region Request and Validation
 
-            container.RegisterType<IAlexaRequestHandlerStrategyFactory, AlexaRequestHandlerStrategyFactory>();
             container.RegisterType<IAlexaRequestValidationService, AlexaRequestValidationService>();
             container.RegisterType<IAlexaRequestService, AlexaRequestService>();
+
+            #endregion
+
+            #region Handler Strategies
+
+            container.RegisterType<IAlexaRequestHandlerStrategy, AnotherWordIntentHandlerStrategy>("AnotherWordIntentHandlerStrategy");
+            container.RegisterType<IAlexaRequestHandlerStrategy, CancelOrStopIntentHandlerStrategy>("CancelOrStopIntentHandlerStrategy");
+            container.RegisterType<IAlexaRequestHandlerStrategy, HelloWorldIntentHandlerStrategy>("HelloWorldIntentHandlerStrategy");
+            container.RegisterType<IAlexaRequestHandlerStrategy, HelpIntentHandlerStrategy>("HelpIntentHandlerStrategy");
+            container.RegisterType<IAlexaRequestHandlerStrategy, LaunchRequestHandlerStrategy>("LaunchRequestHandlerStrategy");
+            container.RegisterType<IAlexaRequestHandlerStrategy, SayWordIntentHandlerStrategy>("SayWordIntentHandlerStrategy");
+            container.RegisterType<IAlexaRequestHandlerStrategy, SessionEndedRequestHandlerStrategy>("SessionEndedRequestHandlerStrategy");
+            container.RegisterType<IAlexaRequestHandlerStrategy, WordOfTheDayIntentHandlerStrategy>("WordOfTheDayIntentHandlerStrategy");
+
+            container.RegisterType<IEnumerable<IAlexaRequestHandlerStrategy>, IAlexaRequestHandlerStrategy[]>();
+            container.RegisterType<IAlexaRequestHandlerStrategyFactory, AlexaRequestHandlerStrategyFactory>();
 
             #endregion
 

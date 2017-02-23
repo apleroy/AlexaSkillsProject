@@ -8,5 +8,7 @@ namespace AlexaSkillProject.Services
     public interface IAlexaRequestHandlerStrategy
     {
         AlexaResponse HandleAlexaRequest(AlexaRequestPayload alexaRequest);
+        string SupportedRequestType { get; }
+        string SupportedRequestIntentName { get; }
     }
 }

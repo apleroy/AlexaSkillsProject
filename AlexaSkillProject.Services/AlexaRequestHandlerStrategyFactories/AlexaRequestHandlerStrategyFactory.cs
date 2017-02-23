@@ -8,41 +8,37 @@ using AlexaSkillProject.Domain;
 namespace AlexaSkillProject.Services
 {
     /// <summary>
-    /// This class serves as an abstract factory - based on the request type, it returns a handler strategy
+    /// This class returns the correct handler strategy to process the request
+    /// Available strategies are initialized in the UnityConfig
     /// </summary>
     public class AlexaRequestHandlerStrategyFactory : IAlexaRequestHandlerStrategyFactory
     {
+        private readonly IEnumerable<IAlexaRequestHandlerStrategy> _availableStrategies;
 
-        private readonly IWordService _wordService;
-        private readonly IDictionaryService _dictionaryService;
-        private readonly ICacheService _cacheService;
-
-        public AlexaRequestHandlerStrategyFactory(
-            IWordService wordService, 
-            IDictionaryService dictionaryService,
-            ICacheService cacheService)
+        public AlexaRequestHandlerStrategyFactory(IEnumerable<IAlexaRequestHandlerStrategy> availableStrategies)
         {
-            _wordService = wordService;
-            _dictionaryService = dictionaryService;
-            _cacheService = cacheService;
+            _availableStrategies = availableStrategies;
         }
 
         public IAlexaRequestHandlerStrategy CreateAlexaRequestHandlerStrategy(AlexaRequestPayload alexaRequest)
         {
+            
             switch (alexaRequest.Request.Type)
             {
                 case "LaunchRequest":
-                    return new LaunchRequestHandlerFactory().CreateAlexaRequestHandlerStrategy(alexaRequest);
- 
                 case "SessionEndedRequest":
-                    return new SessionEndedRequestHandlerFactory().CreateAlexaRequestHandlerStrategy(alexaRequest);
-
+                    IAlexaRequestHandlerStrategy strategy = _availableStrategies
+                        .FirstOrDefault(s => s.SupportedRequestType == alexaRequest.Request.Type);
+                    return strategy;
                 case "IntentRequest":
-                    return new IntentRequestHandlerFactory(_wordService, _dictionaryService, _cacheService).CreateAlexaRequestHandlerStrategy(alexaRequest);
+                    IAlexaRequestHandlerStrategy intentStrategy = _availableStrategies
+                        .FirstOrDefault(s => s.SupportedRequestIntentName == alexaRequest.Request.Intent.Name);
+                    return intentStrategy;
 
                 default:
                     throw new NotImplementedException();
             }
+
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AlexaSkillProject.Domain;
 using System.Collections.Generic;
 using System.Configuration;
+using System;
 
 namespace AlexaSkillProject.Services
 {
@@ -18,6 +19,21 @@ namespace AlexaSkillProject.Services
             ICacheService cacheService
             ) : base(wordService, dictionaryService, cacheService) { }
 
+        public override string SupportedRequestIntentName
+        {
+            get
+            {
+                return StrategyHandlerTypes.IntentRequest.ToString();
+            }
+        }
+
+        public override string SupportedRequestType
+        {
+            get
+            {
+                return "AnotherWordIntent";
+            }
+        }
 
         protected override Word GetWord()
         {
@@ -27,8 +43,9 @@ namespace AlexaSkillProject.Services
                 word = _wordService.GetRandomWord();
             }
             return word;
-        } 
+        }
 
+        
     }
 
         

@@ -40,4 +40,13 @@ namespace AlexaSkillProject.Domain
         [Description("I am sorry that is not correct")]
         Incorrect = 1
     }
+
+    public enum StrategyHandlerTypes
+    {
+        LaunchRequest,
+        SessionEndedRequest,
+        IntentRequest
+    }
+
+   
 }

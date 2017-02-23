@@ -77,8 +77,6 @@
     <Compile Include="AlexaRequestHandlerStrategies\Strategies\LaunchRequestHandlerStrategy.cs" />
     <Compile Include="AlexaRequestHandlerStrategies\Strategies\SessionEndedRequestHandlerStrategy.cs" />
     <Compile Include="AlexaRequestHandlerStrategies\Strategies\HelloWorldIntentHandlerStrategy.cs" />
-    <Compile Include="AlexaRequestHandlerStrategyFactories\StrategyFactories\IntentRequestHandlerFactory.cs" />
-    <Compile Include="AlexaRequestHandlerStrategyFactories\StrategyFactories\SessionEndedRequestHandlerFactory.cs" />
     <Compile Include="AlexaErrorHandling\AbstractAlexaErrorResponse.cs" />
     <Compile Include="AlexaRequestValidation\AlexaRequestValidationHandler.cs" />
     <Compile Include="AlexaRequestValidation\AlexaRequestValidationService.cs" />
@@ -98,7 +96,6 @@
     <Compile Include="PersistenceAndMapping\IAlexaRequestMapper.cs" />
     <Compile Include="PersistenceAndMapping\IAlexaRequestPersistenceService.cs" />
     <Compile Include="AlexaEntryPoint\IAlexaRequestService.cs" />
-    <Compile Include="AlexaRequestHandlerStrategyFactories\StrategyFactories\LaunchRequestHandlerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WordServices\IWordService.cs" />
     <Compile Include="WordServices\WordService.cs" />

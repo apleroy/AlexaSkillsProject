@@ -15,6 +15,22 @@ namespace AlexaSkillProject.Services
     {
         private readonly ICacheService _cacheService;
 
+        public string SupportedRequestType
+        {
+            get
+            {
+                return "SayWordIntent";
+            }
+        }
+
+        public string SupportedRequestIntentName
+        {
+            get
+            {
+                return StrategyHandlerTypes.IntentRequest.ToString();
+            }
+        }
+
         public SayWordIntentHandlerStrategy(ICacheService cacheService)
         {
             _cacheService = cacheService;

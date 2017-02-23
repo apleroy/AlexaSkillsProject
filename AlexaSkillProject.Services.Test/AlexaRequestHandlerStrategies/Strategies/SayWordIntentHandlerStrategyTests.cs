@@ -47,8 +47,6 @@ namespace AlexaSkillProject.Services.Tests
             Assert.IsTrue(alexaResponse.Response.OutputSpeech.Ssml.Contains(
                 Utility.GetDescriptionFromEnumValue(SuccessPhrases.Great)));
 
-            //Assert.AreEqual(alexaRequestPayload.Session.Attributes.LastWord, word.WordName);
-            //Assert.AreEqual(alexaRequestPayload.Session.Attributes.LastWordDefinition, word.Definition);
         }
 
         [TestMethod()]
