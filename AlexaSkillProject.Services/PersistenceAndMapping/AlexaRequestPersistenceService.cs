@@ -37,6 +37,7 @@ namespace AlexaSkillProject.Services
             else
             {
                 alexaMember.AlexaRequests.Add(alexaRequest);
+                alexaMember.RequestCount += 1;
             }
 
             _unitOfWork.Complete();
