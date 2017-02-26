@@ -14,9 +14,6 @@ AnotherWordIntent one more word
 AnotherWordIntent next word
 AnotherWordIntent another word
 
-OneShotWordIntent Ask Grammar Tool what is the word of the day
-OneShotWordIntent Ask Grammar Tool for the word of the day
-
 AMAZON.CancelIntent cease everything
 AMAZON.StopIntent abort
 AMAZON.HelpIntent give me guidance

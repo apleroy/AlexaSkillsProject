@@ -10,7 +10,7 @@ This project is an Alexa Skill application called "Grammar Tool".
 
 * The AlexaSkillProject.WebApp project hosts the web app and web api.
 
-* The initial entry point for the Alexa Skill is in the AlexaController at [HttpPost, Route("api/v1/alexa/wod")]
+* The initial entry point for the Alexa Skill is in the AlexaController at [HttpPost, Route("api/v1/alexa/grammartool")]
 
 * The Alexa skill uses the service layer (AlexaSkillProject.Services) to validate the request, map and persist the request (SQL Server), and deliver an appropriate response.
 
@@ -28,5 +28,8 @@ This project is an Alexa Skill application called "Grammar Tool".
 
 * Alexa will continue with additional words with "Get Another Word".
 
+* One shot request: "Alexa, Ask Grammar Tool for the Word of The Day?""
+
 ##About the Web App 
 
+* www.grammartoolapp.com (still in progress)

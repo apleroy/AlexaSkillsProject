@@ -66,8 +66,7 @@ namespace AlexaSkillProject.WebApp
             container.RegisterType<IAlexaRequestHandlerStrategy, SayWordIntentHandlerStrategy>("SayWordIntentHandlerStrategy");
             container.RegisterType<IAlexaRequestHandlerStrategy, SessionEndedRequestHandlerStrategy>("SessionEndedRequestHandlerStrategy");
             container.RegisterType<IAlexaRequestHandlerStrategy, WordOfTheDayIntentHandlerStrategy>("WordOfTheDayIntentHandlerStrategy");
-            container.RegisterType<IAlexaRequestHandlerStrategy, OneShotWordIntentHandlerStrategy>("OneShotWordIntentHandlerStrategy");
-
+            
             container.RegisterType<IEnumerable<IAlexaRequestHandlerStrategy>, IAlexaRequestHandlerStrategy[]>();
             container.RegisterType<IAlexaRequestHandlerStrategyFactory, AlexaRequestHandlerStrategyFactory>();
 

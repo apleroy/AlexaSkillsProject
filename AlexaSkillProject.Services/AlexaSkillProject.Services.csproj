@@ -71,7 +71,6 @@
     <Compile Include="AlexaRequestHandlerStrategies\Strategies\AnotherWordIntentHandlerStrategy.cs" />
     <Compile Include="AlexaRequestHandlerStrategies\Strategies\StopIntentHandlerStrategy.cs" />
     <Compile Include="AlexaRequestHandlerStrategies\Strategies\SayWordIntentHandlerStrategy.cs" />
-    <Compile Include="AlexaRequestHandlerStrategies\Strategies\OneShotWordIntentHandlerStrategy.cs" />
     <Compile Include="AlexaRequestHandlerStrategies\Strategies\WordOfTheDayIntentHandlerStrategy.cs" />
     <Compile Include="AlexaRequestHandlerStrategyFactories\AlexaRequestHandlerStrategyFactory.cs" />
     <Compile Include="AlexaRequestHandlerStrategies\Strategies\CancelIntentHandlerStrategy.cs" />

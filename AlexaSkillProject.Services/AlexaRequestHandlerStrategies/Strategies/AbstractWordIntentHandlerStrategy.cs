@@ -72,23 +72,23 @@ namespace AlexaSkillProject.Services
                     }
                     catch (Exception exception)
                     {
-                        throw new Exception("Unable to build response dictionary for the word: " + word + " " + exception.Message);
+                        return new AlexaResponse("Unable to build response dictionary for the word: " + word + " " + exception.Message);
                     }
 
                     wordResponse = wordResponseDictionary[WordEnum.Word];
                     retryCounter += 1;
                 }
-
-                // build the alexa response - implemented in base class
+                
                 AlexaResponse alexaResponse = BuildAlexaResponse(alexaRequest, wordResponseDictionary);
-
+                
                 // assign word to request for caching the request between intents
+                alexaRequest.Session.Attributes = new AlexaRequestPayload.SessionCustomAttributes();
                 alexaRequest.Session.Attributes.LastWord = word.WordName; // use the word from the db as it is saved in intent slots
                 alexaRequest.Session.Attributes.LastWordDefinition = wordResponseDictionary[WordEnum.WordDefinition];
-
+                
                 // cache the request and its above added session attributes
                 _cacheService.CacheAlexaRequest(alexaRequest);
-
+                
                 return alexaResponse;
             }
 

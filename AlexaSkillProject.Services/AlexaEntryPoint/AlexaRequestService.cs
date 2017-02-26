@@ -56,7 +56,8 @@ namespace AlexaSkillProject.Services
                 catch (Exception exception)
                 {
                     // todo: log the error
-                    return new AlexaWordErrorResponse().GenerateCustomError();
+                    return new AlexaResponse("There was an error " + exception.Message);
+                    //return new AlexaWordErrorResponse().GenerateCustomError();
                 }
             }
 
