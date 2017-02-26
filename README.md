@@ -1,6 +1,6 @@
 #Project README
 
-This project is an Alexa Skill application called "Eloquency".
+This project is an Alexa Skill application called "Grammar Tool".
 
 ##Tech Stack
 
@@ -20,7 +20,7 @@ This project is an Alexa Skill application called "Eloquency".
 
 ##About the Alexa Skill (As of 2/23/17 in certification for publishing)
 
-* Invoke the Skill by saying "Alexa, Open Eloquency".
+* Invoke the Skill by saying "Alexa, Open Grammar Tool".
 
 * Ask for the Word of the Day: "What is the Word of The Day"
 
@@ -30,4 +30,3 @@ This project is an Alexa Skill application called "Eloquency".
 
 ##About the Web App 
 
-* EloquencyApp.com is under construction.  The current azure web site (http://alexaskillprojectwebapp.azurewebsites.net/) has a basic UI for administrator login to add words.

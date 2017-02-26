@@ -3,13 +3,13 @@ using AlexaSkillProject.Domain;
 
 namespace AlexaSkillProject.Services
 {
-    public class CancelOrStopIntentHandlerStrategy : IAlexaRequestHandlerStrategy
+    public class StopIntentHandlerStrategy : IAlexaRequestHandlerStrategy
     {
         public string SupportedRequestIntentName
         {
             get
             {
-                return "AMAZON.CancelOrStopIntent";
+                return "AMAZON.StopIntent";
             }
         }
 
@@ -23,7 +23,7 @@ namespace AlexaSkillProject.Services
 
         public AlexaResponse HandleAlexaRequest(AlexaRequestPayload alexaRequest)
         {
-            var response = new AlexaResponse("Thanks for using the Eloquency Skill.  You can also visit Eloquency App dot com for more information.  I hope to see you again soon.");
+            var response = new AlexaResponse("Thanks for using Grammar Tool.  You can also visit Grammar Tool App dot com for more information.  I hope to see you again soon.");
 
             response.Response.ShouldEndSession = true;
 

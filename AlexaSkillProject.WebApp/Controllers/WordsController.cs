@@ -35,12 +35,12 @@ namespace AlexaSkillProject.Controllers
         [HttpGet]
         public ActionResult BatchInsert()
         {
-            WordViewModel viewModel = new WordViewModel();
+            WordListViewModel viewModel = new WordListViewModel();
             return View(viewModel);
         }
 
         [HttpPost]
-        public ActionResult BatchInsert(WordViewModel wordViewModel)
+        public ActionResult BatchInsert(WordListViewModel wordViewModel)
         {
             string[] wordList = wordViewModel.WordList.Split(
                 new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries);

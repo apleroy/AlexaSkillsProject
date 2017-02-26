@@ -5,6 +5,10 @@
       "slots": []
     },
     {
+      "intent": "OneShotWordIntent",
+      "slots": []
+    },
+    {
       "intent": "AnotherWordIntent",
       "slots": []
     },

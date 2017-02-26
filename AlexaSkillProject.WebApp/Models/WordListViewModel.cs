@@ -6,7 +6,7 @@ using System.Web;
 
 namespace AlexaSkillProject.WebApp.Models
 {
-    public class WordViewModel
+    public class WordListViewModel
     {
         public string WordList { get; set; }
     }

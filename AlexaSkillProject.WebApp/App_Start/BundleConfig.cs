@@ -25,7 +25,11 @@ namespace AlexaSkillProject.WebApp
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/stickyfooter.css",
+                      "~/Content/cover.css",
+                      "~/Content/wordcomponent.css"
+                      ));
         }
     }
 }

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AlexaSkillProject.Domain;
+using AlexaSkillProject.Services;
+using AlexaSkillProject.WebApp.Models.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +11,19 @@ namespace AlexaSkillProject.WebApp.Controllers
 {
     public class HomeController : Controller
     {
+
+        private readonly IWordService _wordService;
+
+        public HomeController(IWordService wordService)
+        {
+            _wordService = wordService;
+        }
+
         public ActionResult Index()
         {
-            return View();
+            Word word = _wordService.GetWordOfTheDay();
+            WordViewModel wordViewModel = new WordViewModel(word);
+            return View(wordViewModel);
         }
 
         public ActionResult About()

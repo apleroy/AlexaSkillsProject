@@ -1,0 +1,18 @@
+﻿
+.word-component {
+    margin-top: 10%;
+}
+
+.word-title {
+    font-size: 60px;
+}
+
+.word-partofspeech {
+    font-size: 20px;
+}
+
+.word-definition {
+    border-left: 5px solid #333333;
+    padding-left: 10px;
+}
+

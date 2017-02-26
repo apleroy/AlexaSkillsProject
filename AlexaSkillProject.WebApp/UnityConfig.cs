@@ -58,13 +58,15 @@ namespace AlexaSkillProject.WebApp
             #region Handler Strategies
 
             container.RegisterType<IAlexaRequestHandlerStrategy, AnotherWordIntentHandlerStrategy>("AnotherWordIntentHandlerStrategy");
-            container.RegisterType<IAlexaRequestHandlerStrategy, CancelOrStopIntentHandlerStrategy>("CancelOrStopIntentHandlerStrategy");
+            container.RegisterType<IAlexaRequestHandlerStrategy, CancelIntentHandlerStrategy>("CancelIntentHandlerStrategy");
+            container.RegisterType<IAlexaRequestHandlerStrategy, StopIntentHandlerStrategy>("StopIntentHandlerStrategy");
             container.RegisterType<IAlexaRequestHandlerStrategy, HelloWorldIntentHandlerStrategy>("HelloWorldIntentHandlerStrategy");
             container.RegisterType<IAlexaRequestHandlerStrategy, HelpIntentHandlerStrategy>("HelpIntentHandlerStrategy");
             container.RegisterType<IAlexaRequestHandlerStrategy, LaunchRequestHandlerStrategy>("LaunchRequestHandlerStrategy");
             container.RegisterType<IAlexaRequestHandlerStrategy, SayWordIntentHandlerStrategy>("SayWordIntentHandlerStrategy");
             container.RegisterType<IAlexaRequestHandlerStrategy, SessionEndedRequestHandlerStrategy>("SessionEndedRequestHandlerStrategy");
             container.RegisterType<IAlexaRequestHandlerStrategy, WordOfTheDayIntentHandlerStrategy>("WordOfTheDayIntentHandlerStrategy");
+            container.RegisterType<IAlexaRequestHandlerStrategy, OneShotWordIntentHandlerStrategy>("OneShotWordIntentHandlerStrategy");
 
             container.RegisterType<IEnumerable<IAlexaRequestHandlerStrategy>, IAlexaRequestHandlerStrategy[]>();
             container.RegisterType<IAlexaRequestHandlerStrategyFactory, AlexaRequestHandlerStrategyFactory>();
