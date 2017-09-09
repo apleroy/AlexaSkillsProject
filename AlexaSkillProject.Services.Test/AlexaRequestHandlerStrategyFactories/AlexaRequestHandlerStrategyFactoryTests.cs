@@ -17,10 +17,12 @@ namespace AlexaSkillProject.Services.Tests
     [TestClass()]
     public class AlexaRequestHandlerStrategyFactoryTests
     {
+
         [TestMethod()]
         public void CreateAlexaRequestHandlerStrategyTest_LaunchRequestHandlerStrategy()
         {
             // arrange
+            IList<IAlexaRequestHandlerStrategy> availableStrategies = new List<IAlexaRequestHandlerStrategy>();
             AlexaRequestHandlerStrategyFactory alexaRequestHandlerStrategyFactory = BuildTestAlexaRequestHandlerStrategyFactory();
 
             var alexaRequestPayload = AlexaSkillProjectTestHelpers.GetAlexaRequestPayload("AlexaRequestPayloadTest.json");
@@ -30,7 +32,7 @@ namespace AlexaSkillProject.Services.Tests
             var strategyHandler = alexaRequestHandlerStrategyFactory.CreateAlexaRequestHandlerStrategy(alexaRequestPayload);
 
             // assert
-            Assert.AreEqual(strategyHandler.GetType(), typeof(LaunchRequestHandlerStrategy));
+            Assert.AreEqual(typeof(LaunchRequestHandlerStrategy), strategyHandler.GetType());
         }
 
         [TestMethod()]
@@ -46,7 +48,7 @@ namespace AlexaSkillProject.Services.Tests
             var strategyHandler = alexaRequestHandlerStrategyFactory.CreateAlexaRequestHandlerStrategy(alexaRequestPayload);
 
             // assert
-            Assert.AreEqual(strategyHandler.GetType(), typeof(SessionEndedRequestHandlerStrategy));
+            Assert.AreEqual(typeof(SessionEndedRequestHandlerStrategy), strategyHandler.GetType());
         }
 
         [TestMethod()]
@@ -63,7 +65,7 @@ namespace AlexaSkillProject.Services.Tests
             var strategyHandler = alexaRequestHandlerStrategyFactory.CreateAlexaRequestHandlerStrategy(alexaRequestPayload);
 
             // assert
-            Assert.AreEqual(strategyHandler.GetType(), typeof(AnotherWordIntentHandlerStrategy));
+            Assert.AreEqual(typeof(AnotherWordIntentHandlerStrategy), strategyHandler.GetType());
         }
 
         [TestMethod()]
@@ -80,7 +82,7 @@ namespace AlexaSkillProject.Services.Tests
             var strategyHandler = alexaRequestHandlerStrategyFactory.CreateAlexaRequestHandlerStrategy(alexaRequestPayload);
 
             // assert
-            Assert.AreEqual(strategyHandler.GetType(), typeof(WordOfTheDayIntentHandlerStrategy));
+            Assert.AreEqual(typeof(WordOfTheDayIntentHandlerStrategy), strategyHandler.GetType());
         }
 
         [TestMethod()]
@@ -97,11 +99,10 @@ namespace AlexaSkillProject.Services.Tests
             var strategyHandler = alexaRequestHandlerStrategyFactory.CreateAlexaRequestHandlerStrategy(alexaRequestPayload);
 
             // assert
-            Assert.AreEqual(strategyHandler.GetType(), typeof(SayWordIntentHandlerStrategy));
+            Assert.AreEqual(typeof(SayWordIntentHandlerStrategy), strategyHandler.GetType());
         }
 
         [TestMethod()]
-        [ExpectedException(typeof(NotImplementedException))]
         public void CreateAlexaRequestHandlerStrategyTest_IntentRequestHandlerStrategy_NullIntentHandlerStrategy()
         {
             // arrange
@@ -115,7 +116,7 @@ namespace AlexaSkillProject.Services.Tests
             var strategyHandler = alexaRequestHandlerStrategyFactory.CreateAlexaRequestHandlerStrategy(alexaRequestPayload);
 
             // assert
-            Assert.AreEqual(strategyHandler.GetType(), typeof(Exception));
+            Assert.IsNull(strategyHandler);
         }
 
         [TestMethod()]
@@ -132,19 +133,31 @@ namespace AlexaSkillProject.Services.Tests
             var strategyHandler = alexaRequestHandlerStrategyFactory.CreateAlexaRequestHandlerStrategy(alexaRequestPayload);
 
             // assert
-            Assert.AreEqual(strategyHandler.GetType(), typeof(Exception));
+            Assert.AreEqual(typeof(Exception), strategyHandler.GetType());
         }
 
 
 
         private AlexaRequestHandlerStrategyFactory BuildTestAlexaRequestHandlerStrategyFactory()
         {
-            var wordService = new Mock<IWordService>();
-            var dictionaryService = new Mock<IDictionaryService>();
-            var cacheService = new Mock<ICacheService>();
+            var wordService = new Mock<IWordService>().Object;
+            var dictionaryService = new Mock<IDictionaryService>().Object;
+            var cacheService = new Mock<ICacheService>().Object;
             var availableServices = new Mock<IEnumerable<IAlexaRequestHandlerStrategy>> ();
 
-            var alexaRequestHandlerStrategyFactory = new AlexaRequestHandlerStrategyFactory(availableServices.Object);
+            List<IAlexaRequestHandlerStrategy> availableStrategies = new List<IAlexaRequestHandlerStrategy>
+            {
+                new LaunchRequestHandlerStrategy(),
+                new SayWordIntentHandlerStrategy(cacheService),
+                new AnotherWordIntentHandlerStrategy(wordService, dictionaryService, cacheService),
+                new CancelIntentHandlerStrategy(),
+                new HelpIntentHandlerStrategy(),
+                new SessionEndedRequestHandlerStrategy(),
+                new StopIntentHandlerStrategy(),
+                new WordOfTheDayIntentHandlerStrategy(wordService, dictionaryService, cacheService)
+            };
+
+            var alexaRequestHandlerStrategyFactory = new AlexaRequestHandlerStrategyFactory(availableStrategies);
 
             return alexaRequestHandlerStrategyFactory;
         }
