@@ -1,0 +1,29 @@
+﻿{
+  "session": {
+    "sessionId": "SessionId.SESSIONIDENTIFIER",
+    "application": {
+      "applicationId": "amzn1.ask.skill.APPLICATIONID"
+    },
+    "attributes": {},
+    "user": {
+      "userId": "amzn1.ask.account.RANDOMSTRING"
+    },
+    "new": true
+  },
+  "request": {
+    "type": "IntentRequest",
+    "requestId": "EdwRequestId.REQUESTID",
+    "locale": "en-US",
+    "timestamp": "2017-02-20T17:52:40Z",
+    "intent": {
+      "name": "SayWordIntent",
+      "slots": {
+        "Word": {
+          "name": "Word",
+          "value": "test"
+        }
+      }
+    },
+  },
+  "version": "1.0"
+}
