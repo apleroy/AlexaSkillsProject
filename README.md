@@ -1,8 +1,8 @@
-#Project README
+# Project README
 
 This project is an Alexa Skill application called "Grammar Tool".
 
-##Tech Stack
+## Tech Stack
 
 * It is built as a layered .NET/C# application, with tiers for web app & web api, service layer, repo layer, and domain specifics.
 
@@ -18,7 +18,7 @@ This project is an Alexa Skill application called "Grammar Tool".
 
 * Unity Inversion of Control Container is used for Dependency Injection (AlexaSkillProject.WebApp > App_Start > WebApiConfig)
 
-##About the Alexa Skill
+## About the Alexa Skill
 
 * Invoke the Skill by saying "Alexa, Open Grammar Tool".
 
@@ -30,6 +30,6 @@ This project is an Alexa Skill application called "Grammar Tool".
 
 * One shot request: "Alexa, Ask Grammar Tool what is the Word of The Day?""
 
-##About the Web App 
+## About the Web App 
 
 * www.grammartoolapp.com (in progress)
